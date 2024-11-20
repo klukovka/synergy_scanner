@@ -2,6 +2,8 @@ import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:presentation/src/auth/login/login_page.dart';
+import 'package:presentation/src/home/home_page.dart';
 import 'package:presentation/src/navigation/base_route.dart';
 import 'package:presentation/src/navigation/fade_transition_page.dart';
 import 'package:presentation/src/navigation/parsing/routes/routes.dart';
@@ -54,25 +56,23 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
           ),
           child: Navigator(
             key: navigatorKey,
-            onPopPage: (route, result) {
+            onDidRemovePage: (route) {
               if (viewModel.previousRoutes.isNotEmpty) {
                 store.dispatch(ClosePageAction());
-                return false;
               }
-              return true;
             },
             pages: viewModel.currentRoute.expand<Page>((destination) sync* {
               switch (destination) {
                 case Destination.login:
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.login),
-                    child: SizedBox(),
+                    child: LoginPage(),
                   );
                   break;
                 case Destination.home:
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.home),
-                    child: SizedBox(),
+                    child: HomePage(),
                   );
                   break;
 
