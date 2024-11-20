@@ -15,6 +15,7 @@ dependencies:
     path: '../domain'
   localizations:
     path: ../localizations
+  supabase_flutter: ^2.8.1
 
 dev_dependencies:
   flutter_test:

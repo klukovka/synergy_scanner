@@ -13,5 +13,5 @@ class UserDto extends Dto<User> {
   });
 
   @override
-  User toDomain() => User(id: id, name: name, photo: photo);
+  User toDomain() => User(id: id, fullname: name, avatarUrl: photo);
 }
