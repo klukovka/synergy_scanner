@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/navigation/app_route_info_provider.dart';
+import 'package:presentation/src/navigation/app_router_delegate.dart';
 import 'package:presentation/src/navigation/parsing/app_route_parser.dart';
 import 'package:presentation/src/navigation/parsing/routes/routes.dart';
 

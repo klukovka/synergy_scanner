@@ -1,5 +1,6 @@
 library;
 
+export 'src/core/extensions/list_extension.dart';
 export 'src/global/states/app_state.dart';
 export 'src/navigation/actions/navigation_actions.dart';
 export 'src/navigation/entities/destination.dart';
