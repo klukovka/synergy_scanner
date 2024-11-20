@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"name": "domain",
+			"path": "domain"
+		},
+		{
+			"name": "executable",
+			"path": "executable"
+		},
+		{
+			"name": "data",
+			"path": "data"
+		},
+		{
+			"name": "presentation",
+			"path": "presentation"
+		},
+		{
+			"name": "localizations",
+			"path": "localizations"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/*.freezed.dart": true,
+			"**/*.g.dart": true,
+		}
+	}
+}
