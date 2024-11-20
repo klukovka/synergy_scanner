@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  clean_redux: ^0.3.1
   domain:
     path: '../domain'
   localizations:

@@ -1,7 +1,3 @@
 library data;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/repositories/user_supabase_repository.dart';
