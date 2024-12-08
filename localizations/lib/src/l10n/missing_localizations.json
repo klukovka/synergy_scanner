@@ -3,6 +3,8 @@
     "appName",
     "english",
     "ukrainian",
-    "cvv"
+    "system",
+    "light",
+    "dark"
   ]
 }
