@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:localizations/localizations.dart';
+import 'package:presentation/src/core/app_theme.dart';
 import 'package:presentation/src/navigation/app_route_info_provider.dart';
 import 'package:presentation/src/navigation/app_router_delegate.dart';
 import 'package:presentation/src/navigation/parsing/app_route_parser.dart';
@@ -47,6 +48,8 @@ class _AppState extends State<App> {
             SynergyScannerLocalizations.localizationsDelegates,
         supportedLocales: SynergyScannerLocalizations.supportedLocales,
         locale: const Locale('en'),
+        theme: lightTheme,
+        darkTheme: darkTheme,
         routerDelegate: AppRouterDelegate(store, routes),
         routeInformationParser: AppRouteParser(
           () => store.state.currentUserState.user,

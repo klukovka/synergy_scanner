@@ -2,6 +2,7 @@ library;
 
 export 'src/core/actions/loading_actions.dart';
 export 'src/core/extensions/list_extension.dart';
+export 'src/global/global_actions.dart';
 export 'src/global/states/app_state.dart';
 export 'src/global/states/error_state.dart';
 export 'src/navigation/actions/navigation_actions.dart';

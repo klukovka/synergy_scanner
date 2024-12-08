@@ -22,13 +22,13 @@ class CircleIconPreview extends StatelessWidget {
 
   factory CircleIconPreview.user({
     Key? key,
-    Uint8List? imageBytes,
+    String? imageUrl,
     double radius = 24,
     Color? color,
   }) =>
       CircleIconPreview(
         key: key,
-        imageBytes: imageBytes,
+        imageUrl: imageUrl,
         placeholder: (context) => Icon(
           Theme.of(context).extension<CircleIconPreviewThemeData>()?.user,
           size: radius * 2,
