@@ -11,6 +11,7 @@ import 'package:presentation/src/auth/sign_up/widgets/sign_up_password_form_fiel
 import 'package:presentation/src/core/base_view_model.dart';
 import 'package:presentation/src/general/autovalidate_mode_notification/autovalidate_mode_notification.dart';
 import 'package:presentation/src/general/autovalidate_mode_notification/autovalidate_mode_notification_builder.dart';
+import 'package:presentation/src/general/buttons/bottom_loading_button.dart';
 import 'package:presentation/src/general/fields/avatar_picker_form_field.dart';
 
 enum SignUpPageField {
@@ -51,9 +52,13 @@ class _SignUpPageState extends State<SignUpPage> {
             newViewModel.navigateToHomePage();
           }
 
-          if (previousViewModel?.failure != newViewModel.failure) {
-            newViewModel.handleUnexpectedError();
+          if (previousViewModel?.failure != newViewModel.failure &&
+              _isLoading) {
             _isLoading = false;
+            newViewModel.handleUnexpectedError(
+              title: context.strings.signUpFailure,
+              message: newViewModel.failure?.message,
+            );
           }
         },
         builder: (context, viewModel) => AutovalidateModeNotificationBuilder(
@@ -101,40 +106,28 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           const SizedBox(height: 12),
                           const Spacer(),
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: 20,
-                              bottom: MediaQuery.paddingOf(context).bottom,
-                            ),
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                AutovalidateModeNotification(
-                                  AutovalidateMode.onUserInteraction,
-                                ).dispatch(context);
-                                if (_fbState?.saveAndValidate() ?? false) {
-                                  setState(() => _isLoading = true);
-                                  viewModel.signUp(
-                                    NewUser(
-                                      email:
-                                          _fbValues[SignUpPageField.email.name],
-                                      password: _fbValues[
-                                          SignUpPageField.password.name],
-                                      name:
-                                          _fbValues[SignUpPageField.name.name],
-                                      photo:
-                                          _fbValues[SignUpPageField.photo.name],
-                                    ),
-                                  );
-                                }
-                              },
-                              child: _isLoading
-                                  ? const Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: CircularProgressIndicator(),
-                                    )
-                                  : Text(context.strings.complete),
-                            ),
+                          BottomLoadingButton(
+                            isLoading: _isLoading,
+                            onPressed: () {
+                              AutovalidateModeNotification(
+                                AutovalidateMode.onUserInteraction,
+                              ).dispatch(context);
+                              if (_fbState?.saveAndValidate() ?? false) {
+                                setState(() => _isLoading = true);
+                                viewModel.signUp(
+                                  NewUser(
+                                    email:
+                                        _fbValues[SignUpPageField.email.name],
+                                    password: _fbValues[
+                                        SignUpPageField.password.name],
+                                    name: _fbValues[SignUpPageField.name.name],
+                                    photo:
+                                        _fbValues[SignUpPageField.photo.name],
+                                  ),
+                                );
+                              }
+                            },
+                            child: Text(context.strings.complete),
                           ),
                         ],
                       ),

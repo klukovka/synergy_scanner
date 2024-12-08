@@ -6,11 +6,11 @@ import 'package:domain/domain.dart';
 class UserSupabaseRepository extends ImagesSupabaseRepository {
   UserSupabaseRepository();
 
-  Future<FailureOrResult<User>> login(String email, String password) async {
+  Future<FailureOrResult<User>> login(LoginUser loginUser) async {
     return await makeErrorHandledCallback(() async {
       await supabase.auth.signInWithPassword(
-        password: password,
-        email: email,
+        password: loginUser.password,
+        email: loginUser.email,
       );
 
       return await getCurrentUser();
@@ -59,7 +59,9 @@ class UserSupabaseRepository extends ImagesSupabaseRepository {
         await uploadUserAvatar(photo: newUser.photo!, id: user.id);
       }
 
-      return await login(newUser.email, newUser.password);
+      return await login(
+        LoginUser(email: newUser.email, password: newUser.password),
+      );
     });
   }
 

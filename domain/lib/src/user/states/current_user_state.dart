@@ -9,7 +9,9 @@ class CurrentUserState extends State<CurrentUserState> {
     this.user,
     this.failure,
   }) : super(CurrentUserState._updateUser.reducer +
-            CurrentUserState._onSignUpFailed.reducer);
+            CurrentUserState._onSignUpFailed.reducer +
+            CurrentUserState._onLoginFailed.reducer +
+            CurrentUserState._onLogoutFailed.reducer);
 
   factory CurrentUserState._updateUser(
     CurrentUserState state,
@@ -20,6 +22,18 @@ class CurrentUserState extends State<CurrentUserState> {
   factory CurrentUserState._onSignUpFailed(
     CurrentUserState state,
     FailedAction<SignUp> action,
+  ) =>
+      state.copyWith(failure: Nullable(action.failure));
+
+  factory CurrentUserState._onLoginFailed(
+    CurrentUserState state,
+    FailedAction<Login> action,
+  ) =>
+      state.copyWith(failure: Nullable(action.failure));
+
+  factory CurrentUserState._onLogoutFailed(
+    CurrentUserState state,
+    FailedAction<Logout> action,
   ) =>
       state.copyWith(failure: Nullable(action.failure));
 

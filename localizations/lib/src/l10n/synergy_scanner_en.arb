@@ -59,5 +59,7 @@
     "oldPassword": "Old Password",
     "passwordWasSuccessfullyUpdated": "Password was successfully updated.",
     "unexpectedError": "Unexpected Error",
-    "tryYourRequestLater": "Try Your Request Later"
+    "tryYourRequestLater": "Try Your Request Later",
+    "loginFailure": "Login Failure",
+    "signUpFailure": "Sign Up Failure"
 }

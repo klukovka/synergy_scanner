@@ -166,4 +166,10 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get tryYourRequestLater => 'Try Your Request Later';
+
+  @override
+  String get loginFailure => 'Login Failure';
+
+  @override
+  String get signUpFailure => 'Sign Up Failure';
 }

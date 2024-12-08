@@ -410,6 +410,18 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Try Your Request Later'**
   String get tryYourRequestLater;
+
+  /// No description provided for @loginFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Failure'**
+  String get loginFailure;
+
+  /// No description provided for @signUpFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up Failure'**
+  String get signUpFailure;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

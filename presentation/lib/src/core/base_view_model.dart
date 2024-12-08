@@ -16,8 +16,8 @@ abstract class BaseViewModel extends Equatable {
   }) {
     store.dispatch(
       OpenErrorDialogAction(
-        title ?? 'Clip is currently not available',
-        message ?? 'Please try your request later',
+        title,
+        message,
         shouldCloseCurrentPage: shouldCloseCurrentPage,
       ),
     );
