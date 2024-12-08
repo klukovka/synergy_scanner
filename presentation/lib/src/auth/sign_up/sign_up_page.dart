@@ -157,7 +157,7 @@ class _ViewModel extends BaseViewModel {
 
   void navigateToHomePage() {
     store.dispatch(
-      ReplaceRouteAction({Destination.home}, previousRoutes: []),
+      ReplaceRouteAction({Destination.partners}, previousRoutes: []),
     );
   }
 

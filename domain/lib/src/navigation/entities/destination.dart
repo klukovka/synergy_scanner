@@ -2,7 +2,10 @@ enum Destination {
   login,
   signUp,
   unexpectedError(canBePartOfRoute: false),
-  home;
+  partners,
+  criterias,
+  analytics,
+  profile;
 
   final bool canBePartOfRoute;
 

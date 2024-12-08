@@ -172,4 +172,13 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get signUpFailure => 'Sign Up Failure';
+
+  @override
+  String get partners => 'Partners';
+
+  @override
+  String get criterias => 'Criterias';
+
+  @override
+  String get analytics => 'Analytics';
 }

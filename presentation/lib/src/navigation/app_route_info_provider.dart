@@ -117,6 +117,9 @@ extension on Destination {
         Destination.login => 'Login',
         Destination.signUp => 'Sign Up',
         Destination.unexpectedError => 'Error',
-        Destination.home => 'Home',
+        Destination.partners => 'Partners',
+        Destination.criterias => 'Criterias',
+        Destination.analytics => 'Analytics',
+        Destination.profile => 'Profile',
       };
 }

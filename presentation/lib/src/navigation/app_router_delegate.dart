@@ -79,7 +79,7 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
                 case Destination.login:
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.login),
-                    child: LoginPage(),
+                    child: PopScope(canPop: false, child: LoginPage()),
                   );
                   break;
                 case Destination.signUp:
@@ -88,10 +88,13 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
                     child: SignUpPage(),
                   );
                   break;
-                case Destination.home:
+                case Destination.partners:
+                case Destination.criterias:
+                case Destination.analytics:
+                case Destination.profile:
                   yield const FadeTransitionPage(
-                    key: ValueKey(Destination.home),
-                    child: HomePage(),
+                    key: ValueKey(Destination.partners),
+                    child: PopScope(canPop: false, child: HomePage()),
                   );
                   break;
 

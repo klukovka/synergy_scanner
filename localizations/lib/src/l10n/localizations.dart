@@ -422,6 +422,24 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Sign Up Failure'**
   String get signUpFailure;
+
+  /// No description provided for @partners.
+  ///
+  /// In en, this message translates to:
+  /// **'Partners'**
+  String get partners;
+
+  /// No description provided for @criterias.
+  ///
+  /// In en, this message translates to:
+  /// **'Criterias'**
+  String get criterias;
+
+  /// No description provided for @analytics.
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

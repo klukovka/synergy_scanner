@@ -61,5 +61,8 @@
     "unexpectedError": "Unexpected Error",
     "tryYourRequestLater": "Try Your Request Later",
     "loginFailure": "Login Failure",
-    "signUpFailure": "Sign Up Failure"
+    "signUpFailure": "Sign Up Failure",
+    "partners": "Partners",
+    "criterias": "Criterias",
+    "analytics": "Analytics"
 }
