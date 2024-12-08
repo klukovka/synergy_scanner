@@ -1,0 +1,193 @@
+{
+    "@@locale": "uk",
+    "languageName": "Українська",
+    "reset": "Скинути",
+    "apply": "Застосувати",
+    "caching": "Кешування",
+    "notAvailable": "Недоступно",
+    "close": "Закрити",
+    "routes": "Маршрути",
+    "trips": "Походи",
+    "profile": "Профіль",
+    "locations": "Локації",
+    "rating": "Рейтинг",
+    "reviews": "Відгуки",
+    "date": "Дата",
+    "distance": "Відстань",
+    "users": "Користувачі",
+    "createTrip": "Створити похід",
+    "title": "Назва",
+    "route": "Маршрут",
+    "titleRequired": "Назва обов'язкова.",
+    "enterUserEmail": "Введіть електронну пошту користувача",
+    "selectAtLeastOneUser": "Виберіть принаймні 1 користувача.",
+    "routeRequired": "Маршрут обов'язковий.",
+    "dateRequired": "Дата обов'язкова.",
+    "save": "Зберегти",
+    "createRoute": "Створити маршрут",
+    "selectAtLeastTwoLocations": "Виберіть принаймні 2 локації.",
+    "fieldRequired": "Поле обов'язкове.",
+    "name": "Ім'я",
+    "description": "Опис",
+    "private": "Приватний",
+    "signUp": "Зареєструватися",
+    "surname": "Прізвище",
+    "emailAddressRequired": "Електронна адреса обов'язкова.",
+    "emailMustBeValid": "Електронна адреса має бути дійсною.",
+    "email": "Електронна пошта",
+    "passwordRequired": "Пароль обов'язковий.",
+    "passwordRequirements": "Пароль повинен містити щонайменше 8 символів, поєднуючи малі та великі літери, цифри та символи.",
+    "passwordTooSimple": "Пароль занадто простий",
+    "passwordsNotMatch": "Паролі не збігаються.",
+    "complete": "Завершити",
+    "password": "Пароль",
+    "login": "Увійти",
+    "editProfile": "Редагувати профіль",
+    "subscription": "Підписка",
+    "favoriteLocations": "Улюблені локації",
+    "myRoutes": "Мої маршрути",
+    "touristTips": "Туристичні поради",
+    "language": "Мова",
+    "theme": "Тема",
+    "logout": "Вийти",
+    "version": "Версія",
+    "viewOnMap": "Переглянути на карті",
+    "filters": "Фільтри",
+    "sortBy": "Сортувати за",
+    "filterBy": "Фільтрувати за",
+    "onlyThreeFiltersSimultaneously": "* користувачі без підписки можуть обрати лише 3 фільтри одночасно",
+    "premium": "преміум",
+    "distanceMertes": "Відстань (м)",
+    "onlyForUsersWithSubscription": "* доступно лише для користувачів з підпискою",
+    "amountReviews": "{amount,plural, one{{amount} Відгук} other{{amount} Відгуки} few{{amount} Відгуки} many{{amount} Відгуків}}",
+    "@amountReviews": {
+        "placeholders": {
+            "amount": {
+                "type": "int",
+                "format": "decimalPattern"
+            }
+        }
+    },
+    "reviewsAmount": "Відгуки ({amount})",
+    "@reviewsAmount": {
+        "placeholders": {
+            "amount": {
+                "type": "int",
+                "format": "decimalPattern"
+            }
+        }
+    },
+    "more": "Більше",
+    "km": "км",
+    "h": "год",
+    "favorites": "Вибране",
+    "cached": "Закешоване",
+    "myOwn": "Мої",
+    "locationsAmount": "Локації ({amount})",
+    "@locationsAmount": {
+        "placeholders": {
+            "amount": {
+                "type": "int",
+                "format": "decimalPattern"
+            }
+        }
+    },
+    "cache": "Кеш",
+    "forgotPassword": "Забули пароль?",
+    "dontHaveAccount": "Ще не маєте облікового запису?",
+    "registerNow": "Зареєструйтесь зараз!",
+    "chat": "Чат",
+    "usersAmount": "Користувачі ({amount})",
+    "@usersAmount": {
+        "placeholders": {
+            "amount": {
+                "type": "int",
+                "format": "decimalPattern"
+            }
+        }
+    },
+    "amountUsers": "{amount,plural, one{{amount} Користувач} other{{amount} Користувачі} few{{amount} Користувачі} many{{amount} Користувачів}}",
+    "@amountUsers": {
+        "placeholders": {
+            "amount": {
+                "type": "int",
+                "format": "decimalPattern"
+            }
+        }
+    },
+    "completed": "Завершено",
+    "uncompleted": "Незавершено",
+    "noInternetConnectionError": "Відсутнє підключення до Інтернету",
+    "generalMobileError": "Виникла помилка мобільного додатка!",
+    "serverErrorOccured": "Виникла помилка сервера!",
+    "toSaveMoreRoutesBuyPremiumError": "Купіть преміум, щоб зберегти більше маршрутів!",
+    "geolocatorServiceDisabledError": "Сервіс геолокації вимкнено.",
+    "permissionDeniedError": "Дозвіл відхилено. Будь ласка, увімкніть його в налаштуваннях телефону.",
+    "permissionDeniedForeverError": "Дозвіл відхилено назавжди. Будь ласка, увімкніть його в налаштуваннях телефону.",
+    "today": "Сьогодні",
+    "yesterday": "Вчора",
+    "showNearest": "Показати найближчі",
+    "nature": "Природа",
+    "river": "Річка",
+    "mountains": "Гори",
+    "forest": "Ліс",
+    "animals": "Тварини",
+    "hasInternet": "Є Інтернет",
+    "cafe": "Кафе",
+    "wc": "Туалет",
+    "showUncompleted": "Показати незавершені",
+    "searchLocations": "Шукати локації",
+    "searchRoutes": "Шукати маршрути",
+    "searchTrips": "Шукати поїздки",
+    "system": "Системна",
+    "light": "Світла",
+    "dark": "Темна",
+    "monthly": "Місячна",
+    "yearly": "Річна",
+    "uah": "грн.",
+    "discount": "Знижка",
+    "subscriptionType": "Тип підписки",
+    "cardHolderName": "Імʼя власника картки",
+    "phone": "Телефон",
+    "year": "Рік",
+    "month": "Місяць",
+    "creditCardNumber": "Номер кредитної картки",
+    "subscriptionExpiresOn": "Підписка активна до:\n{date}.",
+    "@subscriptionExpiresOn": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    },
+    "pickImagesFromGallery": "Оберіть фото з галереї",
+    "review": "Відгук",
+    "labels": "Мітки",
+    "tripDate": "Дата: {date}.",
+    "@tripDate": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d MMMM yyyy",
+                "isCustomDateFormat": "true"
+            }
+        }
+    },
+    "changePassword": "Змінити пароль",
+    "temporaryPasswordWasSentToEmail": "Тимчасовий пароль було відправлено на {email}.",
+    "@temporaryPasswordWasSentToEmail": {
+        "placeholders": {
+            "email": {
+                "type": "String"
+            }
+        }
+    },
+    "resetPassword": "Відновлення паролю",
+    "enterYourEmailToReceiveTemporaryPassword": "Введіть вашу пошту для отримання тимчасового паролю.",
+    "confirmPassword": "Підтвердіть пароль",
+    "newPassword": "Новий пароль",
+    "oldPassword": "Старий пароль",
+    "passwordWasSuccessfullyUpdated": "Пароль було успішно оновлено."
+}
