@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -5,7 +6,7 @@ import 'package:presentation/src/general/images/avatar.dart';
 
 class AvatarPicker extends StatefulWidget {
   final Uint8List? imageBytes;
-  final ValueChanged<Uint8List?> onPick;
+  final ValueChanged<NewImage?> onPick;
   final String? imageUrl;
   final double radius;
 
@@ -24,7 +25,7 @@ class AvatarPicker extends StatefulWidget {
 class _AvatarPickerState extends State<AvatarPicker> {
   static final imagePicker = ImagePicker();
 
-  Future<Uint8List?> _pickImage() async {
+  Future<NewImage?> _pickImage() async {
     return imagePicker
         .pickImage(
           source: ImageSource.gallery,
@@ -32,9 +33,15 @@ class _AvatarPickerState extends State<AvatarPicker> {
           maxWidth: 440,
         )
         .timeout(const Duration(minutes: 3))
-        .then((file) async {
-      if (file != null) {
-        return await file.readAsBytes();
+        .then((imageFile) async {
+      if (imageFile != null) {
+        final bytes = await imageFile.readAsBytes();
+        final fileExt = imageFile.path.split('.').last;
+        return NewImage(
+          bytes: bytes,
+          extension: fileExt,
+          mimeType: imageFile.mimeType,
+        );
       }
       return null;
     });

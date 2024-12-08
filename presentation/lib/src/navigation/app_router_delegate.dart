@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/auth/login/login_page.dart';
+import 'package:presentation/src/auth/sign_up/sign_up_page.dart';
 import 'package:presentation/src/home/home_page.dart';
 import 'package:presentation/src/navigation/base_route.dart';
 import 'package:presentation/src/navigation/fade_transition_page.dart';
@@ -67,6 +68,12 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.login),
                     child: LoginPage(),
+                  );
+                  break;
+                case Destination.signUp:
+                  yield const FadeTransitionPage(
+                    key: ValueKey(Destination.signUp),
+                    child: SignUpPage(),
                   );
                   break;
                 case Destination.home:

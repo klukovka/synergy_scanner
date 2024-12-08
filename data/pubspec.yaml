@@ -16,11 +16,14 @@ dependencies:
   localizations:
     path: ../localizations
   supabase_flutter: ^2.8.1
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.9
 
 
 flutter:

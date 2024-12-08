@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/navigation/app_route_info_provider.dart';
 import 'package:presentation/src/navigation/app_router_delegate.dart';
 import 'package:presentation/src/navigation/parsing/app_route_parser.dart';
@@ -42,9 +43,10 @@ class _AppState extends State<App> {
       ),
       child: MaterialApp.router(
         title: 'Synergy Scanner',
-        // localizationsDelegates: Localizations.localizationsDelegates,
-        // supportedLocales: Localizations.supportedLocales,
-        // locale: const Locale('en'),
+        localizationsDelegates:
+            SynergyScannerLocalizations.localizationsDelegates,
+        supportedLocales: SynergyScannerLocalizations.supportedLocales,
+        locale: const Locale('en'),
         routerDelegate: AppRouterDelegate(store, routes),
         routeInformationParser: AppRouteParser(
           () => store.state.currentUserState.user,

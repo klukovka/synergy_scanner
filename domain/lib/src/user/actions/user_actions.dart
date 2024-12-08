@@ -12,3 +12,5 @@ class UpdateCurrentUserAction extends Action {
 
   UpdateCurrentUserAction(this.user);
 }
+
+class LogoutAction extends Action {}

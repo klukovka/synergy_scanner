@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Avatar extends StatelessWidget {
   final String? imageUrl;
@@ -32,29 +33,10 @@ class Avatar extends StatelessWidget {
       child: ((localImage ?? remoteImage) != null)
           ? null
           : Icon(
-              Theme.of(context).extension<AvatarThemeData>()?.defaultIcon,
+              MdiIcons.accountCircle,
               size: radius * 2,
               color: placeholderColor ?? Theme.of(context).colorScheme.primary,
             ),
     );
   }
-}
-
-class AvatarThemeData extends ThemeExtension<AvatarThemeData> {
-  final IconData defaultIcon;
-
-  AvatarThemeData({
-    required this.defaultIcon,
-  });
-
-  @override
-  ThemeExtension<AvatarThemeData> copyWith({IconData? defaultIcon}) =>
-      AvatarThemeData(defaultIcon: defaultIcon ?? this.defaultIcon);
-
-  @override
-  ThemeExtension<AvatarThemeData> lerp(
-    ThemeExtension<AvatarThemeData>? other,
-    double t,
-  ) =>
-      other ?? this;
 }

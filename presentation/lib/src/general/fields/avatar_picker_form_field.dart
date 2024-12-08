@@ -1,9 +1,8 @@
-import 'dart:typed_data';
-
+import 'package:domain/domain.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:presentation/src/general/images/avatar_picker.dart';
 
-class AvatarPickerFormField extends FormBuilderField<Uint8List> {
+class AvatarPickerFormField extends FormBuilderField<NewImage> {
   AvatarPickerFormField({
     super.key,
     required super.name,
@@ -15,7 +14,7 @@ class AvatarPickerFormField extends FormBuilderField<Uint8List> {
     double radius = 40,
   }) : super(
           builder: (state) => AvatarPicker(
-            imageBytes: state.value,
+            imageBytes: state.value?.bytes,
             onPick: state.didChange,
             imageUrl: imageUrl,
             radius: radius,
