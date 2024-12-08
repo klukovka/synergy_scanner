@@ -1,6 +1,8 @@
 import 'package:clean_redux/clean_redux.dart';
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import 'package:executable/middlewares/controllers_middleware.dart';
+import 'package:executable/middlewares/logger_middleware.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:presentation/presentation.dart';
 import 'package:redux/redux.dart';
@@ -20,7 +22,13 @@ class Initializer {
           action is Action ? appState.reducer(state, action) : state,
       distinct: true,
       initialState: appState,
-      middleware: [],
+      middleware: [
+        LoggerMiddleware().call,
+        ControllersMiddleware(
+          () => store!,
+          userRepository: userRepository,
+        ).call,
+      ],
     );
 
     return store;

@@ -29,6 +29,7 @@ dependencies:
   clean_redux: ^0.3.3
   url_strategy: ^0.3.0
   supabase_flutter: ^2.8.1
+  redux_epics: ^0.15.1
 
 dev_dependencies:
   flutter_test:

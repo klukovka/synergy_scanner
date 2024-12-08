@@ -1,11 +1,15 @@
 import 'package:clean_redux/clean_redux.dart';
-import 'package:domain/src/user/actions/user_actions.dart';
-import 'package:domain/src/user/entities/user.dart';
+import 'package:domain/domain.dart';
 
 class CurrentUserState extends State<CurrentUserState> {
   final User? user;
+  final Failure? failure;
 
-  CurrentUserState({this.user}) : super(CurrentUserState._updateUser.reducer);
+  CurrentUserState({
+    this.user,
+    this.failure,
+  }) : super(CurrentUserState._updateUser.reducer +
+            CurrentUserState._onSignUpFailed.reducer);
 
   factory CurrentUserState._updateUser(
     CurrentUserState state,
@@ -13,9 +17,19 @@ class CurrentUserState extends State<CurrentUserState> {
   ) =>
       state.copyWith(user: Nullable(action.user));
 
+  factory CurrentUserState._onSignUpFailed(
+    CurrentUserState state,
+    FailedAction<SignUp> action,
+  ) =>
+      state.copyWith(failure: Nullable(action.failure));
+
   @override
   CurrentUserState copyWith({
     Nullable<User>? user,
+    Nullable<Failure>? failure,
   }) =>
-      CurrentUserState(user: user == null ? this.user : user.value);
+      CurrentUserState(
+        user: user == null ? this.user : user.value,
+        failure: failure == null ? this.failure : failure.value,
+      );
 }
