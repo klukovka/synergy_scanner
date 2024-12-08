@@ -57,5 +57,7 @@
     "confirmPassword": "Confirm Password",
     "newPassword": "New Password",
     "oldPassword": "Old Password",
-    "passwordWasSuccessfullyUpdated": "Password was successfully updated."
+    "passwordWasSuccessfullyUpdated": "Password was successfully updated.",
+    "unexpectedError": "Unexpected Error",
+    "tryYourRequestLater": "Try Your Request Later"
 }

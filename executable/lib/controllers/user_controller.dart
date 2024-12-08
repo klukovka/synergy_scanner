@@ -10,6 +10,7 @@ class UserController extends Controller {
   ) : super(
           [
             Endpoint(SignUp(userRepository.signUp)).call,
+            Endpoint(Logout(userRepository.logout)).call,
           ],
         );
 }

@@ -14,3 +14,5 @@ class UpdateCurrentUserAction extends Action {
 }
 
 class LogoutAction extends Action {}
+
+class ResetAppAction extends Action {}

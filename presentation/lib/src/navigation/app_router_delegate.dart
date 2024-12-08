@@ -1,9 +1,13 @@
+import 'dart:ui';
+
 import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/auth/login/login_page.dart';
 import 'package:presentation/src/auth/sign_up/sign_up_page.dart';
+import 'package:presentation/src/general/dialogs/material_dialog.dart';
+import 'package:presentation/src/general/dialogs/unexpected_error_dialog.dart';
 import 'package:presentation/src/home/home_page.dart';
 import 'package:presentation/src/navigation/base_route.dart';
 import 'package:presentation/src/navigation/fade_transition_page.dart';
@@ -64,6 +68,14 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
             },
             pages: viewModel.currentRoute.expand<Page>((destination) sync* {
               switch (destination) {
+                case Destination.unexpectedError:
+                  yield MaterialDialog(
+                    key: const ValueKey(Destination.unexpectedError),
+                    imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                    barrierColor: Colors.black.withOpacity(0.16),
+                    child: const UnexpectedErrorDialog(),
+                  );
+                  break;
                 case Destination.login:
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.login),

@@ -6,7 +6,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'localizations_en.dart';
-import 'localizations_uk.dart';
 
 // ignore_for_file: type=lint
 
@@ -91,8 +90,7 @@ abstract class SynergyScannerLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('uk')
+    Locale('en')
   ];
 
   /// No description provided for @languageName.
@@ -400,6 +398,18 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Password was successfully updated.'**
   String get passwordWasSuccessfullyUpdated;
+
+  /// No description provided for @unexpectedError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected Error'**
+  String get unexpectedError;
+
+  /// No description provided for @tryYourRequestLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Your Request Later'**
+  String get tryYourRequestLater;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {
@@ -411,7 +421,7 @@ class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<Synergy
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'uk'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SynergyScannerLocalizationsDelegate old) => false;
@@ -423,7 +433,6 @@ SynergyScannerLocalizations lookupSynergyScannerLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return SynergyScannerLocalizationsEn();
-    case 'uk': return SynergyScannerLocalizationsUk();
   }
 
   throw FlutterError(

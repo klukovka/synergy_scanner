@@ -160,4 +160,10 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get passwordWasSuccessfullyUpdated => 'Password was successfully updated.';
+
+  @override
+  String get unexpectedError => 'Unexpected Error';
+
+  @override
+  String get tryYourRequestLater => 'Try Your Request Later';
 }
