@@ -48,6 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
           if (previousViewModel?.currentUser != newViewModel.currentUser &&
               newViewModel.currentUser != null) {
             _isLoading = false;
+            newViewModel.navigateToHomePage();
           }
 
           if (previousViewModel?.failure != newViewModel.failure) {
@@ -162,7 +163,9 @@ class _ViewModel extends BaseViewModel {
   }
 
   void navigateToHomePage() {
-    store.dispatch(ReplaceRouteAction({Destination.home}));
+    store.dispatch(
+      ReplaceRouteAction({Destination.home}, previousRoutes: []),
+    );
   }
 
   @override

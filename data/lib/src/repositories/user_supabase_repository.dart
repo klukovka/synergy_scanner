@@ -1,16 +1,21 @@
 import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/user/user_dto.dart';
-import 'package:data/src/repositories/base_supabase_repository.dart';
+import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:domain/domain.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
-class UserSupabaseRepository extends BaseSupabaseRepository {
+class UserSupabaseRepository extends ImagesSupabaseRepository {
   UserSupabaseRepository();
 
-  Future<FailureOrResult<User>> login(String email, String password) async =>
-      FailureOrResult.success(
-        User(id: '', fullname: 'name', email: ''),
+  Future<FailureOrResult<User>> login(String email, String password) async {
+    return await makeErrorHandledCallback(() async {
+      await supabase.auth.signInWithPassword(
+        password: password,
+        email: email,
       );
+
+      return await getCurrentUser();
+    });
+  }
 
   Future<FailureOrResult<User>> getCurrentUser() async {
     return await makeErrorHandledCallback(() async {
@@ -50,18 +55,11 @@ class UserSupabaseRepository extends BaseSupabaseRepository {
         );
       }
 
-      final avatarUrl = newUser.photo != null
-          ? await uploadUserAvatar(photo: newUser.photo!, id: user.id)
-          : null;
+      if (newUser.photo != null) {
+        await uploadUserAvatar(photo: newUser.photo!, id: user.id);
+      }
 
-      return FailureOrResult.success(
-        User(
-          id: user.id,
-          fullname: user.userMetadata?['full_name'] ?? '',
-          email: user.email ?? '',
-          avatarUrl: avatarUrl?.result,
-        ),
-      );
+      return await login(newUser.email, newUser.password);
     });
   }
 
@@ -70,7 +68,6 @@ class UserSupabaseRepository extends BaseSupabaseRepository {
     required String id,
   }) async {
     return await makeErrorHandledCallback(() async {
-      final filepath = '$id.${photo.extension}';
       final result = await uploadImage(
         photo: photo,
         bucket: 'avatars',
@@ -78,7 +75,7 @@ class UserSupabaseRepository extends BaseSupabaseRepository {
       );
 
       if (result.wasSuccessful) {
-        await supabase.from('users').update({'avatar_url': filepath}).eq(
+        await supabase.from('users').update({'avatar_url': result.result!}).eq(
           'id',
           id,
         );
@@ -88,32 +85,10 @@ class UserSupabaseRepository extends BaseSupabaseRepository {
     });
   }
 
-  Future<FailureOrResult<String>> uploadImage({
-    required NewImage photo,
-    required String bucket,
-    required String name,
-  }) async {
+  Future<FailureOrResult<void>> logout() async {
     return await makeErrorHandledCallback(() async {
-      final filepath = '$name.${photo.extension}';
-      await supabase.storage.from(bucket).updateBinary(
-            filepath,
-            photo.bytes,
-            fileOptions: FileOptions(contentType: photo.mimeType),
-          );
-      return await getImage(filepath: filepath, bucket: bucket);
-    });
-  }
-
-  Future<FailureOrResult<String>> getImage({
-    required String filepath,
-    required String bucket,
-  }) async {
-    return await makeErrorHandledCallback(() async {
-      final imageUrlResponse = await supabase.storage
-          .from(bucket)
-          .createSignedUrl(filepath, 60 * 60 * 24 * 365 * 10);
-
-      return FailureOrResult.success(imageUrlResponse);
+      await supabase.auth.signOut();
+      return FailureOrResult.success(null);
     });
   }
 }
