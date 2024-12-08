@@ -3,6 +3,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:localizations/localizations.dart';
 import 'package:presentation/src/auth/login/widgets/auth_buttons.dart';
 import 'package:presentation/src/auth/login/widgets/login_email_form_field.dart';
@@ -71,7 +72,15 @@ class _LoginPageState extends State<LoginPage> {
                           const Spacer(),
                           Text(
                             context.strings.appName,
-                            style: Theme.of(context).textTheme.displayLarge,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayLarge
+                                ?.copyWith(
+                                  fontFamily:
+                                      GoogleFonts.yesteryear().fontFamily,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                            textAlign: TextAlign.center,
                           ),
                           const Spacer(),
                           const LoginEmailFormField(),

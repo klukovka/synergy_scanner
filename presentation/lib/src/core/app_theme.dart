@@ -2,7 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final lightTheme = FlexThemeData.light(
-  scheme: FlexScheme.materialBaseline,
+  scheme: FlexScheme.redWine,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 20,
   appBarStyle: FlexAppBarStyle.primary,
@@ -35,7 +35,7 @@ final lightTheme = FlexThemeData.light(
 );
 
 final darkTheme = FlexThemeData.dark(
-  scheme: FlexScheme.materialBaseline,
+  scheme: FlexScheme.redWine,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 12,
   subThemesData: const FlexSubThemesData(
