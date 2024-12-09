@@ -202,4 +202,13 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get type => 'Type';
+
+  @override
+  String get noPartnersFound => 'No Partners Found';
+
+  @override
+  String get addYourFirstPartner => 'Add your first partner by pressing \"+\" button below';
+
+  @override
+  String get changeYourSearchQuery => 'Change your search query and try again';
 }

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/src/general/images/circle_memory_image.dart';
 import 'package:presentation/src/general/images/circle_network_image.dart';
 
@@ -30,7 +31,7 @@ class CircleIconPreview extends StatelessWidget {
         key: key,
         imageUrl: imageUrl,
         placeholder: (context) => Icon(
-          Theme.of(context).extension<CircleIconPreviewThemeData>()?.user,
+          MdiIcons.accountCircle,
           size: radius * 2,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
@@ -56,28 +57,4 @@ class CircleIconPreview extends StatelessWidget {
       backgroundColor: backgroundColor?.call(context),
     );
   }
-}
-
-class CircleIconPreviewThemeData
-    extends ThemeExtension<CircleIconPreviewThemeData> {
-  final IconData user;
-
-  CircleIconPreviewThemeData({
-    required this.user,
-  });
-
-  @override
-  ThemeExtension<CircleIconPreviewThemeData> lerp(
-    ThemeExtension<CircleIconPreviewThemeData>? other,
-    double t,
-  ) =>
-      other ?? this;
-
-  @override
-  ThemeExtension<CircleIconPreviewThemeData> copyWith({
-    IconData? user,
-  }) =>
-      CircleIconPreviewThemeData(
-        user: user ?? this.user,
-      );
 }

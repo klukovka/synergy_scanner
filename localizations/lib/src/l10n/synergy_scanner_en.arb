@@ -71,5 +71,8 @@
     "crush": "Crush",
     "situationship": "Situationship",
     "current": "Current",
-    "type": "Type"
+    "type": "Type",
+    "noPartnersFound": "No Partners Found",
+    "addYourFirstPartner": "Add your first partner by pressing \"+\" button below",
+    "changeYourSearchQuery": "Change your search query and try again"
 }

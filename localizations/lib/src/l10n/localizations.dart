@@ -482,6 +482,24 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Type'**
   String get type;
+
+  /// No description provided for @noPartnersFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No Partners Found'**
+  String get noPartnersFound;
+
+  /// No description provided for @addYourFirstPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first partner by pressing \"+\" button below'**
+  String get addYourFirstPartner;
+
+  /// No description provided for @changeYourSearchQuery.
+  ///
+  /// In en, this message translates to:
+  /// **'Change your search query and try again'**
+  String get changeYourSearchQuery;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

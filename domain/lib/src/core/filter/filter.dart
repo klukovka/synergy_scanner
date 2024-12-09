@@ -11,7 +11,7 @@ class Filter extends Equatable {
   final Set<FilterBy> lockedFilters;
 
   Filter({
-    this.size = 10,
+    this.size = 20,
     this.page = 0,
     this.search = '',
     this.sortBy,
@@ -20,7 +20,9 @@ class Filter extends Equatable {
     this.lockedFilters = const {},
   });
 
-  bool get isEmpty => filters.entries
+  bool get isEmpty => isFilterByEmpty && search.isEmpty;
+
+  bool get isFilterByEmpty => filters.entries
       .where((x) => !(lockedFilters.contains(x.key)))
       .every((element) => element.value.isEmpty);
 

@@ -68,6 +68,7 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
           .eq('user_id', supabase.auth.currentUser!.id);
 
       if (filter.search.isNotEmpty) {
+        //TODO: Maybe fix
         query = query.textSearch('name', filter.search,
             type: TextSearchType.websearch);
       }

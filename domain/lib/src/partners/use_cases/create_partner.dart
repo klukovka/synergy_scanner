@@ -17,7 +17,9 @@ class CreatePartner extends UseCase<CreatePartnerAction> {
 
     if (response.wasSuccessful) {
       yield SetSelectedIdAction<Partner>(response.result!);
-      //TODO: Update whole table
+      yield DownloadTableItemsAction<Partner, GeneralTablePointer>(
+        append: false,
+      );
       return;
     }
 
