@@ -2,6 +2,7 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/partners/new_partner_dto.dart';
 import 'package:data/src/dtos/partners/partner_dto.dart';
 import 'package:data/src/repositories/images_supabase_repository.dart';
+import 'package:data/src/units/extensions/supabase_filter_extension.dart';
 import 'package:domain/domain.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
@@ -64,30 +65,28 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
       var query = supabase
           .from('partners')
           .select()
-          .eq('user_id', supabase.auth.currentUser!.id)
-          .textSearch('name', filter.search, type: TextSearchType.websearch);
+          .eq('user_id', supabase.auth.currentUser!.id);
+
+      if (filter.search.isNotEmpty) {
+        query = query.textSearch('name', filter.search,
+            type: TextSearchType.websearch);
+      }
       final filterByType = filter.filters[FilterBy.type];
       if (filterByType != null) {
-        query = query.filter(
-          'type',
-          'in',
-          '(${filterByType.map((item) => '"$item"').join(',')})',
-        );
+        query = query.filter('type', 'in', filterByType.toFilter());
       }
 
       final fullCount = (await query.count()).count;
 
       final ascending = filter.direction == Direction.asc;
 
-      final orderedQuery = switch (filter.sortBy) {
-        SortBy.type => query.order('type', ascending: ascending),
-        SortBy.name => query.order('name', ascending: ascending),
-        _ => query.order('average_mark', ascending: ascending),
-      };
-
-      final result = await orderedQuery.range(
-        filter.page,
-        filter.page + filter.size,
+      final result = await getPaginatedResponse(
+        switch (filter.sortBy) {
+          SortBy.type => query.order('type', ascending: ascending),
+          SortBy.name => query.order('name', ascending: ascending),
+          _ => query.order('average_mark', ascending: ascending),
+        },
+        filter,
       );
 
       return FailureOrResult.success(Chunk(

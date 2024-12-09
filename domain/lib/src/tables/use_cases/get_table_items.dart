@@ -5,10 +5,7 @@ import 'package:domain/domain.dart';
 
 class GetTableItems<T extends TableItem<T>, V extends TablePointer>
     extends UseCase<DownloadTableItemsAction<T, V>> {
-  final Future<FailureOrResult<Chunk<T>>> Function({
-    required Filter filter,
-    CancelToken? cancel,
-  }) getItems;
+  final Future<FailureOrResult<Chunk<T>>> Function(Filter filter) getItems;
 
   final Filter Function<T extends TableItem<T>, V extends TablePointer>()
       getFilter;
@@ -35,10 +32,7 @@ class GetTableItems<T extends TableItem<T>, V extends TablePointer>
 
     final filter = getFilter<T, V>();
 
-    final response = await getItems(
-      filter: filter,
-      cancel: cancel,
-    );
+    final response = await getItems(filter);
 
     if (cancel.canceled) return;
 

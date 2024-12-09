@@ -20,7 +20,9 @@ class Filter extends Equatable {
     this.lockedFilters = const {},
   });
 
-  bool get append => page > 1;
+  bool get isEmpty => filters.entries
+      .where((x) => !(lockedFilters.contains(x.key)))
+      .every((element) => element.value.isEmpty);
 
   Filter reset() => copyWith(page: 0);
 
@@ -67,4 +69,8 @@ class Filter extends Equatable {
       lockedFilters: lockedFilters ?? this.lockedFilters,
     );
   }
+
+  Filter addFilterBy(FilterBy filterBy, List<String> value) => copyWith(
+        filters: {...filters, filterBy: value},
+      );
 }

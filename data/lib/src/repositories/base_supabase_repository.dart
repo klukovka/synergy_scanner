@@ -1,4 +1,5 @@
 import 'package:clean_redux/clean_redux.dart';
+import 'package:domain/domain.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class BaseSupabaseRepository {
@@ -63,4 +64,13 @@ abstract class BaseSupabaseRepository {
       return FailureOrResult.failure(code: '500', message: 'Unexpected error');
     }
   }
+
+  Future<List<Map<String, dynamic>>> getPaginatedResponse(
+    PostgrestTransformBuilder<List<Map<String, dynamic>>> query,
+    Filter filter,
+  ) async =>
+      await query.range(
+        filter.page * filter.size,
+        (filter.page + 1) * filter.size - 1,
+      );
 }
