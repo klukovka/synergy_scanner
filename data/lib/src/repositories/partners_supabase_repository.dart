@@ -3,6 +3,7 @@ import 'package:data/src/dtos/partners/new_partner_dto.dart';
 import 'package:data/src/dtos/partners/partner_dto.dart';
 import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:domain/domain.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 class PartnersSupabaseRepository extends ImagesSupabaseRepository {
   Future<FailureOrResult<int>> createPartner(NewPartner newPartner) async {
@@ -55,6 +56,45 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
       return FailureOrResult.success(
         PartnerDto.fromJson(result.first).toDomain(),
       );
+    });
+  }
+
+  Future<FailureOrResult<Chunk<Partner>>> getPartners(Filter filter) async {
+    return await makeErrorHandledCallback(() async {
+      var query = supabase
+          .from('partners')
+          .select()
+          .eq('user_id', supabase.auth.currentUser!.id)
+          .textSearch('name', filter.search, type: TextSearchType.websearch);
+      final filterByType = filter.filters[FilterBy.type];
+      if (filterByType != null) {
+        query = query.filter(
+          'type',
+          'in',
+          '(${filterByType.map((item) => '"$item"').join(',')})',
+        );
+      }
+
+      final fullCount = (await query.count()).count;
+
+      final ascending = filter.direction == Direction.asc;
+
+      final orderedQuery = switch (filter.sortBy) {
+        SortBy.type => query.order('type', ascending: ascending),
+        SortBy.name => query.order('name', ascending: ascending),
+        _ => query.order('average_mark', ascending: ascending),
+      };
+
+      final result = await orderedQuery.range(
+        filter.page,
+        filter.page + filter.size,
+      );
+
+      return FailureOrResult.success(Chunk(
+        fullCount: fullCount,
+        values:
+            result.map((item) => PartnerDto.fromJson(item).toDomain()).toSet(),
+      ));
     });
   }
 }

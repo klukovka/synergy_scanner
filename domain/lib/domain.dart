@@ -5,6 +5,7 @@ export 'src/core/chunk.dart';
 export 'src/core/extensions/list_extension.dart';
 export 'src/core/filter/direction.dart';
 export 'src/core/filter/filter.dart';
+export 'src/core/filter/filter_by.dart';
 export 'src/core/filter/sort_by.dart';
 export 'src/global/global_actions.dart';
 export 'src/global/states/app_state.dart';

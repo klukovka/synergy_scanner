@@ -155,8 +155,7 @@ class _ViewModel extends BaseViewModel {
   final Failure? failure;
 
   _ViewModel(super.store)
-      : partnerId =
-            store.state.allTablesState.getTables<Partner>().selectedItemId,
+      : partnerId = store.state.tablesState.getTables<Partner>().selectedItemId,
         failure = store.state.partnersState.failure;
 
   void createPartner(NewPartner partner) {

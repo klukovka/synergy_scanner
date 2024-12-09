@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/core/filter/filter_by.dart';
 import 'package:equatable/equatable.dart';
 
 class Filter extends Equatable {
@@ -12,7 +11,7 @@ class Filter extends Equatable {
   final Set<FilterBy> lockedFilters;
 
   Filter({
-    this.size = 20,
+    this.size = 10,
     this.page = 0,
     this.search = '',
     this.sortBy,
