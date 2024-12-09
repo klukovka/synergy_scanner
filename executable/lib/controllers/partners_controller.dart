@@ -4,9 +4,10 @@ import 'package:domain/domain.dart';
 import 'package:redux/redux.dart';
 
 class PartnersController extends Controller {
-  PartnersController(Store<AppState> Function() store,
-      PartnersSupabaseRepository partnersRepository)
-      : super([
+  PartnersController(
+    Store<AppState> Function() store,
+    PartnersSupabaseRepository partnersRepository,
+  ) : super([
           Endpoint(
             CreatePartner(partnersRepository.createPartner),
           ).call,

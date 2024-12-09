@@ -27,6 +27,7 @@ class Initializer {
         ControllersMiddleware(
           () => store!,
           userRepository: userRepository,
+          partnersRepository: PartnersSupabaseRepository(),
         ).call,
       ],
     );
