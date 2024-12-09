@@ -16,6 +16,7 @@ export 'src/partners/entities/partner_type.dart';
 export 'src/partners/partner_actions.dart';
 export 'src/partners/states/partners_state.dart';
 export 'src/partners/use_cases/create_partner.dart';
+export 'src/partners/use_cases/get_partner_details.dart';
 export 'src/tables/tables.dart';
 export 'src/user/actions/user_actions.dart';
 export 'src/user/entities/login_user.dart';

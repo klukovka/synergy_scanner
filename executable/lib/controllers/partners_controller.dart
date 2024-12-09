@@ -11,5 +11,8 @@ class PartnersController extends Controller {
           Endpoint(
             CreatePartner(partnersRepository.createPartner),
           ).call,
+          Endpoint(
+            GetPartnerDetails(partnersRepository.getPartnerDetails),
+          ).call,
         ]);
 }

@@ -121,5 +121,6 @@ extension on Destination {
         Destination.criterias => 'Criterias',
         Destination.analytics => 'Analytics',
         Destination.profile => 'Profile',
+        Destination.createPartner => 'Create Partner',
       };
 }

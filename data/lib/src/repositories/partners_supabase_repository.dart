@@ -5,7 +5,7 @@ import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:domain/domain.dart';
 
 class PartnersSupabaseRepository extends ImagesSupabaseRepository {
-  Future<FailureOrResult<Partner>> createPartner(NewPartner newPartner) async {
+  Future<FailureOrResult<int>> createPartner(NewPartner newPartner) async {
     return await makeErrorHandledCallback(() async {
       final result = await supabase.from('partners').insert(
         {
@@ -19,7 +19,7 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
         await uploadParnerAvatar(photo: newPartner.avatar!, id: id);
       }
 
-      return await getPartnerDetails(id);
+      return FailureOrResult.success(id);
     });
   }
 
@@ -30,7 +30,6 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
     return await makeErrorHandledCallback(() async {
       final result = await uploadImage(
         photo: photo,
-        bucket: 'partner_avatars',
         name: '${supabase.auth.currentUser!.id}_partner_$id',
       );
 

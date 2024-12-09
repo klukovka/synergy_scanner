@@ -6,35 +6,31 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class ImagesSupabaseRepository extends BaseSupabaseRepository {
   Future<FailureOrResult<String>> uploadImage({
     required NewImage photo,
-    required String bucket,
     required String name,
   }) async {
     return await makeErrorHandledCallback(() async {
       final filepath = '$name.${photo.extension}';
       try {
-        await supabase.storage.from(bucket).updateBinary(
+        await supabase.storage.from('avatars').updateBinary(
               filepath,
               photo.bytes,
               fileOptions: FileOptions(contentType: photo.mimeType),
             );
       } catch (e) {
-        await supabase.storage.from(bucket).uploadBinary(
+        await supabase.storage.from('avatars').uploadBinary(
               filepath,
               photo.bytes,
               fileOptions: FileOptions(contentType: photo.mimeType),
             );
       }
-      return await getImage(filepath: filepath, bucket: bucket);
+      return await getImage(filepath);
     });
   }
 
-  Future<FailureOrResult<String>> getImage({
-    required String filepath,
-    required String bucket,
-  }) async {
+  Future<FailureOrResult<String>> getImage(String filepath) async {
     return await makeErrorHandledCallback(() async {
       final imageUrlResponse = await supabase.storage
-          .from(bucket)
+          .from('avatars')
           .createSignedUrl(filepath, 60 * 60 * 24 * 365 * 10);
 
       return FailureOrResult.success(imageUrlResponse);

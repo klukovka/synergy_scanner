@@ -181,4 +181,25 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get analytics => 'Analytics';
+
+  @override
+  String get createPartner => 'Create Partner';
+
+  @override
+  String get ex => 'Ex';
+
+  @override
+  String get friend => 'Friend';
+
+  @override
+  String get crush => 'Crush';
+
+  @override
+  String get situationship => 'Situationship';
+
+  @override
+  String get current => 'Current';
+
+  @override
+  String get type => 'Type';
 }

@@ -440,6 +440,48 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Analytics'**
   String get analytics;
+
+  /// No description provided for @createPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Partner'**
+  String get createPartner;
+
+  /// No description provided for @ex.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex'**
+  String get ex;
+
+  /// No description provided for @friend.
+  ///
+  /// In en, this message translates to:
+  /// **'Friend'**
+  String get friend;
+
+  /// No description provided for @crush.
+  ///
+  /// In en, this message translates to:
+  /// **'Crush'**
+  String get crush;
+
+  /// No description provided for @situationship.
+  ///
+  /// In en, this message translates to:
+  /// **'Situationship'**
+  String get situationship;
+
+  /// No description provided for @current.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get current;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get type;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

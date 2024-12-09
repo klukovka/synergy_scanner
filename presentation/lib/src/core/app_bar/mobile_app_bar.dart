@@ -36,13 +36,14 @@ class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: (Theme.of(context).colorScheme.secondary
-                            as MaterialColor)[200]!
+                    color: Theme.of(context)
+                        .colorScheme
+                        .secondary
                         .withOpacity(0.5),
                   ),
                 ),
               ),
-              child: MobileActionButton.surfaceContainerHighest(
+              child: MobileActionButton.primary(
                 onPressed: () async {
                   final canBeClosed = await canCurrentPageBeClosed?.call();
                   if (canBeClosed ?? true) {

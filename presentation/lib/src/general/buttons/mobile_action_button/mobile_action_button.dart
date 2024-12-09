@@ -68,7 +68,7 @@ sealed class MobileActionButtonState extends State<MobileActionButton> {
         foregroundColor: foregroundColor,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         textStyle: WidgetStatePropertyAll(
-          widget.textStyle ?? Theme.of(context).textTheme.headlineMedium,
+          widget.textStyle ?? Theme.of(context).textTheme.bodyMedium,
         ),
       ),
       onPressed: widget.onPressed,

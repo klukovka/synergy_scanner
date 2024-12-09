@@ -2,7 +2,7 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:domain/domain.dart';
 
 class CreatePartner extends UseCase<CreatePartnerAction> {
-  final Future<FailureOrResult<Partner>> Function(NewPartner newPartner)
+  final Future<FailureOrResult<int>> Function(NewPartner newPartner)
       createPartner;
 
   CreatePartner(this.createPartner) : super(isAsync: false);
@@ -16,7 +16,7 @@ class CreatePartner extends UseCase<CreatePartnerAction> {
     final response = await createPartner(action.partner);
 
     if (response.wasSuccessful) {
-      yield UpdateTablesItemAction<Partner>(response.result!);
+      yield SetSelectedIdAction<Partner>(response.result!);
       //TODO: Update whole table
       return;
     }

@@ -72,7 +72,6 @@ class UserSupabaseRepository extends ImagesSupabaseRepository {
     return await makeErrorHandledCallback(() async {
       final result = await uploadImage(
         photo: photo,
-        bucket: 'avatars',
         name: id,
       );
 
