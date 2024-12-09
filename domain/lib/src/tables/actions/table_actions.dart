@@ -35,34 +35,23 @@ class DownloadTableItemsAction<T extends TableItem<T>, V extends TablePointer>
     this.clear = false,
   });
 
-  //TODO: Update it
+  DownloadTableItemsAction.loadMore(int nextPage)
+      : append = true,
+        clear = false,
+        filter = Filter(page: nextPage);
 
-  // DownloadTableItemsAction.loadMore(String? lastId)
-  //     : append = true,
-  //       clear = false,
-  //       filter = Filter(lastId: lastId);
+  DownloadTableItemsAction.search(
+    String value,
+  )   : filter = Filter(search: value),
+        append = false,
+        clear = false;
 
-  // DownloadTableItemsAction.search(
-  //   SearchBy searchBy,
-  //   String value,
-  // )   : filter = Filter(
-  //         searchBy: searchBy,
-  //         searchValue: value,
-  //       ),
-  //       append = false,
-  //       clear = false;
-
-  // DownloadTableItemsAction.sort(
-  //   SortBy header,
-  //   Direction direction,
-  // )   : filter = Filter(sortBy: header, direction: direction),
-  //       clear = false,
-  //       append = false;
-
-  // DownloadTableItemsAction.loadMoreOffset(int? offset)
-  //     : append = true,
-  //       clear = false,
-  //       filter = Filter(offset: offset);
+  DownloadTableItemsAction.sort(
+    SortBy sortBy,
+    Direction direction,
+  )   : filter = Filter(sortBy: sortBy, direction: direction),
+        clear = false,
+        append = false;
 }
 
 class SetSelectedIdAction<T extends TableItem<T>> extends Action {

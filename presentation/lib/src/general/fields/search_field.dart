@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SearchField extends StatefulWidget {
@@ -61,44 +62,17 @@ class _SearchFieldState extends State<SearchField> {
                 padding: EdgeInsets.all(8),
                 child: CircularProgressIndicator(strokeWidth: 2),
               )
-            : Icon(
-                Theme.of(context).extension<SearchFieldThemeData>()?.magnify),
+            : Icon(MdiIcons.magnify),
         prefixIconConstraints:
             const BoxConstraints.tightFor(width: 40, height: 40),
         hintText: widget.hintText,
         suffixIcon: IconButton(
           onPressed: () => _controller.text = '',
           icon: Icon(
-            Theme.of(context).extension<SearchFieldThemeData>()?.clear,
+            MdiIcons.closeCircle,
           ),
         ),
       ),
     );
   }
-}
-
-class SearchFieldThemeData extends ThemeExtension<SearchFieldThemeData> {
-  final IconData magnify;
-  final IconData clear;
-
-  SearchFieldThemeData({
-    required this.magnify,
-    required this.clear,
-  });
-
-  @override
-  SearchFieldThemeData copyWith({
-    IconData? magnify,
-    IconData? clear,
-  }) {
-    return SearchFieldThemeData(
-      magnify: magnify ?? this.magnify,
-      clear: clear ?? this.clear,
-    );
-  }
-
-  @override
-  ThemeExtension<SearchFieldThemeData> lerp(
-          covariant ThemeExtension<SearchFieldThemeData>? other, double t) =>
-      this;
 }

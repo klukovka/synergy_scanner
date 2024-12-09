@@ -16,10 +16,14 @@ class AllTablesState extends State<AllTablesState> {
   }) : super(AllTablesState._update.reducer);
 
   factory AllTablesState.initial() {
+    final partnerFilter = Filter(
+      sortBy: SortBy.mark,
+      direction: Direction.desc,
+    );
     return AllTablesState(
       tablesStates: [
         TablesState<Partner>(tables: [
-          TableState<Partner, GeneralTablePointer>.initial(Filter())
+          TableState<Partner, GeneralTablePointer>.initial(partnerFilter)
         ]),
       ],
     );
