@@ -42,6 +42,9 @@ class TableViewModel<T extends TableItem<T>, V extends TablePointer>
   void sort(SortBy sortBy, Direction direction) =>
       store.dispatch(DownloadTableItemsAction<T, V>.sort(sortBy, direction));
 
+  void search(String value) =>
+      store.dispatch(DownloadTableItemsAction<T, V>.search(value));
+
   @override
   List<Object?> get props => [
         filter,

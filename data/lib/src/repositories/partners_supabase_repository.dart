@@ -4,7 +4,6 @@ import 'package:data/src/dtos/partners/partner_dto.dart';
 import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:data/src/units/extensions/supabase_filter_extension.dart';
 import 'package:domain/domain.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 class PartnersSupabaseRepository extends ImagesSupabaseRepository {
   Future<FailureOrResult<int>> createPartner(NewPartner newPartner) async {
@@ -68,9 +67,7 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
           .eq('user_id', supabase.auth.currentUser!.id);
 
       if (filter.search.isNotEmpty) {
-        //TODO: Maybe fix
-        query = query.textSearch('name', filter.search,
-            type: TextSearchType.websearch);
+        query = query.ilike('name', '%${filter.search}%');
       }
       final filterByType = filter.filters[FilterBy.type];
       if (filterByType != null) {

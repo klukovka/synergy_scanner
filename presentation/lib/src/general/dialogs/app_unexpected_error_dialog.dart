@@ -65,7 +65,7 @@ class AppUnexpectedErrorDialog extends StatelessWidget {
                           message ?? context.strings.tryYourRequestLater,
                           textAlign: TextAlign.center,
                           style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onSecondaryContainer,

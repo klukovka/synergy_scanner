@@ -211,4 +211,7 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get changeYourSearchQuery => 'Change your search query and try again';
+
+  @override
+  String get searchPartners => 'Search Partners';
 }

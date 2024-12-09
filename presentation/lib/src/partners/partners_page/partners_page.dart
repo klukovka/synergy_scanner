@@ -2,6 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/partners/partners_page/widgets/partners_table.dart';
+import 'package:presentation/src/partners/partners_page/widgets/partners_table_action_bar.dart';
 
 class PartnersPage extends StatelessWidget {
   const PartnersPage({super.key});
@@ -12,6 +13,7 @@ class PartnersPage extends StatelessWidget {
       body: const SafeArea(
         child: Column(
           children: [
+            PartnersTableActionBar(),
             Expanded(child: PartnersTable()),
           ],
         ),

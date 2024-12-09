@@ -500,6 +500,12 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Change your search query and try again'**
   String get changeYourSearchQuery;
+
+  /// No description provided for @searchPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Partners'**
+  String get searchPartners;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

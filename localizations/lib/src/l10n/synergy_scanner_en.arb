@@ -74,5 +74,6 @@
     "type": "Type",
     "noPartnersFound": "No Partners Found",
     "addYourFirstPartner": "Add your first partner by pressing \"+\" button below",
-    "changeYourSearchQuery": "Change your search query and try again"
+    "changeYourSearchQuery": "Change your search query and try again",
+    "searchPartners": "Search Partners"
 }

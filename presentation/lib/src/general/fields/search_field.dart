@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:presentation/src/general/loaders/styled_loader/styled_loader.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SearchField extends StatefulWidget {
@@ -58,19 +59,14 @@ class _SearchFieldState extends State<SearchField> {
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
         prefixIcon: _isLoading
-            ? const Padding(
-                padding: EdgeInsets.all(8),
-                child: CircularProgressIndicator(strokeWidth: 2),
-              )
+            ? const Center(child: StyledLoader.primary(size: 16))
             : Icon(MdiIcons.magnify),
         prefixIconConstraints:
             const BoxConstraints.tightFor(width: 40, height: 40),
         hintText: widget.hintText,
         suffixIcon: IconButton(
           onPressed: () => _controller.text = '',
-          icon: Icon(
-            MdiIcons.closeCircle,
-          ),
+          icon: Icon(MdiIcons.closeCircle),
         ),
       ),
     );
