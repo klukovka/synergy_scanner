@@ -2,7 +2,7 @@ enum PartnerType {
   ex('ex'),
   friend('friend'),
   crush('crush'),
-  dating('dating'),
+  situationship('situationship'),
   current('current');
 
   final String key;

@@ -64,5 +64,12 @@
     "signUpFailure": "Sign Up Failure",
     "partners": "Partners",
     "criterias": "Criterias",
-    "analytics": "Analytics"
+    "analytics": "Analytics",
+    "createPartner": "Create Partner",
+    "ex": "Ex",
+    "friend": "Friend",
+    "crush": "Crush",
+    "situationship": "Situationship",
+    "current": "Current",
+    "type": "Type"
 }
