@@ -5,14 +5,14 @@ class AppState extends State<AppState> {
   final CurrentUserState currentUserState;
   final NavigationState navigationState;
   final ErrorState errorState;
-  final AllTablesState allTablesState;
+  final AllTablesState tablesState;
   final PartnersState partnersState;
 
   AppState({
     required this.currentUserState,
     required this.navigationState,
     required this.errorState,
-    required this.allTablesState,
+    required this.tablesState,
     required this.partnersState,
   }) : super(AppState._updateSubstates.reducer + AppState.reset.reducer);
 
@@ -27,8 +27,8 @@ class AppState extends State<AppState> {
           action,
         ),
         errorState: state.errorState.reducer(state.errorState, action),
-        allTablesState: state.allTablesState.reducer(
-          state.allTablesState,
+        tablesState: state.tablesState.reducer(
+          state.tablesState,
           action,
         ),
         partnersState: state.partnersState.reducer(state.partnersState, action),
@@ -41,7 +41,7 @@ class AppState extends State<AppState> {
           currentUserState: currentUserState,
           navigationState: navigationState,
           errorState: ErrorState.initial(),
-          allTablesState: AllTablesState.initial(),
+          tablesState: AllTablesState.initial(),
           partnersState: PartnersState(),
         );
 
@@ -60,14 +60,14 @@ class AppState extends State<AppState> {
     CurrentUserState? currentUserState,
     NavigationState? navigationState,
     ErrorState? errorState,
-    AllTablesState? allTablesState,
+    AllTablesState? tablesState,
     PartnersState? partnersState,
   }) =>
       AppState(
         currentUserState: currentUserState ?? this.currentUserState,
         navigationState: navigationState ?? this.navigationState,
         errorState: errorState ?? this.errorState,
-        allTablesState: allTablesState ?? this.allTablesState,
+        tablesState: tablesState ?? this.tablesState,
         partnersState: partnersState ?? this.partnersState,
       );
 }
