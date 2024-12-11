@@ -17,6 +17,7 @@ class PartnersTable extends StatelessWidget {
     return StoreConnector(
       distinct: true,
       converter: _ViewModel.new,
+      ignoreChange: _ViewModel.ignoreChange,
       builder: (context, viewModel) {
         return LoadMoreScrollListener(
           loadMore: viewModel.downloadItems,
@@ -60,4 +61,11 @@ class PartnersTable extends StatelessWidget {
 
 class _ViewModel extends TableViewModel<Partner, GeneralTablePointer> {
   _ViewModel(super.store);
+
+  static bool ignoreChange(AppState state) =>
+      state.tablesState.getTable<Partner, GeneralTablePointer>().isLoading &&
+      state.tablesState
+          .getTable<Partner, GeneralTablePointer>()
+          .items
+          .isNotEmpty;
 }
