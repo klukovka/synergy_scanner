@@ -14,6 +14,7 @@ Future<void> main() async {
     url: 'https://ygtsdlzrikejjwtosolm.supabase.co',
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlndHNkbHpyaWtlamp3dG9zb2xtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIxMjU5MTQsImV4cCI6MjA0NzcwMTkxNH0.oLGeyhrg4R6kHLIDzxgJbevdm7QD5eJOxyZv-UTjL9M',
+    debug: true,
   );
 
   final store = await Initializer().initialize();

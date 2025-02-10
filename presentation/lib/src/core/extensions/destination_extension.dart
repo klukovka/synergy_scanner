@@ -25,6 +25,7 @@ extension DestinationExtension on Destination {
       Destination.analytics => strings.analytics,
       Destination.profile => strings.profile,
       Destination.createPartner => strings.createPartner,
+      Destination.partnersFilters => strings.filters,
     };
   }
 }

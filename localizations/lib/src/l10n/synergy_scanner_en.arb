@@ -75,5 +75,9 @@
     "noPartnersFound": "No Partners Found",
     "addYourFirstPartner": "Add your first partner by pressing \"+\" button below",
     "changeYourSearchQuery": "Change your search query and try again",
-    "searchPartners": "Search Partners"
+    "searchPartners": "Search Partners",
+    "mark": "Mark",
+    "direction": "Direction",
+    "acs": "Ascending",
+    "desc": "Descending"
 }

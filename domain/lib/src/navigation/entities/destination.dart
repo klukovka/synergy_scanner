@@ -6,7 +6,8 @@ enum Destination {
   criterias,
   analytics,
   profile,
-  createPartner;
+  createPartner,
+  partnersFilters(canBePartOfRoute: false);
 
   final bool canBePartOfRoute;
 

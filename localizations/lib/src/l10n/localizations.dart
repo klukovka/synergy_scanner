@@ -506,6 +506,30 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Search Partners'**
   String get searchPartners;
+
+  /// No description provided for @mark.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark'**
+  String get mark;
+
+  /// No description provided for @direction.
+  ///
+  /// In en, this message translates to:
+  /// **'Direction'**
+  String get direction;
+
+  /// No description provided for @acs.
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending'**
+  String get acs;
+
+  /// No description provided for @desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Descending'**
+  String get desc;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

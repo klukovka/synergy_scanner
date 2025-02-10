@@ -45,6 +45,15 @@ class TableViewModel<T extends TableItem<T>, V extends TablePointer>
   void search(String value) =>
       store.dispatch(DownloadTableItemsAction<T, V>.search(value));
 
+  void setFilter(Filter filter) {
+    store.dispatch(
+      DownloadTableItemsAction<T, V>(
+        append: false,
+        filter: filter,
+      ),
+    );
+  }
+
   @override
   List<Object?> get props => [
         filter,

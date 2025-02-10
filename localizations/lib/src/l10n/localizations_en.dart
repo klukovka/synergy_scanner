@@ -214,4 +214,16 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get searchPartners => 'Search Partners';
+
+  @override
+  String get mark => 'Mark';
+
+  @override
+  String get direction => 'Direction';
+
+  @override
+  String get acs => 'Ascending';
+
+  @override
+  String get desc => 'Descending';
 }

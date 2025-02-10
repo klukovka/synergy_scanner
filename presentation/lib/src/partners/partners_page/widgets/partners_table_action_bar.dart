@@ -28,9 +28,7 @@ class PartnersTableActionBar extends StatelessWidget {
             const SizedBox(width: 16),
             FilterButton(
               isEmpty: viewModel.filter.isFilterByEmpty,
-              onPressed: () {
-                //TODO: Open filters page
-              },
+              onPressed: () => viewModel.openPage(Destination.partnersFilters),
             ),
           ],
         ),
