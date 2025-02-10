@@ -530,6 +530,24 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Descending'**
   String get desc;
+
+  /// No description provided for @valueShouldBeGraterThanZero.
+  ///
+  /// In en, this message translates to:
+  /// **'Value should be grater than zero.'**
+  String get valueShouldBeGraterThanZero;
+
+  /// No description provided for @coefficient.
+  ///
+  /// In en, this message translates to:
+  /// **'Coefficient'**
+  String get coefficient;
+
+  /// No description provided for @createCriteria.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Criteria'**
+  String get createCriteria;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

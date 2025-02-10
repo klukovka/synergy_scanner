@@ -226,4 +226,13 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get desc => 'Descending';
+
+  @override
+  String get valueShouldBeGraterThanZero => 'Value should be grater than zero.';
+
+  @override
+  String get coefficient => 'Coefficient';
+
+  @override
+  String get createCriteria => 'Create Criteria';
 }

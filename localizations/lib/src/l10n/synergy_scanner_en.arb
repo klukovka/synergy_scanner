@@ -79,5 +79,8 @@
     "mark": "Mark",
     "direction": "Direction",
     "acs": "Ascending",
-    "desc": "Descending"
+    "desc": "Descending",
+    "valueShouldBeGraterThanZero": "Value should be grater than zero.",
+    "coefficient": "Coefficient",
+    "createCriteria": "Create Criteria"
 }
