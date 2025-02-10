@@ -20,10 +20,17 @@ class AllTablesState extends State<AllTablesState> {
       sortBy: SortBy.mark,
       direction: Direction.desc,
     );
+    final criteriaFilter = Filter(
+      sortBy: SortBy.coefficient,
+      direction: Direction.desc,
+    );
     return AllTablesState(
       tablesStates: [
         TablesState<Partner>(tables: [
           TableState<Partner, GeneralTablePointer>.initial(partnerFilter)
+        ]),
+        TablesState<Criteria>(tables: [
+          TableState<Criteria, GeneralTablePointer>.initial(criteriaFilter)
         ]),
       ],
     );

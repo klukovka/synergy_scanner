@@ -7,6 +7,7 @@ class AppState extends State<AppState> {
   final ErrorState errorState;
   final AllTablesState tablesState;
   final PartnersState partnersState;
+  final CriteriasState criteriasState;
 
   AppState({
     required this.currentUserState,
@@ -14,6 +15,7 @@ class AppState extends State<AppState> {
     required this.errorState,
     required this.tablesState,
     required this.partnersState,
+    required this.criteriasState,
   }) : super(AppState._updateSubstates.reducer + AppState.reset.reducer);
 
   factory AppState._updateSubstates(AppState state, Action action) =>
@@ -32,6 +34,10 @@ class AppState extends State<AppState> {
           action,
         ),
         partnersState: state.partnersState.reducer(state.partnersState, action),
+        criteriasState: state.criteriasState.reducer(
+          state.criteriasState,
+          action,
+        ),
       );
 
   AppState.initial({
@@ -43,6 +49,7 @@ class AppState extends State<AppState> {
           errorState: ErrorState.initial(),
           tablesState: AllTablesState.initial(),
           partnersState: PartnersState(),
+          criteriasState: CriteriasState(),
         );
 
   factory AppState.reset(AppState state, ResetAppAction action) {
@@ -62,6 +69,7 @@ class AppState extends State<AppState> {
     ErrorState? errorState,
     AllTablesState? tablesState,
     PartnersState? partnersState,
+    CriteriasState? criteriasState,
   }) =>
       AppState(
         currentUserState: currentUserState ?? this.currentUserState,
@@ -69,5 +77,6 @@ class AppState extends State<AppState> {
         errorState: errorState ?? this.errorState,
         tablesState: tablesState ?? this.tablesState,
         partnersState: partnersState ?? this.partnersState,
+        criteriasState: criteriasState ?? this.criteriasState,
       );
 }
