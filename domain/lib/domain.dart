@@ -12,6 +12,7 @@ export 'src/criterias/entities/criteria.dart';
 export 'src/criterias/entities/new_criteria.dart';
 export 'src/criterias/states/criterias_state.dart';
 export 'src/criterias/use_cases/create_criteria.dart';
+export 'src/criterias/use_cases/get_criteria_details.dart';
 export 'src/global/global_actions.dart';
 export 'src/global/states/app_state.dart';
 export 'src/global/states/error_state.dart';

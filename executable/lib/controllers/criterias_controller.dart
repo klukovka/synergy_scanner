@@ -11,8 +11,8 @@ class CriteriasController extends Controller {
           Endpoint(
             CreateCriteria(criteriasRepository.createCriteria),
           ).call,
-          // Endpoint(
-          //   GetCriteriaDetails(criteriasRepository.getCriteriaDetails),
-          // ).call,
+          Endpoint(
+            GetCriteriaDetails(criteriasRepository.getCriteriaDetails),
+          ).call,
         ]);
 }
