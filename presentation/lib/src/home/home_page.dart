@@ -5,6 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/analytics/analytics_page/analytics_page.dart';
 import 'package:presentation/src/core/base_view_model.dart';
 import 'package:presentation/src/criterias/create_criteria_page/create_criteria_page.dart';
+import 'package:presentation/src/criterias/criterias_filter_page/criterias_filter_page.dart';
 import 'package:presentation/src/criterias/criterias_page/criterias_page.dart';
 import 'package:presentation/src/home/home_page_tab_type.dart';
 import 'package:presentation/src/home/widgets/bottom_navigation_bar_avatar.dart';
@@ -140,6 +141,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           MaterialPage(
                             key: ValueKey(Destination.createCriteria),
                             child: CreateCriteriaPage(),
+                          ),
+                        ],
+                      Destination.criteriasFilters => const [
+                          MaterialPage(
+                            key: ValueKey(Destination.partnersFilters),
+                            child: CriteriasFilterPage(),
                           ),
                         ],
                       _ => [],

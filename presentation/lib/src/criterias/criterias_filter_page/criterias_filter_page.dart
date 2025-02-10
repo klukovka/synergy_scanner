@@ -4,25 +4,23 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
+import 'package:presentation/src/criterias/criterias_filter_page/widgets/criterias_sort_by_field.dart';
 import 'package:presentation/src/general/buttons/filter_buttons.dart';
 import 'package:presentation/src/general/fields/direction_form_field.dart';
-import 'package:presentation/src/partners/partners_filter_page/widgets/partners_sort_by_field.dart';
-import 'package:presentation/src/partners/partners_filter_page/widgets/partners_type_filter_field.dart';
 
-enum PartnersFilterPageFields {
+enum CriteriasFilterPageFields {
   sortBy,
   direction,
-  types,
 }
 
-class PartnersFilterPage extends StatefulWidget {
-  const PartnersFilterPage({super.key});
+class CriteriasFilterPage extends StatefulWidget {
+  const CriteriasFilterPage({super.key});
 
   @override
-  State<PartnersFilterPage> createState() => _PartnersFilterPageState();
+  State<CriteriasFilterPage> createState() => _CriteriasFilterPageState();
 }
 
-class _PartnersFilterPageState extends State<PartnersFilterPage> {
+class _CriteriasFilterPageState extends State<CriteriasFilterPage> {
   final _fbKey = GlobalKey<FormBuilderState>();
 
   FormBuilderState? get _fbState => _fbKey.currentState;
@@ -32,37 +30,28 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
   Widget build(BuildContext context) {
     return StoreConnector(
       distinct: true,
-      converter: PartnersFiltersViewModel.new,
+      converter: TableViewModel<Criteria, GeneralTablePointer>.new,
       onWillChange: (previousViewModel, newViewModel) {
         if (previousViewModel?.sortBy != newViewModel.sortBy) {
           _fbState?.patchValue({
-            PartnersFilterPageFields.sortBy.name: newViewModel.sortBy,
-          });
-        }
-
-        if (previousViewModel?.types != newViewModel.types) {
-          _fbState?.patchValue({
-            PartnersFilterPageFields.types.name: newViewModel.types,
+            CriteriasFilterPageFields.sortBy.name: newViewModel.sortBy,
           });
         }
 
         if (previousViewModel?.direction != newViewModel.direction) {
           _fbState?.patchValue({
-            PartnersFilterPageFields.direction.name: newViewModel.direction,
+            CriteriasFilterPageFields.direction.name: newViewModel.direction,
           });
         }
       },
       builder: (context, viewModel) {
         final fields = [
-          PartnersSortByField(
+          CriteriasSortByField(
             initialValue: viewModel.sortBy,
           ),
           DirectionFormField(
-            name: PartnersFilterPageFields.direction.name,
+            name: CriteriasFilterPageFields.direction.name,
             initialValue: viewModel.direction,
-          ),
-          PartnersTypeFilterField(
-            initialValue: viewModel.types,
           ),
         ];
         return Scaffold(
@@ -79,24 +68,19 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
           bottomNavigationBar: FilterButtons(
             onResetPressed: () {
               _fbState?.patchValue({
-                PartnersFilterPageFields.sortBy.name: viewModel.sortBy,
-                PartnersFilterPageFields.types.name: viewModel.types,
-                PartnersFilterPageFields.direction.name: viewModel.direction,
+                CriteriasFilterPageFields.sortBy.name: viewModel.sortBy,
+                CriteriasFilterPageFields.direction.name: viewModel.direction,
               });
             },
             onApplyPressed: () {
               _fbState?.save();
-              final List<PartnerType>? types =
-                  _fbValues[PartnersFilterPageFields.types.name];
+
               viewModel.setFilter(
                 Filter(
-                  sortBy: _fbValues[PartnersFilterPageFields.sortBy.name],
-                  direction: _fbValues[PartnersFilterPageFields.direction.name],
+                  sortBy: _fbValues[CriteriasFilterPageFields.sortBy.name],
+                  direction:
+                      _fbValues[CriteriasFilterPageFields.direction.name],
                   search: viewModel.filter.search,
-                  filters: {
-                    if (types != null)
-                      FilterBy.type: types.map((item) => item.key).toList()
-                  },
                 ),
               );
             },
@@ -106,15 +90,4 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
       },
     );
   }
-}
-
-class PartnersFiltersViewModel
-    extends TableViewModel<Partner, GeneralTablePointer> {
-  PartnersFiltersViewModel(super.store);
-
-  List<PartnerType>? get types =>
-      filter.filters[FilterBy.type]?.map(PartnerType.fromString).toList();
-
-  @override
-  List<Object?> get props => [...super.props, types];
 }
