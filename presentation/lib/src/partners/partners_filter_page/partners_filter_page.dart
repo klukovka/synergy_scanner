@@ -2,7 +2,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:localizations/localizations.dart';
+import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
 import 'package:presentation/src/general/buttons/filter_buttons.dart';
 import 'package:presentation/src/general/fields/direction_form_field.dart';
@@ -66,7 +66,7 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
           ),
         ];
         return Scaffold(
-          appBar: AppBar(title: Text(context.strings.filters)),
+          appBar: const MobileAppBar(),
           body: FormBuilder(
             key: _fbKey,
             child: ListView.separated(

@@ -548,6 +548,24 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Create Criteria'**
   String get createCriteria;
+
+  /// No description provided for @searchCriterias.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Criterias'**
+  String get searchCriterias;
+
+  /// No description provided for @noCriteriasFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No Criterias Found'**
+  String get noCriteriasFound;
+
+  /// No description provided for @addYourFirstCriteria.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first criteria by pressing \"+\" button below'**
+  String get addYourFirstCriteria;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

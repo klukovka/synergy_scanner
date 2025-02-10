@@ -235,4 +235,13 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get createCriteria => 'Create Criteria';
+
+  @override
+  String get searchCriterias => 'Search Criterias';
+
+  @override
+  String get noCriteriasFound => 'No Criterias Found';
+
+  @override
+  String get addYourFirstCriteria => 'Add your first criteria by pressing \"+\" button below';
 }

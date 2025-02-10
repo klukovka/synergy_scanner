@@ -82,5 +82,8 @@
     "desc": "Descending",
     "valueShouldBeGraterThanZero": "Value should be grater than zero.",
     "coefficient": "Coefficient",
-    "createCriteria": "Create Criteria"
+    "createCriteria": "Create Criteria",
+    "searchCriterias": "Search Criterias",
+    "noCriteriasFound": "No Criterias Found",
+    "addYourFirstCriteria": "Add your first criteria by pressing \"+\" button below"
 }

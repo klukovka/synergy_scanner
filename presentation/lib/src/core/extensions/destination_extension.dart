@@ -27,6 +27,7 @@ extension DestinationExtension on Destination {
       Destination.createPartner => strings.createPartner,
       Destination.partnersFilters => strings.filters,
       Destination.createCriteria => strings.createCriteria,
+      Destination.criteriasFilters => strings.filters,
     };
   }
 }

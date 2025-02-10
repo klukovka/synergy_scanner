@@ -11,5 +11,7 @@ class ReloadData extends UseCase<ReloadDataAction> {
     CancelToken cancel,
   ) async* {
     yield DownloadTableItemsAction<Partner, GeneralTablePointer>(append: false);
+    yield DownloadTableItemsAction<Criteria, GeneralTablePointer>(
+        append: false);
   }
 }
