@@ -1,4 +1,5 @@
 library data;
 
+export 'src/repositories/criterias_supabase_repository.dart';
 export 'src/repositories/partners_supabase_repository.dart';
 export 'src/repositories/user_supabase_repository.dart';

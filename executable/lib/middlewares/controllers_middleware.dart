@@ -12,6 +12,7 @@ class ControllersMiddleware extends EpicMiddleware<AppState> {
     Store<AppState> Function() store, {
     required UserSupabaseRepository userRepository,
     required PartnersSupabaseRepository partnersRepository,
+    required CriteriasSupabaseRepository criteriasRepository,
   }) : super(
           () {
             return combineEpics<AppState>(
@@ -19,7 +20,11 @@ class ControllersMiddleware extends EpicMiddleware<AppState> {
                 ...Controller([Endpoint(ReloadData()).call]),
                 ...UserController(store, userRepository),
                 ...PartnersController(store, partnersRepository),
-                ...TablesController(store, partnersRepository),
+                ...TablesController(
+                  store,
+                  partnersRepository,
+                  criteriasRepository,
+                ),
               ].toList(),
             );
           }(),

@@ -28,6 +28,7 @@ class Initializer {
           () => store!,
           userRepository: userRepository,
           partnersRepository: PartnersSupabaseRepository(),
+          criteriasRepository: CriteriasSupabaseRepository(),
         ).call,
       ],
     );

@@ -8,10 +8,17 @@ class TablesController extends Controller {
   TablesController(
     Store<AppState> Function() store,
     PartnersSupabaseRepository partnersRepository,
+    CriteriasSupabaseRepository criteriasRepository,
   ) : super([
           Endpoint(
             GetTableItems<Partner, GeneralTablePointer>(
               partnersRepository.getPartners,
+              store.getFilter(),
+            ),
+          ).call,
+          Endpoint(
+            GetTableItems<Criteria, GeneralTablePointer>(
+              criteriasRepository.getCriterias,
               store.getFilter(),
             ),
           ).call,
