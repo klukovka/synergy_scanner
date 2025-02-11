@@ -2,7 +2,8 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:domain/domain.dart';
 
 class UpdateMark extends UseCase<UpdateMarkAction> {
-  final Future<FailureOrResult<Mark>> Function(PatchMark patchMark) updateMark;
+  final Future<FailureOrResult<Mark>> Function(int id, PatchMark patchMark)
+      updateMark;
   final Criteria Function(int id) getCriteria;
   final Partner Function() getPartner;
 
@@ -22,7 +23,7 @@ class UpdateMark extends UseCase<UpdateMarkAction> {
     final criteria = getCriteria(action.mark.criteriaId);
     final partner = getPartner();
 
-    final response = await updateMark(action.mark);
+    final response = await updateMark(action.id, action.mark);
 
     if (response.wasSuccessful) {
       yield SetSelectedIdAction<Partner>(partner.id);

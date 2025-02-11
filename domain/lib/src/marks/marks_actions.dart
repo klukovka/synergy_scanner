@@ -18,7 +18,8 @@ class CreateMarkAction extends Action {
 }
 
 class UpdateMarkAction extends Action {
+  final int id;
   final PatchMark mark;
 
-  UpdateMarkAction(this.mark);
+  UpdateMarkAction(this.mark, this.id);
 }
