@@ -31,6 +31,7 @@ extension DestinationExtension on Destination {
       Destination.partnerDetails =>
         state.tablesState.getTables<Partner>().selectedItem?.name ??
             strings.partner,
+      Destination.partnerCriteriasFilters => strings.filters,
     };
   }
 }

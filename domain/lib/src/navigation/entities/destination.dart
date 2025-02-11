@@ -10,7 +10,8 @@ enum Destination {
   partnersFilters(canBePartOfRoute: false),
   createCriteria,
   criteriasFilters(canBePartOfRoute: false),
-  partnerDetails;
+  partnerDetails,
+  partnerCriteriasFilters(canBePartOfRoute: false);
 
   final bool canBePartOfRoute;
 
