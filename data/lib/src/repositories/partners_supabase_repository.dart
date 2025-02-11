@@ -79,11 +79,13 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
       final ascending = filter.direction == Direction.asc;
 
       final result = await getPaginatedResponse(
-        switch (filter.sortBy) {
-          SortBy.type => query.order('type', ascending: ascending),
-          SortBy.name => query.order('name', ascending: ascending),
-          _ => query.order('average_mark', ascending: ascending),
-        },
+        query.order(
+            switch (filter.sortBy) {
+              SortBy.type => 'type',
+              SortBy.name => 'name',
+              _ => 'average_mark',
+            },
+            ascending: ascending),
         filter,
       );
 

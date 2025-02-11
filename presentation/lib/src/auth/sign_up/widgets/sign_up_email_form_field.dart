@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/src/auth/sign_up/sign_up_page.dart';
-import 'package:presentation/src/utlts/extensions/credentials_validation_extension.dart';
+import 'package:presentation/src/utilts/extensions/credentials_validation_extension.dart';
 
 class SignUpEmailFormField extends StatelessWidget {
   const SignUpEmailFormField({

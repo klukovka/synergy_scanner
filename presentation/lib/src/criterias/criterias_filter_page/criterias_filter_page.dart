@@ -2,11 +2,12 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
-import 'package:presentation/src/criterias/criterias_filter_page/widgets/criterias_sort_by_field.dart';
 import 'package:presentation/src/general/buttons/filter_buttons.dart';
 import 'package:presentation/src/general/fields/direction_form_field.dart';
+import 'package:presentation/src/general/fields/sort_by_form_field.dart';
 
 enum CriteriasFilterPageFields {
   sortBy,
@@ -14,7 +15,12 @@ enum CriteriasFilterPageFields {
 }
 
 class CriteriasFilterPage<T extends TablePointer> extends StatefulWidget {
-  const CriteriasFilterPage({super.key});
+  final List<SortBy> sortingOptions;
+
+  const CriteriasFilterPage({
+    super.key,
+    required this.sortingOptions,
+  });
 
   @override
   State<CriteriasFilterPage<T>> createState() => _CriteriasFilterPageState<T>();
@@ -47,8 +53,16 @@ class _CriteriasFilterPageState<T extends TablePointer>
       },
       builder: (context, viewModel) {
         final fields = [
-          CriteriasSortByField(
+          SortByFormField(
+            name: CriteriasFilterPageFields.sortBy.name,
             initialValue: viewModel.sortBy,
+            options: widget.sortingOptions,
+            getLabel: (item) => switch (item) {
+              SortBy.coefficient => context.strings.coefficient,
+              SortBy.name => context.strings.name,
+              SortBy.mark => context.strings.mark,
+              _ => '',
+            },
           ),
           DirectionFormField(
             name: CriteriasFilterPageFields.direction.name,

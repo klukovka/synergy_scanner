@@ -42,8 +42,9 @@ class _CreatePartnerPageState extends State<CreatePartnerPage> {
         if (previousViewModel?.partnerId != newViewModel.partnerId &&
             newViewModel.partnerId != null) {
           _isLoading = false;
-          newViewModel.close();
-          //TODO: Open details
+          newViewModel
+            ..close()
+            ..openPage(Destination.partnerDetails);
         }
 
         if (previousViewModel?.failure != newViewModel.failure && _isLoading) {

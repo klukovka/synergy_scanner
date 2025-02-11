@@ -244,4 +244,13 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get addYourFirstCriteria => 'Add your first criteria by pressing \"+\" button below';
+
+  @override
+  String get partner => 'Partner';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get delete => 'Delete';
 }

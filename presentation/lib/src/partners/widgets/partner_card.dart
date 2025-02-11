@@ -6,12 +6,14 @@ import 'package:presentation/src/general/rating/rating_view.dart';
 
 class PartnerCard extends StatelessWidget {
   final Partner partner;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final Widget? trailing;
 
   const PartnerCard({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.partner,
+    this.trailing,
   });
 
   @override
@@ -35,6 +37,7 @@ class PartnerCard extends StatelessWidget {
         ),
       ),
       subtitle: RatingView(rate: partner.averageMark ?? 0),
+      trailing: trailing,
     );
   }
 }

@@ -85,5 +85,8 @@
     "createCriteria": "Create Criteria",
     "searchCriterias": "Search Criterias",
     "noCriteriasFound": "No Criterias Found",
-    "addYourFirstCriteria": "Add your first criteria by pressing \"+\" button below"
+    "addYourFirstCriteria": "Add your first criteria by pressing \"+\" button below",
+    "partner": "Partner",
+    "edit": "Edit",
+    "delete": "Delete"
 }

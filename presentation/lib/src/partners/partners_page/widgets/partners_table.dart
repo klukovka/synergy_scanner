@@ -7,7 +7,7 @@ import 'package:presentation/src/core/tables/table_view_model.dart';
 import 'package:presentation/src/general/placeholders/empty_table_placeholder.dart';
 import 'package:presentation/src/general/scroll/load_more_scroll_listener.dart';
 import 'package:presentation/src/home/home_page_tab_type.dart';
-import 'package:presentation/src/partners/partners_page/widgets/partner_card.dart';
+import 'package:presentation/src/partners/widgets/partner_card.dart';
 
 class PartnersTable extends StatelessWidget {
   const PartnersTable({super.key});
@@ -44,7 +44,9 @@ class PartnersTable extends StatelessWidget {
                     delegate: SliverChildBuilderDelegate(
                       (context, index) => PartnerCard(
                         key: ValueKey(viewModel.items[index].id),
-                        onPressed: () {},
+                        onPressed: () => viewModel.openPartnerPage(
+                          viewModel.items[index].id,
+                        ),
                         partner: viewModel.items[index],
                       ),
                       childCount: viewModel.items.length,
@@ -68,4 +70,9 @@ class _ViewModel extends TableViewModel<Partner, GeneralTablePointer> {
           .getTable<Partner, GeneralTablePointer>()
           .items
           .isNotEmpty;
+
+  void openPartnerPage(int id) {
+    store.dispatch(SetSelectedIdAction<Partner>(id));
+    openPage(Destination.partnerDetails);
+  }
 }

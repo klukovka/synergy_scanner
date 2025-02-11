@@ -28,6 +28,9 @@ extension DestinationExtension on Destination {
       Destination.partnersFilters => strings.filters,
       Destination.createCriteria => strings.createCriteria,
       Destination.criteriasFilters => strings.filters,
+      Destination.partnerDetails =>
+        state.tablesState.getTables<Partner>().selectedItem?.name ??
+            strings.partner,
     };
   }
 }

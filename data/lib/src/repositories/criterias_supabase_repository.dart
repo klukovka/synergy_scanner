@@ -73,13 +73,13 @@ class CriteriasSupabaseRepository extends BaseSupabaseRepository {
       final ascending = filter.direction == Direction.asc;
 
       final result = await getPaginatedResponse(
-        switch (filter.sortBy) {
-          SortBy.coefficient => query.order(
-              'coefficient',
-              ascending: ascending,
-            ),
-          _ => query.order('name', ascending: ascending),
-        },
+        query.order(
+            switch (filter.sortBy) {
+              SortBy.coefficient => 'coefficient',
+              SortBy.mark => 'marks.mark',
+              _ => 'name',
+            },
+            ascending: ascending),
         filter,
       );
 
