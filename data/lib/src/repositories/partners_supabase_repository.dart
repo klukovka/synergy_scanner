@@ -4,6 +4,7 @@ import 'package:data/src/dtos/partners/partner_dto.dart';
 import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:data/src/units/extensions/supabase_filter_extension.dart';
 import 'package:domain/domain.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 class PartnersSupabaseRepository extends ImagesSupabaseRepository {
   Future<FailureOrResult<int>> createPartner(NewPartner newPartner) async {
@@ -61,7 +62,22 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
 
   Future<FailureOrResult<Chunk<Partner>>> getPartners(Filter filter) async {
     return await makeErrorHandledCallback(() async {
-      var query = supabase
+      return await _getPartners(
+        filter: filter,
+        query: supabase
+            .from('partners')
+            .select()
+            .eq('user_id', supabase.auth.currentUser!.id),
+      );
+    });
+  }
+
+  Future<FailureOrResult<Chunk<Partner>>> _getPartners({
+    required Filter filter,
+    required PostgrestFilterBuilder<List<Map<String, dynamic>>> query,
+  }) async {
+    return await makeErrorHandledCallback(() async {
+      query = supabase
           .from('partners')
           .select()
           .eq('user_id', supabase.auth.currentUser!.id);
