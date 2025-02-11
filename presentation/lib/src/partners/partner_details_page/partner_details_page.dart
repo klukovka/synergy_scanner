@@ -46,6 +46,10 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
                 _lastChangedCriteria?.mark?.mark,
           });
           _lastChangedCriteria = null;
+          newViewModel.handleUnexpectedError(
+            message: newViewModel.marksFailure?.message,
+            shouldCloseCurrentPage: true,
+          );
         } else if (previousViewModel?.isMarkLoading !=
                 newViewModel.isMarkLoading &&
             _lastChangedCriteria != null &&
@@ -77,9 +81,13 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
                       name: 'mark_${criteria.id}',
                       initialValue: criteria.mark?.mark.toInt(),
                       starIconSize: 32,
-                      enabled: !viewModel.isMarkLoading,
+                      enabled: !viewModel.isMarkLoading &&
+                          _lastChangedCriteria == null,
                       onChanged: (value) {
-                        _lastChangedCriteria = criteria;
+                        if (_lastChangedCriteria != null) return;
+                        setState(() {
+                          _lastChangedCriteria = criteria;
+                        });
                         viewModel.onMarkChanged(
                           criteriaId: criteria.id,
                           mark: criteria.mark,
