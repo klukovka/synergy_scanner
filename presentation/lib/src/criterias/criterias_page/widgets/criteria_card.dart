@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 class CriteriaCard extends StatelessWidget {
   final Criteria criteria;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final Widget? subtitle;
 
   const CriteriaCard({
     super.key,
-    required this.onPressed,
+    this.onPressed,
     required this.criteria,
+    this.subtitle,
   });
 
   @override
@@ -27,6 +29,7 @@ class CriteriaCard extends StatelessWidget {
           ],
         ),
       ),
+      subtitle: subtitle,
     );
   }
 }

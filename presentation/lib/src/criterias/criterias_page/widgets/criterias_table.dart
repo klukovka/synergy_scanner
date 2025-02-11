@@ -4,24 +4,28 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:localizations/localizations.dart';
 import 'package:presentation/src/core/tables/table_refresh_indicator.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
-import 'package:presentation/src/criterias/criterias_page/widgets/criteria_card.dart';
 import 'package:presentation/src/general/placeholders/empty_table_placeholder.dart';
 import 'package:presentation/src/general/scroll/load_more_scroll_listener.dart';
 import 'package:presentation/src/home/home_page_tab_type.dart';
 
-class CriteriasTable extends StatelessWidget {
-  const CriteriasTable({super.key});
+class CriteriasTable<T extends TablePointer> extends StatelessWidget {
+  final Widget Function(BuildContext context, Criteria criteria) itemBuilder;
+
+  const CriteriasTable({
+    super.key,
+    required this.itemBuilder,
+  });
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector(
       distinct: true,
-      converter: _ViewModel.new,
-      ignoreChange: _ViewModel.ignoreChange,
+      converter: _ViewModel<T>.new,
+      ignoreChange: (AppState state) => _ViewModel.ignoreChange<T>(state),
       builder: (context, viewModel) {
         return LoadMoreScrollListener(
           loadMore: viewModel.downloadItems,
-          child: TableRefreshIndicator<Criteria, GeneralTablePointer>(
+          child: TableRefreshIndicator<Criteria, T>(
             builder: (context, iosRefreshIndicator) => CustomScrollView(
               slivers: [
                 iosRefreshIndicator,
@@ -42,10 +46,9 @@ class CriteriasTable extends StatelessWidget {
                 else
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (context, index) => CriteriaCard(
-                        key: ValueKey(viewModel.items[index].id),
-                        onPressed: () {},
-                        criteria: viewModel.items[index],
+                      (context, index) => itemBuilder(
+                        context,
+                        viewModel.items[index],
                       ),
                       childCount: viewModel.items.length,
                     ),
@@ -59,13 +62,10 @@ class CriteriasTable extends StatelessWidget {
   }
 }
 
-class _ViewModel extends TableViewModel<Criteria, GeneralTablePointer> {
+class _ViewModel<T extends TablePointer> extends TableViewModel<Criteria, T> {
   _ViewModel(super.store);
 
-  static bool ignoreChange(AppState state) =>
-      state.tablesState.getTable<Criteria, GeneralTablePointer>().isLoading &&
-      state.tablesState
-          .getTable<Criteria, GeneralTablePointer>()
-          .items
-          .isNotEmpty;
+  static bool ignoreChange<T extends TablePointer>(AppState state) =>
+      state.tablesState.getTable<Criteria, T>().isLoading &&
+      state.tablesState.getTable<Criteria, T>().items.isNotEmpty;
 }

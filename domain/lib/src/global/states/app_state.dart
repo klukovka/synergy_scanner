@@ -8,6 +8,7 @@ class AppState extends State<AppState> {
   final AllTablesState tablesState;
   final PartnersState partnersState;
   final CriteriasState criteriasState;
+  final MarksState marksState;
 
   AppState({
     required this.currentUserState,
@@ -16,6 +17,7 @@ class AppState extends State<AppState> {
     required this.tablesState,
     required this.partnersState,
     required this.criteriasState,
+    required this.marksState,
   }) : super(AppState._updateSubstates.reducer + AppState.reset.reducer);
 
   factory AppState._updateSubstates(AppState state, Action action) =>
@@ -38,6 +40,7 @@ class AppState extends State<AppState> {
           state.criteriasState,
           action,
         ),
+        marksState: state.marksState.reducer(state.marksState, action),
       );
 
   AppState.initial({
@@ -50,6 +53,7 @@ class AppState extends State<AppState> {
           tablesState: AllTablesState.initial(),
           partnersState: PartnersState(),
           criteriasState: CriteriasState(),
+          marksState: MarksState(),
         );
 
   factory AppState.reset(AppState state, ResetAppAction action) {
@@ -70,6 +74,7 @@ class AppState extends State<AppState> {
     AllTablesState? tablesState,
     PartnersState? partnersState,
     CriteriasState? criteriasState,
+    MarksState? marksState,
   }) =>
       AppState(
         currentUserState: currentUserState ?? this.currentUserState,
@@ -78,5 +83,6 @@ class AppState extends State<AppState> {
         tablesState: tablesState ?? this.tablesState,
         partnersState: partnersState ?? this.partnersState,
         criteriasState: criteriasState ?? this.criteriasState,
+        marksState: marksState ?? this.marksState,
       );
 }

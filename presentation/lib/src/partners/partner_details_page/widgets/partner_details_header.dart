@@ -1,4 +1,3 @@
-import 'package:clean_redux/clean_redux.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -14,15 +13,6 @@ class PartnerDetailsHeader extends StatelessWidget {
     return StoreConnector(
       distinct: true,
       converter: _ViewModel.new,
-      onWillChange: (previousViewModel, newViewModel) {
-        if (previousViewModel?.failure != newViewModel.failure &&
-            newViewModel.partner == null) {
-          newViewModel.handleUnexpectedError(
-            message: newViewModel.failure?.message,
-            shouldCloseCurrentPage: true,
-          );
-        }
-      },
       builder: (context, viewModel) {
         final partner = viewModel.partner;
         if (partner == null) return const SizedBox.shrink();
@@ -37,12 +27,10 @@ class PartnerDetailsHeader extends StatelessWidget {
 
 class _ViewModel extends BaseViewModel {
   final Partner? partner;
-  final Failure? failure;
 
   _ViewModel(super.store)
-      : partner = store.state.tablesState.getTables<Partner>().selectedItem,
-        failure = store.state.partnersState.failure;
+      : partner = store.state.tablesState.getTables<Partner>().selectedItem;
 
   @override
-  List<Object?> get props => [partner, failure];
+  List<Object?> get props => [partner];
 }

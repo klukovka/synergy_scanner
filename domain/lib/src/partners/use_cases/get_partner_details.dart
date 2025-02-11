@@ -15,10 +15,7 @@ class GetPartnerDetails extends UseCase<SetSelectedIdAction<Partner>> {
 
     if (response.wasSuccessful) {
       yield UpdateTablesItemAction<Partner>(response.result!);
-      yield DownloadTableItemsAction<Criteria, PartnerTablePointer>(
-        append: false,
-        clear: true,
-      );
+
       return;
     }
 

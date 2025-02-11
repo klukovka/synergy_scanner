@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:presentation/src/criterias/criterias_page/widgets/criteria_card.dart';
 import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table.dart';
 import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table_action_bar.dart';
 
@@ -10,11 +11,19 @@ class CriteriasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
-            CriteriasTableActionBar(),
-            Expanded(child: CriteriasTable()),
+            const CriteriasTableActionBar(),
+            Expanded(
+              child: CriteriasTable<GeneralTablePointer>(
+                itemBuilder: (context, criteria) => CriteriaCard(
+                  key: ValueKey(criteria.id),
+                  onPressed: () {},
+                  criteria: criteria,
+                ),
+              ),
+            ),
           ],
         ),
       ),

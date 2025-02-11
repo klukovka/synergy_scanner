@@ -1,11 +1,9 @@
-class Mark {
-  final int id;
+class NewMark {
   final int mark;
   final int criteriaId;
   final int partnerId;
 
-  Mark({
-    required this.id,
+  NewMark({
     required this.mark,
     required this.criteriaId,
     required this.partnerId,

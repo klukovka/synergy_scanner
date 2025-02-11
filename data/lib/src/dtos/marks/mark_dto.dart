@@ -7,7 +7,7 @@ part 'mark_dto.g.dart';
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class MarkDto extends Dto<Mark> {
   final int id;
-  final double mark;
+  final int mark;
   final int criteriaId;
   final int partnerId;
 
