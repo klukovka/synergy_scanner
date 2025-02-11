@@ -60,6 +60,13 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
     });
   }
 
+  Future<FailureOrResult<void>> deletePartner(int id) async {
+    return await makeErrorHandledCallback(() async {
+      await supabase.from('partners').delete().eq('id', id);
+      return FailureOrResult.success(null);
+    });
+  }
+
   Future<FailureOrResult<Chunk<Partner>>> getPartners(Filter filter) async {
     return await makeErrorHandledCallback(() async {
       return await _getPartners(
@@ -96,12 +103,13 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
 
       final result = await getPaginatedResponse(
         query.order(
-            switch (filter.sortBy) {
-              SortBy.type => 'type',
-              SortBy.name => 'name',
-              _ => 'average_mark',
-            },
-            ascending: ascending),
+          switch (filter.sortBy) {
+            SortBy.type => 'type',
+            SortBy.name => 'name',
+            _ => 'average_mark',
+          },
+          ascending: ascending,
+        ),
         filter,
       );
 

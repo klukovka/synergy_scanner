@@ -6,3 +6,5 @@ class CreatePartnerAction extends Action {
 
   CreatePartnerAction(this.partner);
 }
+
+class DeletePartnerAction extends Action {}

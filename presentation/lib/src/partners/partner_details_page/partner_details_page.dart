@@ -7,6 +7,7 @@ import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
 import 'package:presentation/src/criterias/criterias_page/widgets/criteria_card.dart';
 import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table.dart';
+import 'package:presentation/src/general/loaders/styled_loader/styled_loader.dart';
 import 'package:presentation/src/general/rating/rating_field.dart';
 import 'package:presentation/src/partners/partner_details_page/widgets/partner_details_header.dart';
 import 'package:presentation/src/partners/partner_details_page/widgets/partners_criterias_table_action_bar.dart';
@@ -35,7 +36,6 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
         if (previousViewModel?.partnerFailure != newViewModel.partnerFailure) {
           newViewModel.handleUnexpectedError(
             message: newViewModel.partnerFailure?.message,
-            shouldCloseCurrentPage: true,
           );
         }
 
@@ -62,44 +62,51 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
           });
           _lastChangedCriteria = null;
         }
+
+        if (previousViewModel?.partner != null &&
+            newViewModel.partner == null) {
+          newViewModel.close();
+        }
       },
       builder: (context, viewModel) => FormBuilder(
         key: _fbKey,
         child: Scaffold(
           appBar: const MobileAppBar(),
-          body: Column(
-            children: [
-              if (viewModel.partner != null)
-                PartnerDetailsHeader(partner: viewModel.partner!),
-              const CriteriasTableActionBar(),
-              Expanded(
-                child: CriteriasTable<PartnerTablePointer>(
-                  itemBuilder: (context, criteria) => CriteriaCard(
-                    key: ValueKey(criteria.id),
-                    criteria: criteria,
-                    subtitle: RatingField(
-                      name: 'mark_${criteria.id}',
-                      initialValue: criteria.mark?.mark.toInt(),
-                      starIconSize: 32,
-                      enabled: !viewModel.isMarkLoading &&
-                          _lastChangedCriteria == null,
-                      onChanged: (value) {
-                        if (_lastChangedCriteria != null) return;
-                        setState(() {
-                          _lastChangedCriteria = criteria;
-                        });
-                        viewModel.onMarkChanged(
-                          criteriaId: criteria.id,
-                          mark: criteria.mark,
-                          value: value ?? 0,
-                        );
-                      },
-                    ),
-                  ),
+          body: viewModel.isDeleteInProgress
+              ? const Center(child: StyledLoader.primary(size: 32))
+              : Column(
+                  children: [
+                    if (viewModel.partner != null)
+                      PartnerDetailsHeader(partner: viewModel.partner!),
+                    const CriteriasTableActionBar(),
+                    Expanded(
+                      child: CriteriasTable<PartnerTablePointer>(
+                        itemBuilder: (context, criteria) => CriteriaCard(
+                          key: ValueKey(criteria.id),
+                          criteria: criteria,
+                          subtitle: RatingField(
+                            name: 'mark_${criteria.id}',
+                            initialValue: criteria.mark?.mark.toInt(),
+                            starIconSize: 32,
+                            enabled: !viewModel.isMarkLoading &&
+                                _lastChangedCriteria == null,
+                            onChanged: (value) {
+                              if (_lastChangedCriteria != null) return;
+                              setState(() {
+                                _lastChangedCriteria = criteria;
+                              });
+                              viewModel.onMarkChanged(
+                                criteriaId: criteria.id,
+                                mark: criteria.mark,
+                                value: value ?? 0,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
         ),
       ),
     );
@@ -111,12 +118,20 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
   final Partner? partner;
   final bool isMarkLoading;
   final Failure? marksFailure;
+  final bool isDeleteInProgress;
+
+  static Partner? getPartner(Store<AppState> store) =>
+      store.state.tablesState.getTables<Partner>().selectedItem;
 
   _ViewModel(super.store)
       : partnerFailure = store.state.partnersState.failure,
-        partner = store.state.tablesState.getTables<Partner>().selectedItem,
+        partner = getPartner(store),
         isMarkLoading = store.state.marksState.isLoading,
-        marksFailure = store.state.marksState.failure;
+        marksFailure = store.state.marksState.failure,
+        isDeleteInProgress = !store.state.tablesState
+            .getTable<Partner, GeneralTablePointer>()
+            .items
+            .any((item) => item.id == getPartner(store)?.id);
 
   void onInit() {
     store.dispatch(
@@ -160,5 +175,6 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
         partner,
         isMarkLoading,
         marksFailure,
+        isDeleteInProgress,
       ];
 }

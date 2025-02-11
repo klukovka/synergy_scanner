@@ -5,5 +5,5 @@ final class _TertiaryStyledLoader extends StyledLoader {
 
   @override
   Color getColor(BuildContext context) =>
-      (Theme.of(context).colorScheme.tertiary as MaterialColor)[600]!;
+      Theme.of(context).colorScheme.tertiary;
 }

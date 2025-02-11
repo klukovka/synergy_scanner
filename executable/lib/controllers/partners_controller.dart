@@ -14,5 +14,9 @@ class PartnersController extends Controller {
           Endpoint(
             GetPartnerDetails(partnersRepository.getPartnerDetails),
           ).call,
+          Endpoint(DeletePartner(
+            partnersRepository.deletePartner,
+            () => store().state.tablesState.getTables<Partner>().selectedItem!,
+          )).call,
         ]);
 }

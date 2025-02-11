@@ -9,7 +9,7 @@ final class ErrorPopUpButton extends PopUpButton {
 
   @override
   TextStyle getTextStyle(BuildContext context) =>
-      Theme.of(context).textTheme.titleLarge!.copyWith(
+      Theme.of(context).textTheme.titleSmall!.copyWith(
             color: Theme.of(context).colorScheme.error,
           );
 }

@@ -7,7 +7,8 @@ class PartnersState extends State<PartnersState> {
   PartnersState({
     this.failure,
   }) : super(PartnersState._onCreateFailed.reducer +
-            PartnersState._onGetDetailsFailed.reducer);
+            PartnersState._onGetDetailsFailed.reducer +
+            PartnersState._onDeleteFailed.reducer);
 
   factory PartnersState._onCreateFailed(
     PartnersState state,
@@ -16,6 +17,12 @@ class PartnersState extends State<PartnersState> {
       state.copyWith(failure: Nullable(action.failure));
 
   factory PartnersState._onGetDetailsFailed(
+    PartnersState state,
+    FailedAction<GetPartnerDetails> action,
+  ) =>
+      state.copyWith(failure: Nullable(action.failure));
+
+  factory PartnersState._onDeleteFailed(
     PartnersState state,
     FailedAction<GetPartnerDetails> action,
   ) =>

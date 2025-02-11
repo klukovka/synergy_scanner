@@ -88,5 +88,8 @@
     "addYourFirstCriteria": "Add your first criteria by pressing \"+\" button below",
     "partner": "Partner",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "deleteAction": "Delete Action",
+    "cancel": "Cancel",
+    "youSureYouWantToDeletePartner": "Are you sure you want to delete partner?"
 }

@@ -584,6 +584,24 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
+
+  /// No description provided for @deleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Action'**
+  String get deleteAction;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @youSureYouWantToDeletePartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete partner?'**
+  String get youSureYouWantToDeletePartner;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

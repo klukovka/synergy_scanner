@@ -72,22 +72,23 @@ class TableState<T extends TableItem<T>, V extends TablePointer>
   factory TableState._mergeItem(
     TableState<T, V> state,
     UpdateTableItemAction<T, V> action,
-  ) =>
-      state.copyWith(
-        items: state._chunk.values.any((x) => x.item.id == action.item.id)
-            ? state._chunk.values.map((item) {
-                if (item.item.id == action.item.id) {
-                  return action.replace
-                      ? HidingWrapper(action.item)
-                      : HidingWrapper(item.item.merge(action.item));
-                }
-                return item;
-              }).toList()
-            : [
-                ...state._chunk.values,
-                HidingWrapper(action.item, isHidden: true)
-              ],
-      );
+  ) {
+    return state.copyWith(
+      items: state._chunk.values.any((x) => x.item.id == action.item.id)
+          ? state._chunk.values.map((item) {
+              if (item.item.id == action.item.id) {
+                return action.replace
+                    ? HidingWrapper(action.item)
+                    : HidingWrapper(item.item.merge(action.item));
+              }
+              return item;
+            }).toList()
+          : [
+              ...state._chunk.values,
+              HidingWrapper(action.item, isHidden: true)
+            ],
+    );
+  }
 
   factory TableState._updateFilter(
     TableState<T, V> state,

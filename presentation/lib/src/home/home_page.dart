@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               key: _homePageKey,
               onPopPage: (route, result) {
                 if (viewModel.previousRoutes.isNotEmpty) {
-                  viewModel.closePage();
+                  viewModel.close();
                   return false;
                 }
                 return true;
@@ -220,8 +220,6 @@ class HomePageViewModel extends BaseViewModel {
       : currentRoute = store.state.navigationState.currentRoute,
         previousRoutes = store.state.navigationState.previousRoutes,
         user = store.state.currentUserState.user!;
-
-  void closePage() => store.dispatch(ClosePageAction());
 
   void openTab(Destination destination) {
     if (currentRoute.first == destination) {
