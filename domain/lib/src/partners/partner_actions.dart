@@ -1,5 +1,5 @@
 import 'package:clean_redux/clean_redux.dart';
-import 'package:domain/src/partners/entities/new_partner.dart';
+import 'package:domain/domain.dart';
 
 class CreatePartnerAction extends Action {
   final NewPartner partner;
@@ -8,3 +8,9 @@ class CreatePartnerAction extends Action {
 }
 
 class DeletePartnerAction extends Action {}
+
+class UpdatePartnerAction extends Action {
+  final PatchPartner partner;
+
+  UpdatePartnerAction(this.partner);
+}

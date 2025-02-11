@@ -1,6 +1,7 @@
 import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/partners/new_partner_dto.dart';
 import 'package:data/src/dtos/partners/partner_dto.dart';
+import 'package:data/src/dtos/partners/patch_partner_dto.dart';
 import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:data/src/units/extensions/supabase_filter_extension.dart';
 import 'package:domain/domain.dart';
@@ -22,6 +23,27 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
       }
 
       return FailureOrResult.success(id);
+    });
+  }
+
+  Future<FailureOrResult<Partner>> updatePartner(
+    int id,
+    PatchPartner patchPartner,
+  ) async {
+    return await makeErrorHandledCallback(() async {
+      final result = await supabase
+          .from('partners')
+          .update(PatchPartnerDto.fromDomain(patchPartner).toJson())
+          .eq('id', id)
+          .select();
+
+      if (patchPartner.avatar != null) {
+        await uploadParnerAvatar(photo: patchPartner.avatar!, id: id);
+      }
+
+      return FailureOrResult.success(
+        PartnerDto.fromJson(result.first).toDomain(),
+      );
     });
   }
 
