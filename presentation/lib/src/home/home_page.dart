@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       Destination.criteriasFilters => const [
                           MaterialPage(
                             key: ValueKey(Destination.partnersFilters),
-                            child: CriteriasFilterPage(),
+                            child: CriteriasFilterPage<GeneralTablePointer>(),
                           ),
                         ],
                       _ => [],

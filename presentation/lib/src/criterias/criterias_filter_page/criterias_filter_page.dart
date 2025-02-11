@@ -13,14 +13,15 @@ enum CriteriasFilterPageFields {
   direction,
 }
 
-class CriteriasFilterPage extends StatefulWidget {
+class CriteriasFilterPage<T extends TablePointer> extends StatefulWidget {
   const CriteriasFilterPage({super.key});
 
   @override
-  State<CriteriasFilterPage> createState() => _CriteriasFilterPageState();
+  State<CriteriasFilterPage<T>> createState() => _CriteriasFilterPageState<T>();
 }
 
-class _CriteriasFilterPageState extends State<CriteriasFilterPage> {
+class _CriteriasFilterPageState<T extends TablePointer>
+    extends State<CriteriasFilterPage<T>> {
   final _fbKey = GlobalKey<FormBuilderState>();
 
   FormBuilderState? get _fbState => _fbKey.currentState;
@@ -30,7 +31,7 @@ class _CriteriasFilterPageState extends State<CriteriasFilterPage> {
   Widget build(BuildContext context) {
     return StoreConnector(
       distinct: true,
-      converter: TableViewModel<Criteria, GeneralTablePointer>.new,
+      converter: TableViewModel<Criteria, T>.new,
       onWillChange: (previousViewModel, newViewModel) {
         if (previousViewModel?.sortBy != newViewModel.sortBy) {
           _fbState?.patchValue({
