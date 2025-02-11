@@ -21,7 +21,10 @@ class PartnerDetailsOptionsButton extends StatelessWidget {
         MenuItem(
           label: context.strings.edit,
           icon: Icon(MdiIcons.pencil),
-          onPressed: () {},
+          onPressed: () {
+            PopupPicker.of(context).close();
+            dispatch(OpenPageAction(Destination.editPartner));
+          },
         ),
         MenuItem(
           label: context.strings.delete,

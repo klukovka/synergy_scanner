@@ -127,5 +127,6 @@ extension on Destination {
         Destination.criteriasFilters => 'Filters',
         Destination.partnerDetails => 'Partner Details',
         Destination.partnerCriteriasFilters => 'Filters',
+        Destination.editPartner => 'Edit Partner',
       };
 }

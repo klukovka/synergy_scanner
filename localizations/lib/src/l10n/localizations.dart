@@ -602,6 +602,12 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to delete partner?'**
   String get youSureYouWantToDeletePartner;
+
+  /// No description provided for @editPartner.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Partner'**
+  String get editPartner;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

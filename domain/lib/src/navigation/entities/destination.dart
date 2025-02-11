@@ -11,7 +11,8 @@ enum Destination {
   createCriteria,
   criteriasFilters(canBePartOfRoute: false),
   partnerDetails,
-  partnerCriteriasFilters(canBePartOfRoute: false);
+  partnerCriteriasFilters(canBePartOfRoute: false),
+  editPartner;
 
   final bool canBePartOfRoute;
 

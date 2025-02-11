@@ -11,6 +11,7 @@ import 'package:presentation/src/home/home_page_tab_type.dart';
 import 'package:presentation/src/home/widgets/bottom_navigation_bar_avatar.dart';
 import 'package:presentation/src/navigation/fade_transition_page.dart';
 import 'package:presentation/src/partners/create_edit_partner/create_partner/create_partner_page.dart';
+import 'package:presentation/src/partners/create_edit_partner/edit_partner_page/edit_partner_page.dart';
 import 'package:presentation/src/partners/partner_details_page/partner_details_page.dart';
 import 'package:presentation/src/partners/partners_filter_page/partners_filter_page.dart';
 import 'package:presentation/src/partners/partners_page/partners_page.dart';
@@ -167,6 +168,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                                 SortBy.coefficient,
                               ],
                             ),
+                          ),
+                        ],
+                      Destination.editPartner => const [
+                          MaterialPage(
+                            key: ValueKey(Destination.editPartner),
+                            child: EditPartnerPage(),
                           ),
                         ],
                       _ => [],

@@ -262,4 +262,7 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get youSureYouWantToDeletePartner => 'Are you sure you want to delete partner?';
+
+  @override
+  String get editPartner => 'Edit Partner';
 }
