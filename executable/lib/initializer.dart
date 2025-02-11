@@ -29,6 +29,7 @@ class Initializer {
           userRepository: userRepository,
           partnersRepository: PartnersSupabaseRepository(),
           criteriasRepository: CriteriasSupabaseRepository(),
+          marksRepository: MarksSupabaseRepository(),
         ).call,
       ],
     );
