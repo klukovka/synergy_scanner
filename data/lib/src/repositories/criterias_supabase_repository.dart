@@ -3,6 +3,7 @@ import 'package:data/src/dtos/criterias/criteria_dto.dart';
 import 'package:data/src/dtos/criterias/new_criteria_dto.dart';
 import 'package:data/src/repositories/base_supabase_repository.dart';
 import 'package:domain/domain.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 class CriteriasSupabaseRepository extends BaseSupabaseRepository {
   Future<FailureOrResult<int>> createCriteria(NewCriteria newCriteria) async {
@@ -33,11 +34,36 @@ class CriteriasSupabaseRepository extends BaseSupabaseRepository {
 
   Future<FailureOrResult<Chunk<Criteria>>> getCriterias(Filter filter) async {
     return await makeErrorHandledCallback(() async {
-      var query = supabase
-          .from('criterias')
-          .select()
-          .eq('user_id', supabase.auth.currentUser!.id);
+      return await _getCriterias(
+        query: supabase
+            .from('criterias')
+            .select()
+            .eq('user_id', supabase.auth.currentUser!.id),
+        filter: filter,
+      );
+    });
+  }
 
+  Future<FailureOrResult<Chunk<Criteria>>> getPartnerCriteriasWithMarks(
+    Filter filter,
+  ) async {
+    return await makeErrorHandledCallback(() async {
+      return await _getCriterias(
+        query: supabase
+            .from('criterias')
+            .select('*, marks(*)')
+            .eq('user_id', supabase.auth.currentUser!.id)
+            .eq('marks.partner_id', filter.filters[FilterBy.partnerId]!.first),
+        filter: filter,
+      );
+    });
+  }
+
+  Future<FailureOrResult<Chunk<Criteria>>> _getCriterias({
+    required PostgrestFilterBuilder<List<Map<String, dynamic>>> query,
+    required Filter filter,
+  }) async {
+    return await makeErrorHandledCallback(() async {
       if (filter.search.isNotEmpty) {
         query = query.ilike('name', '%${filter.search}%');
       }

@@ -17,6 +17,7 @@ export 'src/global/global_actions.dart';
 export 'src/global/states/app_state.dart';
 export 'src/global/states/error_state.dart';
 export 'src/global/use_cases/reload_data.dart';
+export 'src/marks/entities/mark.dart';
 export 'src/navigation/actions/navigation_actions.dart';
 export 'src/navigation/entities/destination.dart';
 export 'src/navigation/states/navigation_state.dart';

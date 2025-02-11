@@ -30,7 +30,8 @@ class AllTablesState extends State<AllTablesState> {
           TableState<Partner, GeneralTablePointer>.initial(partnerFilter)
         ]),
         TablesState<Criteria>(tables: [
-          TableState<Criteria, GeneralTablePointer>.initial(criteriaFilter)
+          TableState<Criteria, GeneralTablePointer>.initial(criteriaFilter),
+          TableState<Criteria, PartnerTablePointer>.initial(criteriaFilter)
         ]),
       ],
     );

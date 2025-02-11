@@ -1,3 +1,4 @@
 enum FilterBy {
   type,
+  partnerId,
 }
