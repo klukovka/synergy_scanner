@@ -9,6 +9,7 @@ class RatingField extends StatelessWidget {
   final String? Function(int?)? validator;
   final double starIconSize;
   final void Function(int?)? onChanged;
+  final bool enabled;
 
   const RatingField({
     super.key,
@@ -17,6 +18,7 @@ class RatingField extends StatelessWidget {
     required this.name,
     this.validator,
     this.onChanged,
+    this.enabled = true,
   });
 
   @override
@@ -26,6 +28,7 @@ class RatingField extends StatelessWidget {
       initialValue: initialValue,
       validator: validator,
       onChanged: onChanged,
+      enabled: enabled,
       builder: (state) {
         return Column(
           children: [
@@ -39,15 +42,20 @@ class RatingField extends StatelessWidget {
                     final isFilled = index < currentValue;
                     return GestureDetector(
                       behavior: HitTestBehavior.opaque,
-                      onTap: () {
-                        state.didChange(index + 1);
-                      },
+                      onTap: enabled
+                          ? () {
+                              state.didChange(index + 1);
+                            }
+                          : null,
                       child: Padding(
                         padding: const EdgeInsets.all(8),
                         child: Icon(
                           isFilled ? Icons.star : Icons.star_border_outlined,
                           size: starIconSize,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(enabled ? 1 : 0.5),
                         ),
                       ),
                     );
