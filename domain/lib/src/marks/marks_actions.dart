@@ -1,4 +1,5 @@
 import 'package:clean_redux/clean_redux.dart';
+import 'package:domain/domain.dart';
 
 class SetMarkLoading extends Action {
   final bool isLoading;
@@ -14,4 +15,10 @@ class CreateMarkAction extends Action {
     required this.criteriaId,
     required this.mark,
   });
+}
+
+class UpdateMarkAction extends Action {
+  final PatchMark mark;
+
+  UpdateMarkAction(this.mark);
 }

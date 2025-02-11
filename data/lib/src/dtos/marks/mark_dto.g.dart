@@ -8,7 +8,7 @@ part of 'mark_dto.dart';
 
 MarkDto _$MarkDtoFromJson(Map<String, dynamic> json) => MarkDto(
       id: (json['id'] as num).toInt(),
-      mark: (json['mark'] as num).toDouble(),
+      mark: (json['mark'] as num).toInt(),
       criteriaId: (json['criteria_id'] as num).toInt(),
       partnerId: (json['partner_id'] as num).toInt(),
     );
