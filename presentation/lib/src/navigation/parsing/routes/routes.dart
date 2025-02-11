@@ -5,6 +5,7 @@ import 'package:presentation/src/navigation/parsing/routes/create_criteria_route
 import 'package:presentation/src/navigation/parsing/routes/create_partner_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/criterias_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/login_route.dart';
+import 'package:presentation/src/navigation/parsing/routes/partner_details_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/partners_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/profile_route.dart';
 
@@ -16,6 +17,7 @@ const routes = <BaseRoute<AppState>>[
   CreateCriteriaRoute(),
   AnalyticsRoute(),
   ProfileRoute(),
+  PartnerDetailsRoute(),
 ];
 
 BaseRoute<AppState> defaultRoute(User? user) =>
