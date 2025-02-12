@@ -10,6 +10,7 @@ class CriteriasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dispatch = StoreProvider.of<AppState>(context).dispatch;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -29,7 +30,7 @@ class CriteriasPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => StoreProvider.of<AppState>(context).dispatch(
+        onPressed: () => dispatch(
           OpenPageAction(Destination.createCriteria),
         ),
       ),

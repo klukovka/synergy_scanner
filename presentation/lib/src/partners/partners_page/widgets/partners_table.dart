@@ -7,21 +7,25 @@ import 'package:presentation/src/core/tables/table_view_model.dart';
 import 'package:presentation/src/general/placeholders/empty_table_placeholder.dart';
 import 'package:presentation/src/general/scroll/load_more_scroll_listener.dart';
 import 'package:presentation/src/home/home_page_tab_type.dart';
-import 'package:presentation/src/partners/widgets/partner_card.dart';
 
-class PartnersTable extends StatelessWidget {
-  const PartnersTable({super.key});
+class PartnersTable<T extends TablePointer> extends StatelessWidget {
+  final Widget Function(BuildContext context, Partner partner) itemBuilder;
+
+  const PartnersTable({
+    super.key,
+    required this.itemBuilder,
+  });
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector(
       distinct: true,
-      converter: _ViewModel.new,
-      ignoreChange: _ViewModel.ignoreChange,
+      converter: _ViewModel<T>.new,
+      ignoreChange: (AppState state) => _ViewModel.ignoreChange<T>(state),
       builder: (context, viewModel) {
         return LoadMoreScrollListener(
           loadMore: viewModel.downloadItems,
-          child: TableRefreshIndicator<Partner, GeneralTablePointer>(
+          child: TableRefreshIndicator<Partner, T>(
             builder: (context, iosRefreshIndicator) => CustomScrollView(
               slivers: [
                 iosRefreshIndicator,
@@ -42,12 +46,9 @@ class PartnersTable extends StatelessWidget {
                 else
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (context, index) => PartnerCard(
-                        key: ValueKey(viewModel.items[index].id),
-                        onPressed: () => viewModel.openPartnerPage(
-                          viewModel.items[index].id,
-                        ),
-                        partner: viewModel.items[index],
+                      (context, index) => itemBuilder(
+                        context,
+                        viewModel.items[index],
                       ),
                       childCount: viewModel.items.length,
                     ),
@@ -61,18 +62,10 @@ class PartnersTable extends StatelessWidget {
   }
 }
 
-class _ViewModel extends TableViewModel<Partner, GeneralTablePointer> {
+class _ViewModel<T extends TablePointer> extends TableViewModel<Partner, T> {
   _ViewModel(super.store);
 
-  static bool ignoreChange(AppState state) =>
-      state.tablesState.getTable<Partner, GeneralTablePointer>().isLoading &&
-      state.tablesState
-          .getTable<Partner, GeneralTablePointer>()
-          .items
-          .isNotEmpty;
-
-  void openPartnerPage(int id) {
-    store.dispatch(SetSelectedIdAction<Partner>(id));
-    openPage(Destination.partnerDetails);
-  }
+  static bool ignoreChange<T extends TablePointer>(AppState state) =>
+      state.tablesState.getTable<Partner, T>().isLoading &&
+      state.tablesState.getTable<Partner, T>().items.isNotEmpty;
 }
