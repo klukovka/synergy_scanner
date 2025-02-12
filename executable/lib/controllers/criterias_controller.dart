@@ -24,5 +24,12 @@ class CriteriasController extends Controller {
                   .selectedItemId!,
             ),
           ).call,
+          Endpoint(
+            DeleteCriteria(
+              criteriasRepository.deleteCriteria,
+              () =>
+                  store().state.tablesState.getTables<Criteria>().selectedItem!,
+            ),
+          ).call,
         ]);
 }

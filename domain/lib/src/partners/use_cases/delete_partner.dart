@@ -3,11 +3,11 @@ import 'package:domain/domain.dart';
 
 class DeletePartner extends UseCase<DeletePartnerAction> {
   final Future<FailureOrResult<void>> Function(int id) deletePartner;
-  final Partner Function() getParterId;
+  final Partner Function() getPartner;
 
   DeletePartner(
     this.deletePartner,
-    this.getParterId,
+    this.getPartner,
   ) : super(isAsync: false);
 
   @override
@@ -16,7 +16,7 @@ class DeletePartner extends UseCase<DeletePartnerAction> {
     Stream<Action> actions,
     CancelToken cancel,
   ) async* {
-    final partner = getParterId();
+    final partner = getPartner();
     final response = await deletePartner(partner.id);
     yield ChangeVisibitilyTableItemsAction<Partner, GeneralTablePointer>(
       [partner],
