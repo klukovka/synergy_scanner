@@ -5,24 +5,24 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
-import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table.dart';
-import 'package:presentation/src/criterias/widgets/criteria_card.dart';
+import 'package:presentation/src/criterias/criteria_details_page/widgets/criteria_details_header.dart';
+import 'package:presentation/src/criterias/criteria_details_page/widgets/criteria_partners_table_action_bar.dart';
 import 'package:presentation/src/general/loaders/styled_loader/styled_loader.dart';
 import 'package:presentation/src/general/rating/rating_field.dart';
-import 'package:presentation/src/partners/partner_details_page/widgets/partner_criterias_table_action_bar.dart';
-import 'package:presentation/src/partners/partner_details_page/widgets/partner_details_header.dart';
+import 'package:presentation/src/partners/partners_page/widgets/partners_table.dart';
+import 'package:presentation/src/partners/widgets/partner_card.dart';
 import 'package:redux/redux.dart';
 
-class PartnerDetailsPage extends StatefulWidget {
-  const PartnerDetailsPage({super.key});
+class CriteriaDetailsPage extends StatefulWidget {
+  const CriteriaDetailsPage({super.key});
 
   @override
-  State<PartnerDetailsPage> createState() => _PartnerDetailsPageState();
+  State<CriteriaDetailsPage> createState() => _CriteriaDetailsPageState();
 }
 
-class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
+class _CriteriaDetailsPageState extends State<CriteriaDetailsPage> {
   final _fbKey = GlobalKey<FormBuilderState>();
-  Criteria? _lastChangedCriteria;
+  Partner? _lastChangedPartner;
 
   FormBuilderState? get _fbState => _fbKey.currentState;
 
@@ -33,38 +33,38 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
       converter: _ViewModel.new,
       onInit: (Store<AppState> store) => _ViewModel(store).onInit(),
       onWillChange: (previousViewModel, newViewModel) {
-        if (previousViewModel?.partnerFailure != newViewModel.partnerFailure) {
+        if (previousViewModel?.criteriaFailure !=
+            newViewModel.criteriaFailure) {
           newViewModel.handleUnexpectedError(
-            message: newViewModel.partnerFailure?.message,
+            message: newViewModel.criteriaFailure?.message,
           );
         }
 
         if (previousViewModel?.marksFailure != newViewModel.marksFailure &&
-            _lastChangedCriteria != null) {
+            _lastChangedPartner != null) {
           _fbState?.patchValue({
-            'mark_${_lastChangedCriteria?.id}':
-                _lastChangedCriteria?.mark?.mark,
+            'mark_${_lastChangedPartner?.id}': _lastChangedPartner?.mark?.mark,
           });
-          _lastChangedCriteria = null;
+          _lastChangedPartner = null;
           newViewModel.handleUnexpectedError(
             message: newViewModel.marksFailure?.message,
             shouldCloseCurrentPage: true,
           );
         } else if (previousViewModel?.isMarkLoading !=
                 newViewModel.isMarkLoading &&
-            _lastChangedCriteria != null &&
+            _lastChangedPartner != null &&
             !newViewModel.isMarkLoading) {
           final mark = newViewModel.items
-              .firstWhereOrNull((item) => item.id == _lastChangedCriteria?.id)
+              .firstWhereOrNull((item) => item.id == _lastChangedPartner?.id)
               ?.mark;
           _fbState?.patchValue({
-            'mark_${_lastChangedCriteria?.id}': mark?.mark,
+            'mark_${_lastChangedPartner?.id}': mark?.mark,
           });
-          _lastChangedCriteria = null;
+          _lastChangedPartner = null;
         }
 
-        if (previousViewModel?.partner != null &&
-            newViewModel.partner == null) {
+        if (previousViewModel?.criteria != null &&
+            newViewModel.criteria == null) {
           newViewModel.close();
         }
       },
@@ -76,28 +76,28 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
               ? const Center(child: StyledLoader.primary(size: 32))
               : Column(
                   children: [
-                    if (viewModel.partner != null)
-                      PartnerDetailsHeader(partner: viewModel.partner!),
-                    const PartnerCriteriasTableActionBar(),
+                    if (viewModel.criteria != null)
+                      CriteriaDetailsHeader(criteria: viewModel.criteria!),
+                    const CriteriaPartnersTableActionBar(),
                     Expanded(
-                      child: CriteriasTable<PartnerTablePointer>(
-                        itemBuilder: (context, criteria) => CriteriaCard(
-                          key: ValueKey(criteria.id),
-                          criteria: criteria,
+                      child: PartnersTable<CriteriaTablePointer>(
+                        itemBuilder: (context, partner) => PartnerCard(
+                          key: ValueKey(partner.id),
+                          partner: partner,
                           subtitle: RatingField(
-                            name: 'mark_${criteria.id}',
-                            initialValue: criteria.mark?.mark.toInt(),
+                            name: 'mark_${partner.id}',
+                            initialValue: partner.mark?.mark.toInt(),
                             starIconSize: 32,
                             enabled: !viewModel.isMarkLoading &&
-                                _lastChangedCriteria == null,
+                                _lastChangedPartner == null,
                             onChanged: (value) {
-                              if (_lastChangedCriteria != null) return;
+                              if (_lastChangedPartner != null) return;
                               setState(() {
-                                _lastChangedCriteria = criteria;
+                                _lastChangedPartner = partner;
                               });
                               viewModel.onMarkChanged(
-                                criteria: criteria,
-                                mark: criteria.mark,
+                                partner: partner,
+                                mark: partner.mark,
                                 value: value ?? 0,
                               );
                             },
@@ -113,29 +113,29 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
   }
 }
 
-class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
-  final Failure? partnerFailure;
-  final Partner? partner;
+class _ViewModel extends TableViewModel<Partner, CriteriaTablePointer> {
+  final Failure? criteriaFailure;
+  final Criteria? criteria;
   final bool isMarkLoading;
   final Failure? marksFailure;
   final bool isDeleteInProgress;
 
-  static Partner? getPartner(Store<AppState> store) =>
-      store.state.tablesState.getTables<Partner>().selectedItem;
+  static Criteria? getCriteria(Store<AppState> store) =>
+      store.state.tablesState.getTables<Criteria>().selectedItem;
 
   _ViewModel(super.store)
-      : partnerFailure = store.state.partnersState.failure,
-        partner = getPartner(store),
+      : criteriaFailure = store.state.criteriasState.failure,
+        criteria = getCriteria(store),
         isMarkLoading = store.state.marksState.isLoading,
         marksFailure = store.state.marksState.failure,
         isDeleteInProgress = !store.state.tablesState
-            .getTable<Partner, GeneralTablePointer>()
+            .getTable<Criteria, GeneralTablePointer>()
             .items
-            .any((item) => item.id == getPartner(store)?.id);
+            .any((item) => item.id == getCriteria(store)?.id);
 
   void onInit() {
     store.dispatch(
-      DownloadTableItemsAction<Criteria, PartnerTablePointer>(
+      DownloadTableItemsAction<Partner, CriteriaTablePointer>(
         append: false,
         clear: true,
       ),
@@ -143,16 +143,16 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
   }
 
   void onMarkChanged({
-    required Criteria criteria,
+    required Partner partner,
     required Mark? mark,
     required int value,
   }) {
     if (mark == null) {
       store.dispatch(
         CreateMarkAction(
-          criteria: criteria,
+          partner: partner,
           mark: value,
-          partner: partner!,
+          criteria: criteria!,
         ),
       );
       return;
@@ -160,8 +160,8 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
     store.dispatch(
       UpdateMarkAction(
         mark: value,
-        criteria: criteria,
-        partner: partner!,
+        partner: partner,
+        criteria: criteria!,
         id: mark.id,
       ),
     );
@@ -170,8 +170,8 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
   @override
   List<Object?> get props => [
         ...super.props,
-        partnerFailure,
-        partner,
+        criteriaFailure,
+        criteria,
         isMarkLoading,
         marksFailure,
         isDeleteInProgress,

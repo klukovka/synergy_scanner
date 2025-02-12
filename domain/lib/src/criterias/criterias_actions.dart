@@ -6,3 +6,5 @@ class CreateCriteriaAction extends Action {
 
   CreateCriteriaAction(this.criteria);
 }
+
+class DeleteCriteriaAction extends Action {}

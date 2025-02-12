@@ -5,12 +5,14 @@ class CriteriaCard extends StatelessWidget {
   final Criteria criteria;
   final VoidCallback? onPressed;
   final Widget? subtitle;
+  final Widget? trailing;
 
   const CriteriaCard({
     super.key,
     this.onPressed,
     required this.criteria,
     this.subtitle,
+    this.trailing,
   });
 
   @override
@@ -30,6 +32,7 @@ class CriteriaCard extends StatelessWidget {
         ),
       ),
       subtitle: subtitle,
+      trailing: trailing,
     );
   }
 }

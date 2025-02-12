@@ -120,11 +120,6 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
     required PostgrestFilterBuilder<List<Map<String, dynamic>>> query,
   }) async {
     return await makeErrorHandledCallback(() async {
-      query = supabase
-          .from('partners')
-          .select()
-          .eq('user_id', supabase.auth.currentUser!.id);
-
       if (filter.search.isNotEmpty) {
         query = query.ilike('name', '%${filter.search}%');
       }

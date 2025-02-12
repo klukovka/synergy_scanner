@@ -19,6 +19,16 @@ class TablesController extends Controller {
               store.getFilter(),
             ),
           ).call,
+          Endpoint(
+            GetTableItems<Partner, CriteriaTablePointer>(
+              partnersRepository.getPartnersWithMark,
+              store.getFilter(
+                modifier: LockById<Criteria>(
+                  FilterBy.criteriaId,
+                ),
+              ),
+            ),
+          ).call,
 
           ///
           /// Criterias

@@ -1,9 +1,9 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:presentation/src/criterias/criterias_page/widgets/criteria_card.dart';
 import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table.dart';
 import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table_action_bar.dart';
+import 'package:presentation/src/criterias/widgets/criteria_card.dart';
 
 class CriteriasPage extends StatelessWidget {
   const CriteriasPage({super.key});
@@ -20,7 +20,10 @@ class CriteriasPage extends StatelessWidget {
               child: CriteriasTable<GeneralTablePointer>(
                 itemBuilder: (context, criteria) => CriteriaCard(
                   key: ValueKey(criteria.id),
-                  onPressed: () {},
+                  onPressed: () {
+                    dispatch(SetSelectedIdAction<Criteria>(criteria.id));
+                    dispatch(OpenPageAction(Destination.criteriaDetails));
+                  },
                   criteria: criteria,
                 ),
               ),
