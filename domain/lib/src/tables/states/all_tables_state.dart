@@ -17,7 +17,7 @@ class AllTablesState extends State<AllTablesState> {
 
   factory AllTablesState.initial() {
     final partnerFilter = Filter(
-      sortBy: SortBy.mark,
+      sortBy: SortBy.averageMark,
       direction: Direction.desc,
     );
     final criteriaFilter = Filter(
@@ -27,7 +27,8 @@ class AllTablesState extends State<AllTablesState> {
     return AllTablesState(
       tablesStates: [
         TablesState<Partner>(tables: [
-          TableState<Partner, GeneralTablePointer>.initial(partnerFilter)
+          TableState<Partner, GeneralTablePointer>.initial(partnerFilter),
+          TableState<Partner, CriteriaTablePointer>.initial(partnerFilter)
         ]),
         TablesState<Criteria>(tables: [
           TableState<Criteria, GeneralTablePointer>.initial(criteriaFilter),

@@ -92,5 +92,6 @@
     "deleteAction": "Delete Action",
     "cancel": "Cancel",
     "youSureYouWantToDeletePartner": "Are you sure you want to delete partner?",
-    "editPartner": "Edit Partner"
+    "editPartner": "Edit Partner",
+    "averageMark": "Average Mark"
 }

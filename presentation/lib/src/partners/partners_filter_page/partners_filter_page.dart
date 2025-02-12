@@ -2,11 +2,12 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:localizations/localizations.dart';
 import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/tables/table_view_model.dart';
 import 'package:presentation/src/general/buttons/filter_buttons.dart';
 import 'package:presentation/src/general/fields/direction_form_field.dart';
-import 'package:presentation/src/partners/partners_filter_page/widgets/partners_sort_by_field.dart';
+import 'package:presentation/src/general/fields/sort_by_form_field.dart';
 import 'package:presentation/src/partners/partners_filter_page/widgets/partners_type_filter_field.dart';
 
 enum PartnersFilterPageFields {
@@ -15,14 +16,20 @@ enum PartnersFilterPageFields {
   types,
 }
 
-class PartnersFilterPage extends StatefulWidget {
-  const PartnersFilterPage({super.key});
+class PartnersFilterPage<T extends TablePointer> extends StatefulWidget {
+  final List<SortBy> sortingTypes;
+
+  const PartnersFilterPage({
+    super.key,
+    required this.sortingTypes,
+  });
 
   @override
-  State<PartnersFilterPage> createState() => _PartnersFilterPageState();
+  State<PartnersFilterPage<T>> createState() => _PartnersFilterPageState<T>();
 }
 
-class _PartnersFilterPageState extends State<PartnersFilterPage> {
+class _PartnersFilterPageState<T extends TablePointer>
+    extends State<PartnersFilterPage<T>> {
   final _fbKey = GlobalKey<FormBuilderState>();
 
   FormBuilderState? get _fbState => _fbKey.currentState;
@@ -32,7 +39,7 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
   Widget build(BuildContext context) {
     return StoreConnector(
       distinct: true,
-      converter: PartnersFiltersViewModel.new,
+      converter: PartnersFiltersViewModel<T>.new,
       onWillChange: (previousViewModel, newViewModel) {
         if (previousViewModel?.sortBy != newViewModel.sortBy) {
           _fbState?.patchValue({
@@ -54,8 +61,17 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
       },
       builder: (context, viewModel) {
         final fields = [
-          PartnersSortByField(
+          SortByFormField(
+            name: PartnersFilterPageFields.sortBy.name,
             initialValue: viewModel.sortBy,
+            options: widget.sortingTypes,
+            getLabel: (item) => switch (item) {
+              SortBy.averageMark => context.strings.averageMark,
+              SortBy.mark => context.strings.mark,
+              SortBy.name => context.strings.name,
+              SortBy.type => context.strings.type,
+              _ => '',
+            },
           ),
           DirectionFormField(
             name: PartnersFilterPageFields.direction.name,
@@ -108,8 +124,8 @@ class _PartnersFilterPageState extends State<PartnersFilterPage> {
   }
 }
 
-class PartnersFiltersViewModel
-    extends TableViewModel<Partner, GeneralTablePointer> {
+class PartnersFiltersViewModel<T extends TablePointer>
+    extends TableViewModel<Partner, T> {
   PartnersFiltersViewModel(super.store);
 
   List<PartnerType>? get types =>

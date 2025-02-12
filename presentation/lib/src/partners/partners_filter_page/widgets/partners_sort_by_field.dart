@@ -17,9 +17,9 @@ class PartnersSortByField extends StatelessWidget {
     return SortByFormField(
       name: PartnersFilterPageFields.sortBy.name,
       initialValue: initialValue,
-      options: const [SortBy.mark, SortBy.name, SortBy.type],
+      options: const [SortBy.averageMark, SortBy.name, SortBy.type],
       getLabel: (item) => switch (item) {
-        SortBy.mark => context.strings.mark,
+        SortBy.averageMark => context.strings.averageMark,
         SortBy.name => context.strings.name,
         SortBy.type => context.strings.type,
         _ => '',

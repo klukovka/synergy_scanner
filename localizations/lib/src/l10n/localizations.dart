@@ -608,6 +608,12 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Edit Partner'**
   String get editPartner;
+
+  /// No description provided for @averageMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Mark'**
+  String get averageMark;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

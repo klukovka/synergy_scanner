@@ -4,3 +4,5 @@ sealed class TablePointer {}
 abstract final class GeneralTablePointer extends TablePointer {}
 
 abstract final class PartnerTablePointer extends TablePointer {}
+
+abstract final class CriteriaTablePointer extends TablePointer {}

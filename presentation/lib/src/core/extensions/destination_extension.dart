@@ -33,6 +33,7 @@ extension DestinationExtension on Destination {
             strings.partner,
       Destination.partnerCriteriasFilters => strings.filters,
       Destination.editPartner => strings.editPartner,
+      Destination.criteriaPartnersFilters => strings.filters,
     };
   }
 }

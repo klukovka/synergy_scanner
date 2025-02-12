@@ -136,7 +136,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       Destination.partnersFilters => const [
                           MaterialPage(
                             key: ValueKey(Destination.partnersFilters),
-                            child: PartnersFilterPage(),
+                            child: PartnersFilterPage<GeneralTablePointer>(
+                              sortingTypes: [
+                                SortBy.averageMark,
+                                SortBy.name,
+                                SortBy.type
+                              ],
+                            ),
                           ),
                         ],
                       Destination.createCriteria => const [
@@ -175,6 +181,18 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           MaterialPage(
                             key: ValueKey(Destination.editPartner),
                             child: EditPartnerPage(),
+                          ),
+                        ],
+                      Destination.criteriaPartnersFilters => const [
+                          MaterialPage(
+                            key: ValueKey(Destination.partnersFilters),
+                            child: PartnersFilterPage<CriteriaTablePointer>(
+                              sortingTypes: [
+                                SortBy.mark,
+                                SortBy.name,
+                                SortBy.type
+                              ],
+                            ),
                           ),
                         ],
                       _ => [],

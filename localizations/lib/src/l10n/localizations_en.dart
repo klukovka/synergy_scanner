@@ -265,4 +265,7 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get editPartner => 'Edit Partner';
+
+  @override
+  String get averageMark => 'Average Mark';
 }
