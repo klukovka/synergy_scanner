@@ -101,6 +101,20 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
     });
   }
 
+  Future<FailureOrResult<Chunk<Partner>>> getPartnersWithMark(
+    Filter filter,
+  ) async {
+    return await makeErrorHandledCallback(() async {
+      return await _getPartners(
+        filter: filter,
+        query: supabase.rpc('get_partner_marks', params: {
+          'custom_criteria_id': filter.filters[FilterBy.criteriaId]!.first,
+          'custom_user_id': supabase.auth.currentUser!.id,
+        }),
+      );
+    });
+  }
+
   Future<FailureOrResult<Chunk<Partner>>> _getPartners({
     required Filter filter,
     required PostgrestFilterBuilder<List<Map<String, dynamic>>> query,
@@ -128,6 +142,7 @@ class PartnersSupabaseRepository extends ImagesSupabaseRepository {
           switch (filter.sortBy) {
             SortBy.type => 'type',
             SortBy.name => 'name',
+            SortBy.mark => 'mark',
             _ => 'average_mark',
           },
           ascending: ascending,

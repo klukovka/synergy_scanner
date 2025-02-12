@@ -11,6 +11,9 @@ class PartnerDto extends Dto<Partner> {
   final String type;
   final String? avatarUrl;
   final double? averageMark;
+  final int? markId;
+  final int? mark;
+  final int? criteriaId;
 
   PartnerDto({
     required this.id,
@@ -18,6 +21,9 @@ class PartnerDto extends Dto<Partner> {
     required this.type,
     required this.avatarUrl,
     required this.averageMark,
+    required this.markId,
+    required this.mark,
+    required this.criteriaId,
   });
 
   factory PartnerDto.fromJson(Map<String, dynamic> json) =>
@@ -30,5 +36,13 @@ class PartnerDto extends Dto<Partner> {
         type: PartnerType.fromString(type),
         avatarUrl: avatarUrl,
         averageMark: averageMark,
+        mark: markId != null && mark != null && criteriaId != null
+            ? Mark(
+                id: markId!,
+                mark: mark!,
+                criteriaId: criteriaId!,
+                partnerId: id,
+              )
+            : null,
       );
 }

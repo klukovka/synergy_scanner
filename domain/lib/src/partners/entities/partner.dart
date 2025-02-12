@@ -7,6 +7,7 @@ class Partner with TableItem<Partner> {
   final PartnerType type;
   final String? avatarUrl;
   final double? averageMark;
+  final Mark? mark;
 
   Partner({
     required this.id,
@@ -14,6 +15,7 @@ class Partner with TableItem<Partner> {
     required this.type,
     required this.avatarUrl,
     this.averageMark,
+    this.mark,
   });
 
   @override
@@ -23,6 +25,7 @@ class Partner with TableItem<Partner> {
         type: another.type,
         avatarUrl: another.avatarUrl,
         averageMark: another.averageMark,
+        mark: another.mark,
       );
 
   Partner copyWith({
@@ -31,6 +34,7 @@ class Partner with TableItem<Partner> {
     PartnerType? type,
     String? avatarUrl,
     double? averageMark,
+    Mark? mark,
   }) {
     return Partner(
       id: id ?? this.id,
@@ -38,6 +42,7 @@ class Partner with TableItem<Partner> {
       type: type ?? this.type,
       avatarUrl: avatarUrl ?? this.avatarUrl,
       averageMark: averageMark ?? this.averageMark,
+      mark: mark ?? this.mark,
     );
   }
 }
