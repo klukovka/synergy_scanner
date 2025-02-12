@@ -21,7 +21,14 @@ class CreateMarkAction extends Action {
 
 class UpdateMarkAction extends Action {
   final int id;
-  final PatchMark mark;
+  final Criteria criteria;
+  final Partner partner;
+  final int mark;
 
-  UpdateMarkAction(this.mark, this.id);
+  UpdateMarkAction({
+    required this.id,
+    required this.criteria,
+    required this.partner,
+    required this.mark,
+  });
 }

@@ -16,14 +16,6 @@ class MarksController extends Controller {
           Endpoint(
             UpdateMark(
               marksRepository.updateMark,
-              (id) => store()
-                  .state
-                  .tablesState
-                  .getTable<Criteria, PartnerTablePointer>()
-                  .items
-                  .firstWhere((item) => item.id == id),
-              () =>
-                  store().state.tablesState.getTables<Partner>().selectedItem!,
             ),
           ).call,
         ]);

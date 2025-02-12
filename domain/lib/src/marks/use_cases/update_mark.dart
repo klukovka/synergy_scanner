@@ -4,14 +4,8 @@ import 'package:domain/domain.dart';
 class UpdateMark extends UseCase<UpdateMarkAction> {
   final Future<FailureOrResult<Mark>> Function(int id, PatchMark patchMark)
       updateMark;
-  final Criteria Function(int id) getCriteria;
-  final Partner Function() getPartner;
 
-  UpdateMark(
-    this.updateMark,
-    this.getCriteria,
-    this.getPartner,
-  ) : super(isAsync: false);
+  UpdateMark(this.updateMark) : super(isAsync: false);
 
   @override
   Stream<Action> execute(
@@ -20,15 +14,25 @@ class UpdateMark extends UseCase<UpdateMarkAction> {
     CancelToken cancel,
   ) async* {
     yield SetMarkLoading(true);
-    final criteria = getCriteria(action.mark.criteriaId);
-    final partner = getPartner();
+    final criteria = action.criteria;
+    final partner = action.partner;
 
-    final response = await updateMark(action.id, action.mark);
+    final response = await updateMark(
+      action.id,
+      PatchMark(
+        mark: action.mark,
+        criteriaId: criteria.id,
+        partnerId: partner.id,
+      ),
+    );
 
     if (response.wasSuccessful) {
       yield SetSelectedIdAction<Partner>(partner.id);
       yield UpdateTableItemAction<Criteria, PartnerTablePointer>(
         criteria.copyWith(mark: response.result!),
+      );
+      yield UpdateTableItemAction<Partner, CriteriaTablePointer>(
+        partner.copyWith(mark: response.result!),
       );
       yield SetMarkLoading(false);
       return;

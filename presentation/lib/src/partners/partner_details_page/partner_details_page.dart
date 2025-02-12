@@ -155,18 +155,16 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
           partner: partner!,
         ),
       );
-    } else {
-      store.dispatch(
-        UpdateMarkAction(
-          PatchMark(
-            mark: value,
-            criteriaId: criteria.id,
-            partnerId: partner!.id,
-          ),
-          mark.id,
-        ),
-      );
+      return;
     }
+    store.dispatch(
+      UpdateMarkAction(
+        mark: value,
+        criteria: criteria,
+        partner: partner!,
+        id: mark.id,
+      ),
+    );
   }
 
   @override
