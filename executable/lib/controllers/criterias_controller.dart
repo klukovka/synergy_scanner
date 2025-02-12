@@ -14,5 +14,15 @@ class CriteriasController extends Controller {
           Endpoint(
             GetCriteriaDetails(criteriasRepository.getCriteriaDetails),
           ).call,
+          Endpoint(
+            UpdateCriteria(
+              criteriasRepository.updateCriteria,
+              () => store()
+                  .state
+                  .tablesState
+                  .getTables<Criteria>()
+                  .selectedItemId!,
+            ),
+          ).call,
         ]);
 }

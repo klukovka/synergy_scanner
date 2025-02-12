@@ -25,7 +25,7 @@ class PartnersState extends State<PartnersState> {
 
   factory PartnersState._onDeleteFailed(
     PartnersState state,
-    FailedAction<GetPartnerDetails> action,
+    FailedAction<DeletePartner> action,
   ) =>
       state.copyWith(failure: Nullable(action.failure));
 

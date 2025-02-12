@@ -8,3 +8,9 @@ class CreateCriteriaAction extends Action {
 }
 
 class DeleteCriteriaAction extends Action {}
+
+class UpdateCriteriaAction extends Action {
+  final PatchCriteria criteria;
+
+  UpdateCriteriaAction(this.criteria);
+}
