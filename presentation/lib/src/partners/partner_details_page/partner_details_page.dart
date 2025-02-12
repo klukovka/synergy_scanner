@@ -9,8 +9,8 @@ import 'package:presentation/src/criterias/criterias_page/widgets/criteria_card.
 import 'package:presentation/src/criterias/criterias_page/widgets/criterias_table.dart';
 import 'package:presentation/src/general/loaders/styled_loader/styled_loader.dart';
 import 'package:presentation/src/general/rating/rating_field.dart';
+import 'package:presentation/src/partners/partner_details_page/widgets/partner_criterias_table_action_bar.dart';
 import 'package:presentation/src/partners/partner_details_page/widgets/partner_details_header.dart';
-import 'package:presentation/src/partners/partner_details_page/widgets/partners_criterias_table_action_bar.dart';
 import 'package:redux/redux.dart';
 
 class PartnerDetailsPage extends StatefulWidget {
@@ -78,7 +78,7 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
                   children: [
                     if (viewModel.partner != null)
                       PartnerDetailsHeader(partner: viewModel.partner!),
-                    const CriteriasTableActionBar(),
+                    const PartnerCriteriasTableActionBar(),
                     Expanded(
                       child: CriteriasTable<PartnerTablePointer>(
                         itemBuilder: (context, criteria) => CriteriaCard(

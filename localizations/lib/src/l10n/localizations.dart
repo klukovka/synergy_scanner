@@ -626,6 +626,12 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Criteria'**
   String get criteria;
+
+  /// No description provided for @youSureYouWantToDeleteCriteria.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete criteria?'**
+  String get youSureYouWantToDeleteCriteria;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

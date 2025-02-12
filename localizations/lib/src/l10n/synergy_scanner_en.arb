@@ -95,5 +95,6 @@
     "editPartner": "Edit Partner",
     "averageMark": "Average Mark",
     "editCriteria": "Edit Criteria",
-    "criteria": "Criteria"
+    "criteria": "Criteria",
+    "youSureYouWantToDeleteCriteria": "Are you sure you want to delete criteria?"
 }

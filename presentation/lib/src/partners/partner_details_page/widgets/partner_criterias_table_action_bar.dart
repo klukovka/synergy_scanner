@@ -6,8 +6,8 @@ import 'package:presentation/src/core/tables/table_view_model.dart';
 import 'package:presentation/src/general/buttons/filter_button.dart';
 import 'package:presentation/src/general/fields/search_field.dart';
 
-class CriteriasTableActionBar extends StatelessWidget {
-  const CriteriasTableActionBar({super.key});
+class PartnerCriteriasTableActionBar extends StatelessWidget {
+  const PartnerCriteriasTableActionBar({super.key});
 
   @override
   Widget build(BuildContext context) {
