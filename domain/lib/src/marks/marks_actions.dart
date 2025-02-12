@@ -8,12 +8,14 @@ class SetMarkLoading extends Action {
 }
 
 class CreateMarkAction extends Action {
-  final int criteriaId;
+  final Criteria criteria;
+  final Partner partner;
   final int mark;
 
   CreateMarkAction({
-    required this.criteriaId,
+    required this.criteria,
     required this.mark,
+    required this.partner,
   });
 }
 

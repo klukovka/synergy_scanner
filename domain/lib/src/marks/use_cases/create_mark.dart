@@ -3,14 +3,8 @@ import 'package:domain/domain.dart';
 
 class CreateMark extends UseCase<CreateMarkAction> {
   final Future<FailureOrResult<int>> Function(NewMark newMark) createMark;
-  final Criteria Function(int id) getCriteria;
-  final Partner Function() getPartner;
 
-  CreateMark(
-    this.createMark,
-    this.getCriteria,
-    this.getPartner,
-  ) : super(isAsync: false);
+  CreateMark(this.createMark) : super(isAsync: false);
 
   @override
   Stream<Action> execute(
@@ -19,13 +13,13 @@ class CreateMark extends UseCase<CreateMarkAction> {
     CancelToken cancel,
   ) async* {
     yield SetMarkLoading(true);
-    final criteria = getCriteria(action.criteriaId);
-    final partner = getPartner();
+    final criteria = action.criteria;
+    final partner = action.partner;
 
     final response = await createMark(
       NewMark(
         mark: action.mark,
-        criteriaId: action.criteriaId,
+        criteriaId: criteria.id,
         partnerId: partner.id,
       ),
     );
@@ -37,7 +31,17 @@ class CreateMark extends UseCase<CreateMarkAction> {
           mark: Mark(
             id: response.result!,
             mark: action.mark,
-            criteriaId: action.criteriaId,
+            criteriaId: criteria.id,
+            partnerId: partner.id,
+          ),
+        ),
+      );
+      yield UpdateTableItemAction<Partner, CriteriaTablePointer>(
+        partner.copyWith(
+          mark: Mark(
+            id: response.result!,
+            mark: action.mark,
+            criteriaId: criteria.id,
             partnerId: partner.id,
           ),
         ),

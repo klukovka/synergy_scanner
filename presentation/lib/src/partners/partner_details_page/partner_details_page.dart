@@ -96,7 +96,7 @@ class _PartnerDetailsPageState extends State<PartnerDetailsPage> {
                                 _lastChangedCriteria = criteria;
                               });
                               viewModel.onMarkChanged(
-                                criteriaId: criteria.id,
+                                criteria: criteria,
                                 mark: criteria.mark,
                                 value: value ?? 0,
                               );
@@ -143,15 +143,16 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
   }
 
   void onMarkChanged({
-    required int criteriaId,
+    required Criteria criteria,
     required Mark? mark,
     required int value,
   }) {
     if (mark == null) {
       store.dispatch(
         CreateMarkAction(
-          criteriaId: criteriaId,
+          criteria: criteria,
           mark: value,
+          partner: partner!,
         ),
       );
     } else {
@@ -159,7 +160,7 @@ class _ViewModel extends TableViewModel<Criteria, PartnerTablePointer> {
         UpdateMarkAction(
           PatchMark(
             mark: value,
-            criteriaId: criteriaId,
+            criteriaId: criteria.id,
             partnerId: partner!.id,
           ),
           mark.id,
