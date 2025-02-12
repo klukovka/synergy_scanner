@@ -614,6 +614,18 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Average Mark'**
   String get averageMark;
+
+  /// No description provided for @editCriteria.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Criteria'**
+  String get editCriteria;
+
+  /// No description provided for @criteria.
+  ///
+  /// In en, this message translates to:
+  /// **'Criteria'**
+  String get criteria;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

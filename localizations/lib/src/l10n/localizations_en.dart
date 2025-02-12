@@ -268,4 +268,10 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get averageMark => 'Average Mark';
+
+  @override
+  String get editCriteria => 'Edit Criteria';
+
+  @override
+  String get criteria => 'Criteria';
 }

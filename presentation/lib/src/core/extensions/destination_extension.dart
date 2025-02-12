@@ -34,6 +34,10 @@ extension DestinationExtension on Destination {
       Destination.partnerCriteriasFilters => strings.filters,
       Destination.editPartner => strings.editPartner,
       Destination.criteriaPartnersFilters => strings.filters,
+      Destination.criteriaDetails =>
+        state.tablesState.getTables<Criteria>().selectedItem?.name ??
+            strings.criteria,
+      Destination.editCriteria => strings.editCriteria,
     };
   }
 }

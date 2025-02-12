@@ -93,5 +93,7 @@
     "cancel": "Cancel",
     "youSureYouWantToDeletePartner": "Are you sure you want to delete partner?",
     "editPartner": "Edit Partner",
-    "averageMark": "Average Mark"
+    "averageMark": "Average Mark",
+    "editCriteria": "Edit Criteria",
+    "criteria": "Criteria"
 }

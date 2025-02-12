@@ -2,21 +2,20 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:domain/domain.dart';
 import 'package:presentation/src/navigation/base_route.dart';
 
-class EditPartnerRoute extends SimpleRoute<AppState> with WhenAuthorized {
-  const EditPartnerRoute()
+class CriteriaDetailsRoute extends SimpleRoute<AppState> with WhenAuthorized {
+  const CriteriaDetailsRoute()
       : super(
           destinations: const {
-            Destination.partners,
-            Destination.partnerDetails,
-            Destination.editPartner,
+            Destination.criterias,
+            Destination.criteriaDetails,
           },
-          path: r'^\/partners\/\d+\/edit$',
+          path: r'^\/criterias\/\d+$',
         );
 
   @override
   Uri getRouteInformation([AppState? state]) => Uri(
         path:
-            '/partners/${state?.tablesState.getTables<Partner>().selectedItemId}/edit',
+            '/criterias/${state?.tablesState.getTables<Criteria>().selectedItemId}',
       );
 
   @override
@@ -26,7 +25,7 @@ class EditPartnerRoute extends SimpleRoute<AppState> with WhenAuthorized {
 
     final ids = RegExp('[0-9]+').allMatches(routeInformation!.path);
 
-    dispatch(SetSelectedIdAction<Partner>(
+    dispatch(SetSelectedIdAction<Criteria>(
       int.parse(ids.last.group(0)!),
     ));
   }
