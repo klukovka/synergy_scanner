@@ -10,6 +10,7 @@ export 'src/core/filter/sort_by.dart';
 export 'src/criterias/criterias_actions.dart';
 export 'src/criterias/entities/criteria.dart';
 export 'src/criterias/entities/new_criteria.dart';
+export 'src/criterias/entities/patch_criteria.dart';
 export 'src/criterias/states/criterias_state.dart';
 export 'src/criterias/use_cases/create_criteria.dart';
 export 'src/criterias/use_cases/get_criteria_details.dart';

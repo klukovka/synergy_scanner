@@ -1,6 +1,7 @@
 import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/criterias/criteria_dto.dart';
 import 'package:data/src/dtos/criterias/new_criteria_dto.dart';
+import 'package:data/src/dtos/criterias/patch_criteria_dto.dart';
 import 'package:data/src/repositories/base_supabase_repository.dart';
 import 'package:domain/domain.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
@@ -32,6 +33,29 @@ class CriteriasSupabaseRepository extends BaseSupabaseRepository {
     });
   }
 
+  Future<FailureOrResult<void>> deleteCriteria(int id) async {
+    return await makeErrorHandledCallback(() async {
+      await supabase.from('criterias').delete().eq('id', id);
+      return FailureOrResult.success(null);
+    });
+  }
+
+  Future<FailureOrResult<Criteria>> updateCriteria(
+    int id,
+    PatchCriteria patchCriteria,
+  ) async {
+    return await makeErrorHandledCallback(() async {
+      final result = await supabase
+          .from('criterias')
+          .update(PatchCriteriaDto.fromDomain(patchCriteria).toJson())
+          .eq('id', id)
+          .select();
+      return FailureOrResult.success(
+        CriteriaDto.fromJson(result.first).toDomain(),
+      );
+    });
+  }
+
   Future<FailureOrResult<Chunk<Criteria>>> getCriterias(Filter filter) async {
     return await makeErrorHandledCallback(() async {
       return await _getCriterias(
@@ -43,7 +67,7 @@ class CriteriasSupabaseRepository extends BaseSupabaseRepository {
     });
   }
 
-  Future<FailureOrResult<Chunk<Criteria>>> getPartnerCriteriasWithMarks(
+  Future<FailureOrResult<Chunk<Criteria>>> getPartnerCriteriasWithMark(
     Filter filter,
   ) async {
     return await makeErrorHandledCallback(() async {

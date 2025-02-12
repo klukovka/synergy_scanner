@@ -41,7 +41,7 @@ class TablesController extends Controller {
           ).call,
           Endpoint(
             GetTableItems<Criteria, PartnerTablePointer>(
-              criteriasRepository.getPartnerCriteriasWithMarks,
+              criteriasRepository.getPartnerCriteriasWithMark,
               store.getFilter(
                 modifier: LockById<Partner>(
                   FilterBy.partnerId,
