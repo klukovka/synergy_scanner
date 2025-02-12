@@ -2,11 +2,12 @@ import 'package:domain/domain.dart';
 import 'package:presentation/src/navigation/base_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/analytics_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/create_criteria_route.dart';
-import 'package:presentation/src/navigation/parsing/routes/create_partner_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/criterias_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/login_route.dart';
-import 'package:presentation/src/navigation/parsing/routes/partner_details_route.dart';
-import 'package:presentation/src/navigation/parsing/routes/partners_route.dart';
+import 'package:presentation/src/navigation/parsing/routes/partners/create_partner_route.dart';
+import 'package:presentation/src/navigation/parsing/routes/partners/edit_partner_route.dart';
+import 'package:presentation/src/navigation/parsing/routes/partners/partner_details_route.dart';
+import 'package:presentation/src/navigation/parsing/routes/partners/partners_route.dart';
 import 'package:presentation/src/navigation/parsing/routes/profile_route.dart';
 
 const routes = <BaseRoute<AppState>>[
@@ -18,6 +19,7 @@ const routes = <BaseRoute<AppState>>[
   AnalyticsRoute(),
   ProfileRoute(),
   PartnerDetailsRoute(),
+  EditPartnerRoute(),
 ];
 
 BaseRoute<AppState> defaultRoute(User? user) =>
