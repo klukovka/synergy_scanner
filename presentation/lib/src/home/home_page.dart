@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/analytics/analytics_page/analytics_page.dart';
 import 'package:presentation/src/core/base_view_model.dart';
-import 'package:presentation/src/criterias/create_criteria_page/create_criteria_page.dart';
+import 'package:presentation/src/criterias/create_edit_criteria/create_criteria_page/create_criteria_page.dart';
 import 'package:presentation/src/criterias/criteria_details_page/criteria_details_page.dart';
 import 'package:presentation/src/criterias/criterias_filter_page/criterias_filter_page.dart';
 import 'package:presentation/src/criterias/criterias_page/criterias_page.dart';
