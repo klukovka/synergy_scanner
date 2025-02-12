@@ -8,12 +8,14 @@ class PartnerCard extends StatelessWidget {
   final Partner partner;
   final VoidCallback? onPressed;
   final Widget? trailing;
+  final Widget? subtitle;
 
   const PartnerCard({
     super.key,
     this.onPressed,
     required this.partner,
     this.trailing,
+    this.subtitle,
   });
 
   @override
@@ -36,7 +38,7 @@ class PartnerCard extends StatelessWidget {
           ],
         ),
       ),
-      subtitle: RatingView(rate: partner.averageMark ?? 0),
+      subtitle: subtitle ?? RatingView(rate: partner.averageMark ?? 0),
       trailing: trailing,
     );
   }
