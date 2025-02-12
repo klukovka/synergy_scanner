@@ -6,19 +6,19 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:localizations/localizations.dart';
 import 'package:presentation/src/core/app_bar/mobile_app_bar.dart';
 import 'package:presentation/src/core/base_view_model.dart';
+import 'package:presentation/src/criterias/create_edit_criteria/widgets/create_edit_criteria_form_content.dart';
 import 'package:presentation/src/general/autovalidate_mode_notification/autovalidate_mode_notification.dart';
 import 'package:presentation/src/general/autovalidate_mode_notification/autovalidate_mode_notification_builder.dart';
 import 'package:presentation/src/general/buttons/bottom_loading_button.dart';
-import 'package:presentation/src/partners/create_edit_partner/widgets/create_edit_partner_form_content.dart';
 
-class EditPartnerPage extends StatefulWidget {
-  const EditPartnerPage({super.key});
+class EditCriteriaPage extends StatefulWidget {
+  const EditCriteriaPage({super.key});
 
   @override
-  State<EditPartnerPage> createState() => _EditPartnerPageState();
+  State<EditCriteriaPage> createState() => _EditCriteriaPageState();
 }
 
-class _EditPartnerPageState extends State<EditPartnerPage> {
+class _EditCriteriaPageState extends State<EditCriteriaPage> {
   final _fbKey = GlobalKey<FormBuilderState>();
   bool _isLoading = false;
 
@@ -31,8 +31,8 @@ class _EditPartnerPageState extends State<EditPartnerPage> {
       distinct: true,
       converter: _ViewModel.new,
       onWillChange: (previousViewModel, newViewModel) {
-        if (previousViewModel?.partner != newViewModel.partner &&
-            newViewModel.partner != null &&
+        if (previousViewModel?.criteria != newViewModel.criteria &&
+            newViewModel.criteria != null &&
             _isLoading) {
           _isLoading = false;
           newViewModel.close();
@@ -52,8 +52,8 @@ class _EditPartnerPageState extends State<EditPartnerPage> {
           builder: (context, autovalidateMode, child) => FormBuilder(
             key: _fbKey,
             autovalidateMode: autovalidateMode,
-            child: CreateEditPartnerFormContent(
-              partner: viewModel.partner,
+            child: CreateEditCriteriaFormContent(
+              criteria: viewModel.criteria,
               button: BottomLoadingButton(
                 isLoading: _isLoading,
                 onPressed: () {
@@ -62,14 +62,12 @@ class _EditPartnerPageState extends State<EditPartnerPage> {
                   ).dispatch(context);
                   if (_fbState?.saveAndValidate() ?? false) {
                     setState(() => _isLoading = true);
-                    viewModel.editPartner(
-                      PatchPartner(
-                        name:
-                            _fbValues[CreateEditPartnerPageFormField.name.name],
-                        type:
-                            _fbValues[CreateEditPartnerPageFormField.type.name],
-                        avatar: _fbValues[
-                            CreateEditPartnerPageFormField.avatar.name],
+                    viewModel.editCriteria(
+                      PatchCriteria(
+                        name: _fbValues[
+                            CreateEditCriteriaPageFormField.name.name],
+                        coefficient: _fbValues[
+                            CreateEditCriteriaPageFormField.coefficient.name],
                       ),
                     );
                   }
@@ -85,17 +83,17 @@ class _EditPartnerPageState extends State<EditPartnerPage> {
 }
 
 class _ViewModel extends BaseViewModel {
-  final Partner? partner;
+  final Criteria? criteria;
   final Failure? failure;
 
   _ViewModel(super.store)
-      : partner = store.state.tablesState.getTables<Partner>().selectedItem,
-        failure = store.state.partnersState.failure;
+      : criteria = store.state.tablesState.getTables<Criteria>().selectedItem,
+        failure = store.state.criteriasState.failure;
 
-  void editPartner(PatchPartner partner) {
-    store.dispatch(UpdatePartnerAction(partner));
+  void editCriteria(PatchCriteria criteria) {
+    store.dispatch(UpdateCriteriaAction(criteria));
   }
 
   @override
-  List<Object?> get props => [partner, failure];
+  List<Object?> get props => [criteria, failure];
 }
