@@ -34,14 +34,12 @@ class CreateMark extends UseCase<CreateMarkAction> {
       yield SetSelectedIdAction<Partner>(partner.id);
       yield UpdateTableItemAction<Criteria, PartnerTablePointer>(
         criteria.copyWith(
-          marks: [
-            Mark(
-              id: response.result!,
-              mark: action.mark,
-              criteriaId: action.criteriaId,
-              partnerId: partner.id,
-            )
-          ],
+          mark: Mark(
+            id: response.result!,
+            mark: action.mark,
+            criteriaId: action.criteriaId,
+            partnerId: partner.id,
+          ),
         ),
       );
       yield SetMarkLoading(false);

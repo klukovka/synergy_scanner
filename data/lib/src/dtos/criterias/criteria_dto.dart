@@ -1,5 +1,4 @@
 import 'package:clean_redux/clean_redux.dart';
-import 'package:data/src/dtos/marks/mark_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -10,13 +9,17 @@ class CriteriaDto extends Dto<Criteria> {
   final int id;
   final String name;
   final double coefficient;
-  final List<MarkDto>? marks;
+  final int? markId;
+  final int? mark;
+  final int? partnerId;
 
   CriteriaDto({
     required this.id,
     required this.name,
     required this.coefficient,
-    this.marks,
+    required this.markId,
+    required this.mark,
+    required this.partnerId,
   });
 
   factory CriteriaDto.fromJson(Map<String, dynamic> json) =>
@@ -27,6 +30,9 @@ class CriteriaDto extends Dto<Criteria> {
         id: id,
         name: name,
         coefficient: coefficient,
-        marks: marks?.map((item) => item.toDomain()).toList(),
+        mark: markId != null && mark != null && partnerId != null
+            ? Mark(
+                id: markId!, mark: mark!, criteriaId: id, partnerId: partnerId!)
+            : null,
       );
 }

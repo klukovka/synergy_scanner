@@ -28,9 +28,7 @@ class UpdateMark extends UseCase<UpdateMarkAction> {
     if (response.wasSuccessful) {
       yield SetSelectedIdAction<Partner>(partner.id);
       yield UpdateTableItemAction<Criteria, PartnerTablePointer>(
-        criteria.copyWith(
-          marks: [response.result!],
-        ),
+        criteria.copyWith(mark: response.result!),
       );
       yield SetMarkLoading(false);
       return;

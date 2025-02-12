@@ -166,6 +166,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                               sortingOptions: [
                                 SortBy.name,
                                 SortBy.coefficient,
+                                SortBy.mark,
                               ],
                             ),
                           ),
