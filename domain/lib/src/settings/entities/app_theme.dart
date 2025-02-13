@@ -1,7 +1,7 @@
 enum AppTheme {
   light('light'),
   dark('dark'),
-  device('device');
+  system('system');
 
   final String code;
 

@@ -2,9 +2,9 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:domain/domain.dart';
 
 class SetAppLanguageAction extends Action {
-  final AppLanguage language;
+  final String languageCode;
 
-  SetAppLanguageAction(this.language);
+  SetAppLanguageAction(this.languageCode);
 }
 
 class SetAppThemeAction extends Action {
@@ -13,10 +13,10 @@ class SetAppThemeAction extends Action {
   SetAppThemeAction(this.theme);
 }
 
-class FetchAppVersion extends Action {}
-
-class SetAppVersion extends Action {
+class SetAppVersionAction extends Action {
   final String version;
 
-  SetAppVersion(this.version);
+  SetAppVersionAction(this.version);
 }
+
+class SetDefaultAppSettingsAction extends Action {}

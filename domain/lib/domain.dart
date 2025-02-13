@@ -40,7 +40,6 @@ export 'src/partners/use_cases/create_partner.dart';
 export 'src/partners/use_cases/delete_partner.dart';
 export 'src/partners/use_cases/get_partner_details.dart';
 export 'src/partners/use_cases/update_partner.dart';
-export 'src/settings/entities/app_language.dart';
 export 'src/settings/entities/app_theme.dart';
 export 'src/settings/settings_actions.dart';
 export 'src/settings/states/settings_state.dart';

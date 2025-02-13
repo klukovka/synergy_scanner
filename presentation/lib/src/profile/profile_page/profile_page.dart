@@ -97,7 +97,7 @@ class _ViewModel extends BaseViewModel {
 
   _ViewModel(super.store)
       : user = store.state.currentUserState.user,
-        version = store.state.version;
+        version = store.state.settingsState.version;
 
   @override
   void logout() {

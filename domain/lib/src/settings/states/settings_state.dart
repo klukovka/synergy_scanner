@@ -3,12 +3,12 @@ import 'package:domain/domain.dart';
 
 class SettingsState extends State<SettingsState> {
   final String version;
-  final AppLanguage language;
+  final String languageCode;
   final AppTheme theme;
   final Failure? failure;
 
   SettingsState({
-    required this.language,
+    required this.languageCode,
     required this.theme,
     required this.version,
     this.failure,
@@ -18,16 +18,16 @@ class SettingsState extends State<SettingsState> {
 
   SettingsState.initial()
       : this(
-          language: AppLanguage.en,
+          languageCode: 'en',
           version: '',
-          theme: AppTheme.device,
+          theme: AppTheme.system,
         );
 
   factory SettingsState._updateAppLanguage(
     SettingsState state,
     SetAppLanguageAction action,
   ) =>
-      state.copyWith(language: action.language);
+      state.copyWith(languageCode: action.languageCode);
 
   factory SettingsState._updateAppTheme(
     SettingsState state,
@@ -37,19 +37,19 @@ class SettingsState extends State<SettingsState> {
 
   factory SettingsState._updateAppVersion(
     SettingsState state,
-    SetAppVersion action,
+    SetAppVersionAction action,
   ) =>
       state.copyWith(version: action.version);
 
   @override
   SettingsState copyWith({
     String? version,
-    AppLanguage? language,
+    String? languageCode,
     AppTheme? theme,
     Nullable<Failure>? failure,
   }) =>
       SettingsState(
-        language: language ?? this.language,
+        languageCode: languageCode ?? this.languageCode,
         theme: theme ?? this.theme,
         version: version ?? this.version,
         failure: failure == null ? this.failure : failure.value,
