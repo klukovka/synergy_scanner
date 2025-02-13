@@ -4,12 +4,10 @@ import 'package:domain/domain.dart';
 class SettingsState extends State<SettingsState> {
   final String languageCode;
   final AppTheme theme;
-  final Failure? failure;
 
   SettingsState({
     required this.languageCode,
     required this.theme,
-    this.failure,
   }) : super(SettingsState._updateAppLanguage.reducer +
             SettingsState._updateAppTheme.reducer);
 
@@ -29,11 +27,9 @@ class SettingsState extends State<SettingsState> {
   SettingsState copyWith({
     String? languageCode,
     AppTheme? theme,
-    Nullable<Failure>? failure,
   }) =>
       SettingsState(
         languageCode: languageCode ?? this.languageCode,
         theme: theme ?? this.theme,
-        failure: failure == null ? this.failure : failure.value,
       );
 }

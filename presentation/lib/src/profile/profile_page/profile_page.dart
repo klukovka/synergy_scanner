@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:localizations/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presentation/src/core/base_view_model.dart';
-import 'package:presentation/src/general/cards/navigation_tile.dart';
+import 'package:presentation/src/general/tiles/navigation_tile.dart';
 import 'package:presentation/src/profile/profile_page/widgets/profile_short_info_view.dart';
 
 class ProfilePage extends StatelessWidget {

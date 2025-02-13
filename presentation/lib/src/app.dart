@@ -35,6 +35,12 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     final store = StoreProvider.of<AppState>(context);
+    final languageCode = store.state.settingsState.languageCode;
+
+    final locale = SynergyScannerLocalizations.supportedLocales
+            .firstWhereOrNull(
+                (locale) => locale.languageCode == languageCode) ??
+        SynergyScannerLocalizations.supportedLocales.first;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -47,9 +53,14 @@ class _AppState extends State<App> {
         localizationsDelegates:
             SynergyScannerLocalizations.localizationsDelegates,
         supportedLocales: SynergyScannerLocalizations.supportedLocales,
-        locale: const Locale('en'),
+        locale: locale,
         theme: lightTheme,
         darkTheme: darkTheme,
+        themeMode: switch (store.state.settingsState.theme) {
+          AppTheme.light => ThemeMode.light,
+          AppTheme.dark => ThemeMode.dark,
+          AppTheme.system => ThemeMode.system,
+        },
         routerDelegate: AppRouterDelegate(store, routes),
         routeInformationParser: AppRouteParser(
           () => store.state.currentUserState.user,

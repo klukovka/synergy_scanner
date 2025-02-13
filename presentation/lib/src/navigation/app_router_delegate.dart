@@ -12,6 +12,7 @@ import 'package:presentation/src/home/home_page.dart';
 import 'package:presentation/src/navigation/base_route.dart';
 import 'package:presentation/src/navigation/fade_transition_page.dart';
 import 'package:presentation/src/navigation/parsing/routes/routes.dart';
+import 'package:presentation/src/profile/dialogs/language_dialog.dart';
 import 'package:redux/redux.dart';
 
 class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
@@ -95,6 +96,14 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.partners),
                     child: PopScope(canPop: false, child: HomePage()),
+                  );
+                  break;
+
+                case Destination.language:
+                  yield const MaterialDialog(
+                    barrierDismissible: true,
+                    key: ValueKey(Destination.language),
+                    child: LanguageDialog(),
                   );
                   break;
 
