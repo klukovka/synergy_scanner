@@ -35,11 +35,11 @@ class PreferencesRepository {
   /// Theme Mode
   ///
 
-  AppTheme getThemeMode() =>
+  AppTheme getTheme() =>
       AppTheme.values.firstWhereOrNull(
           (theme) => theme.code == _preferencesBox.get(_themeModeKey)) ??
       AppTheme.system;
 
-  Future<void> setThemeMode(AppTheme themeMode) async =>
-      await _preferencesBox.put(_themeModeKey, themeMode.code);
+  Future<void> setTheme(AppTheme theme) async =>
+      await _preferencesBox.put(_themeModeKey, theme.code);
 }

@@ -43,6 +43,8 @@ export 'src/partners/use_cases/update_partner.dart';
 export 'src/settings/entities/app_theme.dart';
 export 'src/settings/settings_actions.dart';
 export 'src/settings/states/settings_state.dart';
+export 'src/settings/use_cases/set_app_language.dart';
+export 'src/settings/use_cases/set_app_theme.dart';
 export 'src/tables/tables.dart';
 export 'src/user/actions/user_actions.dart';
 export 'src/user/entities/login_user.dart';

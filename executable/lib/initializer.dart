@@ -66,7 +66,7 @@ class Initializer {
       navigationState: navigationState,
       settingsState: SettingsState(
         languageCode: preferencesRepository.getLanguageCode(),
-        theme: preferencesRepository.getThemeMode(),
+        theme: preferencesRepository.getTheme(),
       ),
     );
   }

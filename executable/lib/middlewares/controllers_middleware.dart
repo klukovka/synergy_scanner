@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:executable/controllers/criterias_controller.dart';
 import 'package:executable/controllers/marks_controller.dart';
 import 'package:executable/controllers/partners_controller.dart';
+import 'package:executable/controllers/settings_controller.dart';
 import 'package:executable/controllers/tables_controller.dart';
 import 'package:executable/controllers/user_controller.dart';
 import 'package:redux/redux.dart';
@@ -31,6 +32,7 @@ class ControllersMiddleware extends EpicMiddleware<AppState> {
                   partnersRepository,
                   criteriasRepository,
                 ),
+                ...SettingsController(preferencesRepository),
               ].toList(),
             );
           }(),
