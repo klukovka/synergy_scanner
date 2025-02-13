@@ -77,8 +77,6 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      Text('${context.strings.version}: ${viewModel.version}'),
-                      const SizedBox(height: 12),
                     ],
                   ),
                 ),
@@ -93,11 +91,8 @@ class ProfilePage extends StatelessWidget {
 
 class _ViewModel extends BaseViewModel {
   final User? user;
-  final String version;
 
-  _ViewModel(super.store)
-      : user = store.state.currentUserState.user,
-        version = store.state.settingsState.version;
+  _ViewModel(super.store) : user = store.state.currentUserState.user;
 
   @override
   void logout() {
@@ -105,5 +100,5 @@ class _ViewModel extends BaseViewModel {
   }
 
   @override
-  List<Object?> get props => [user, version];
+  List<Object?> get props => [user];
 }

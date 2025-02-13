@@ -10,11 +10,13 @@ import 'package:redux/redux.dart';
 class Initializer {
   Future<Store<AppState>> initialize() async {
     final userRepository = UserSupabaseRepository();
+    final preferencesRepository = await PreferencesRepository.getInstance();
 
     Store<AppState>? store;
 
     final appState = await _initializeAppState(
       userRepository,
+      preferencesRepository,
     );
 
     store = Store<AppState>(
@@ -30,6 +32,7 @@ class Initializer {
           partnersRepository: PartnersSupabaseRepository(),
           criteriasRepository: CriteriasSupabaseRepository(),
           marksRepository: MarksSupabaseRepository(),
+          preferencesRepository: preferencesRepository,
         ).call,
       ],
     );
@@ -39,6 +42,7 @@ class Initializer {
 
   Future<AppState> _initializeAppState(
     UserSupabaseRepository userRepository,
+    PreferencesRepository preferencesRepository,
   ) async {
     final user = (await userRepository.getCurrentUser()).result;
 
@@ -60,6 +64,10 @@ class Initializer {
     return AppState.initial(
       currentUserState: CurrentUserState(user: user),
       navigationState: navigationState,
+      settingsState: SettingsState(
+        languageCode: preferencesRepository.getLanguageCode(),
+        theme: preferencesRepository.getThemeMode(),
+      ),
     );
   }
 }

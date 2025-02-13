@@ -16,6 +16,7 @@ class ControllersMiddleware extends EpicMiddleware<AppState> {
     required PartnersSupabaseRepository partnersRepository,
     required CriteriasSupabaseRepository criteriasRepository,
     required MarksSupabaseRepository marksRepository,
+    required PreferencesRepository preferencesRepository,
   }) : super(
           () {
             return combineEpics<AppState>(

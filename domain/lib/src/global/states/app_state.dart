@@ -49,6 +49,7 @@ class AppState extends State<AppState> {
   AppState.initial({
     required CurrentUserState currentUserState,
     required NavigationState navigationState,
+    required SettingsState settingsState,
   }) : this(
           currentUserState: currentUserState,
           navigationState: navigationState,
@@ -57,7 +58,7 @@ class AppState extends State<AppState> {
           partnersState: PartnersState(),
           criteriasState: CriteriasState(),
           marksState: MarksState(),
-          settingsState: SettingsState.initial(),
+          settingsState: settingsState,
         );
 
   factory AppState.reset(AppState state, ResetAppAction action) {
@@ -67,6 +68,7 @@ class AppState extends State<AppState> {
         previousRoutes: [],
         currentRoute: {Destination.login},
       ),
+      settingsState: state.settingsState,
     );
   }
 

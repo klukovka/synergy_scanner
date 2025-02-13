@@ -12,11 +12,3 @@ class SetAppThemeAction extends Action {
 
   SetAppThemeAction(this.theme);
 }
-
-class SetAppVersionAction extends Action {
-  final String version;
-
-  SetAppVersionAction(this.version);
-}
-
-class SetDefaultAppSettingsAction extends Action {}
