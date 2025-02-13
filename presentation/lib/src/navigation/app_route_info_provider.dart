@@ -131,5 +131,9 @@ extension on Destination {
         Destination.criteriaPartnersFilters => 'Filters',
         Destination.criteriaDetails => 'Criteria Details',
         Destination.editCriteria => 'Edit Criteria',
+        Destination.editProfile => 'Edit Profile',
+        Destination.changePassword => 'Change Password',
+        Destination.language => 'Language',
+        Destination.theme => 'Theme',
       };
 }

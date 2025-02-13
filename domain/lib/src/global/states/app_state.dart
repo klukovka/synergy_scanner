@@ -9,6 +9,7 @@ class AppState extends State<AppState> {
   final PartnersState partnersState;
   final CriteriasState criteriasState;
   final MarksState marksState;
+  final String version;
 
   AppState({
     required this.currentUserState,
@@ -18,6 +19,7 @@ class AppState extends State<AppState> {
     required this.partnersState,
     required this.criteriasState,
     required this.marksState,
+    required this.version,
   }) : super(AppState._updateSubstates.reducer + AppState.reset.reducer);
 
   factory AppState._updateSubstates(AppState state, Action action) =>
@@ -54,6 +56,7 @@ class AppState extends State<AppState> {
           partnersState: PartnersState(),
           criteriasState: CriteriasState(),
           marksState: MarksState(),
+          version: '',
         );
 
   factory AppState.reset(AppState state, ResetAppAction action) {
@@ -75,6 +78,7 @@ class AppState extends State<AppState> {
     PartnersState? partnersState,
     CriteriasState? criteriasState,
     MarksState? marksState,
+    String? version,
   }) =>
       AppState(
         currentUserState: currentUserState ?? this.currentUserState,
@@ -84,5 +88,6 @@ class AppState extends State<AppState> {
         partnersState: partnersState ?? this.partnersState,
         criteriasState: criteriasState ?? this.criteriasState,
         marksState: marksState ?? this.marksState,
+        version: version ?? this.version,
       );
 }

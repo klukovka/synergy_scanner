@@ -231,7 +231,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               if (item == HomePageTabType.profile) {
                 return BottomNavigationBarItem(
                   icon: BottomNavigationBarAvatar(
-                    imageUrl: viewModel.user.avatarUrl,
+                    imageUrl: viewModel.user?.avatarUrl,
                     isCurrent:
                         viewModel.isIconActive(HomePageTabType.profile.route),
                   ),
@@ -254,12 +254,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 class HomePageViewModel extends BaseViewModel {
   final Set<Destination> currentRoute;
   final List<Set<Destination>> previousRoutes;
-  final User user;
+  final User? user;
 
   HomePageViewModel(super.store)
       : currentRoute = store.state.navigationState.currentRoute,
         previousRoutes = store.state.navigationState.previousRoutes,
-        user = store.state.currentUserState.user!;
+        user = store.state.currentUserState.user;
 
   void openTab(Destination destination) {
     if (currentRoute.first == destination) {

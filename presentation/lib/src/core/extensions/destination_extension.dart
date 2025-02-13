@@ -38,6 +38,10 @@ extension DestinationExtension on Destination {
         state.tablesState.getTables<Criteria>().selectedItem?.name ??
             strings.criteria,
       Destination.editCriteria => strings.editCriteria,
+      Destination.editProfile => strings.editProfile,
+      Destination.changePassword => strings.changePassword,
+      Destination.language => strings.language,
+      Destination.theme => strings.theme,
     };
   }
 }
