@@ -6,8 +6,8 @@ import 'package:presentation/src/core/base_view_model.dart';
 import 'package:presentation/src/general/dialogs/dialog_background.dart';
 import 'package:presentation/src/general/tiles/settings_tile.dart';
 
-class LanguageDialog extends StatelessWidget {
-  const LanguageDialog({super.key});
+class ThemeDialog extends StatelessWidget {
+  const ThemeDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +22,20 @@ class LanguageDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  context.strings.language,
+                  context.strings.theme,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 12),
-                SettingsTile(
-                  isActive: viewModel.languageCode == 'uk',
-                  onTap: () => viewModel.setLocale('uk'),
-                  title: context.strings.ukrainian,
-                ),
-                SettingsTile(
-                  isActive: viewModel.languageCode == 'en',
-                  onTap: () => viewModel.setLocale('en'),
-                  title: context.strings.english,
+                ...AppTheme.values.map(
+                  (theme) => SettingsTile(
+                    isActive: viewModel.theme == theme,
+                    onTap: () => viewModel.setTheme(theme),
+                    title: switch (theme) {
+                      AppTheme.light => context.strings.light,
+                      AppTheme.dark => context.strings.dark,
+                      AppTheme.system => context.strings.system,
+                    },
+                  ),
                 ),
               ],
             ),
@@ -46,15 +47,14 @@ class LanguageDialog extends StatelessWidget {
 }
 
 class _ViewModel extends BaseViewModel {
-  final String languageCode;
+  final AppTheme theme;
 
-  _ViewModel(super.store)
-      : languageCode = store.state.settingsState.languageCode;
+  _ViewModel(super.store) : theme = store.state.settingsState.theme;
 
-  void setLocale(String languageCode) {
-    store.dispatch(SetAppLanguageAction(languageCode));
+  void setTheme(AppTheme theme) {
+    store.dispatch(SetAppThemeAction(theme));
   }
 
   @override
-  List<Object?> get props => [languageCode];
+  List<Object?> get props => [theme];
 }

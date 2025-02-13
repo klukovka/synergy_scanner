@@ -13,6 +13,7 @@ import 'package:presentation/src/navigation/base_route.dart';
 import 'package:presentation/src/navigation/fade_transition_page.dart';
 import 'package:presentation/src/navigation/parsing/routes/routes.dart';
 import 'package:presentation/src/profile/dialogs/language_dialog.dart';
+import 'package:presentation/src/profile/dialogs/theme_dialog.dart';
 import 'package:redux/redux.dart';
 
 class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
@@ -104,6 +105,14 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
                     barrierDismissible: true,
                     key: ValueKey(Destination.language),
                     child: LanguageDialog(),
+                  );
+                  break;
+
+                case Destination.theme:
+                  yield const MaterialDialog(
+                    barrierDismissible: true,
+                    key: ValueKey(Destination.theme),
+                    child: ThemeDialog(),
                   );
                   break;
 
