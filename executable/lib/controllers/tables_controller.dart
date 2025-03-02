@@ -29,6 +29,12 @@ class TablesController extends Controller {
               ),
             ),
           ).call,
+          Endpoint(
+            GetTableItems<Partner, AnalyticsTablePointer>(
+              partnersRepository.getPartners,
+              store.getFilter(),
+            ),
+          ).call,
 
           ///
           /// Criterias

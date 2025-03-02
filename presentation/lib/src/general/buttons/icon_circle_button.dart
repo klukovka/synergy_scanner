@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class IconCircleButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final IconData _iconData;
 
   const IconCircleButton.arrowBack({
@@ -18,6 +19,11 @@ class IconCircleButton extends StatelessWidget {
     super.key,
     required this.onPressed,
   }) : _iconData = Icons.add;
+
+  IconCircleButton.substract({
+    super.key,
+    required this.onPressed,
+  }) : _iconData = MdiIcons.minus;
 
   @override
   Widget build(BuildContext context) {
