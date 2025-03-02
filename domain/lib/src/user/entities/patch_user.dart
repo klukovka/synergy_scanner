@@ -1,13 +1,13 @@
-import 'dart:typed_data';
+import 'package:domain/domain.dart';
 
 class PatchUser {
-  final String email;
-  final String name;
-  final Uint8List? photo;
+  final String? email;
+  final String? fullName;
+  final NewImage? photo;
 
   PatchUser({
     required this.email,
-    required this.name,
+    required this.fullName,
     required this.photo,
   });
 }

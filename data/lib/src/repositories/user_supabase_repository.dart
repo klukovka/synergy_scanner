@@ -2,6 +2,7 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/user/user_dto.dart';
 import 'package:data/src/repositories/images_supabase_repository.dart';
 import 'package:domain/domain.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
 class UserSupabaseRepository extends ImagesSupabaseRepository {
   UserSupabaseRepository();
@@ -90,6 +91,32 @@ class UserSupabaseRepository extends ImagesSupabaseRepository {
     return await makeErrorHandledCallback(() async {
       await supabase.auth.signOut();
       return FailureOrResult.success(null);
+    });
+  }
+
+  Future<FailureOrResult<User>> updateUser(PatchUser patchUser) async {
+    return await makeErrorHandledCallback(() async {
+      final user = (await getCurrentUser()).result!;
+      if (user.email != patchUser.email ||
+          user.fullname != patchUser.fullName) {
+        await supabase.auth.updateUser(
+          UserAttributes(
+            email: user.email != patchUser.email ? patchUser.email : null,
+            data: patchUser.fullName != null &&
+                    user.fullname != patchUser.fullName
+                ? {
+                    'full_name': patchUser.fullName,
+                  }
+                : null,
+          ),
+        );
+      }
+
+      if (patchUser.photo != null) {
+        await uploadUserAvatar(photo: patchUser.photo!, id: user.id);
+      }
+
+      return await getCurrentUser();
     });
   }
 }
