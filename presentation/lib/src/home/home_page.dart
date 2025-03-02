@@ -17,6 +17,7 @@ import 'package:presentation/src/partners/create_edit_partner/edit_partner_page/
 import 'package:presentation/src/partners/partner_details_page/partner_details_page.dart';
 import 'package:presentation/src/partners/partners_filter_page/partners_filter_page.dart';
 import 'package:presentation/src/partners/partners_page/partners_page.dart';
+import 'package:presentation/src/profile/edit_profile/edit_profile_page.dart';
 import 'package:presentation/src/profile/profile_page/profile_page.dart';
 import 'package:redux/redux.dart';
 
@@ -207,6 +208,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                           MaterialPage(
                             key: ValueKey(Destination.editCriteria),
                             child: EditCriteriaPage(),
+                          ),
+                        ],
+                      Destination.editProfile => const [
+                          MaterialPage(
+                            key: ValueKey(Destination.editCriteria),
+                            child: EditProfilePage(),
                           ),
                         ],
                       _ => [],
