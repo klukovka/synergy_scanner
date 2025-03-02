@@ -14,3 +14,11 @@ class UpdateCriteriaAction extends Action {
 
   UpdateCriteriaAction(this.criteria);
 }
+
+class UploadCriteriaCorrelationAction extends Action {}
+
+class UpdateCriteriaCorrelationAction extends Action {
+  final Map<Criteria, CriteriaCorrelation>? correlations;
+
+  UpdateCriteriaCorrelationAction(this.correlations);
+}

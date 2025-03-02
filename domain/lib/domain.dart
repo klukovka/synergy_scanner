@@ -15,6 +15,7 @@ export 'src/criterias/entities/patch_criteria.dart';
 export 'src/criterias/states/criterias_state.dart';
 export 'src/criterias/use_cases/create_criteria.dart';
 export 'src/criterias/use_cases/delete_criteria.dart';
+export 'src/criterias/use_cases/get_criteria_correlations.dart';
 export 'src/criterias/use_cases/get_criteria_details.dart';
 export 'src/criterias/use_cases/update_criteria.dart';
 export 'src/global/global_actions.dart';

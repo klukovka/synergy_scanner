@@ -1,11 +1,11 @@
 import 'package:domain/domain.dart';
 
-class CriteriasCorrelation {
+class CriteriaCorrelation {
   final Criteria criteria;
   final int occurrences;
   final double correlation;
 
-  CriteriasCorrelation({
+  CriteriaCorrelation({
     required this.criteria,
     required this.occurrences,
     required this.correlation,

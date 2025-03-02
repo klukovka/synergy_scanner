@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/criterias/criteria_dto.dart';
 import 'package:data/src/dtos/criterias/new_criteria_dto.dart';
@@ -110,6 +112,19 @@ class CriteriasSupabaseRepository extends BaseSupabaseRepository {
         values:
             result.map((item) => CriteriaDto.fromJson(item).toDomain()).toSet(),
       ));
+    });
+  }
+
+  Future<FailureOrResult<Map<Criteria, CriteriaCorrelation>>>
+      getCriteriasCorrelation() async {
+    return await makeErrorHandledCallback(() async {
+      final result = await supabase.rpc('get_criteria_correlations', params: {
+        'p_user_id': supabase.auth.currentUser!.id,
+      });
+
+      log(result);
+
+      return FailureOrResult.success({});
     });
   }
 }
