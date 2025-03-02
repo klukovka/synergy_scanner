@@ -279,5 +279,8 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
   String get youSureYouWantToDeleteCriteria => 'Are you sure you want to delete criteria?';
 
   @override
-  String get partnersRating => 'Partners\' rating';
+  String get partnersRating => 'Partners\' Rating';
+
+  @override
+  String get criteriasCorrelation => 'Criterias Correlation';
 }

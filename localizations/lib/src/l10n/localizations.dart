@@ -636,8 +636,14 @@ abstract class SynergyScannerLocalizations {
   /// No description provided for @partnersRating.
   ///
   /// In en, this message translates to:
-  /// **'Partners\' rating'**
+  /// **'Partners\' Rating'**
   String get partnersRating;
+
+  /// No description provided for @criteriasCorrelation.
+  ///
+  /// In en, this message translates to:
+  /// **'Criterias Correlation'**
+  String get criteriasCorrelation;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

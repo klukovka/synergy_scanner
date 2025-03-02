@@ -8,7 +8,7 @@ part 'criteria_dto.g.dart';
 class CriteriaDto extends Dto<Criteria> {
   final int id;
   final String name;
-  final double coefficient;
+  final double? coefficient;
   final int? markId;
   final int? mark;
   final int? partnerId;
@@ -29,7 +29,7 @@ class CriteriaDto extends Dto<Criteria> {
   Criteria toDomain() => Criteria(
         id: id,
         name: name,
-        coefficient: coefficient,
+        coefficient: coefficient ?? 0,
         mark: markId != null && mark != null && partnerId != null
             ? Mark(
                 id: markId!, mark: mark!, criteriaId: id, partnerId: partnerId!)

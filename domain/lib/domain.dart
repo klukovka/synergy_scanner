@@ -9,6 +9,7 @@ export 'src/core/filter/filter_by.dart';
 export 'src/core/filter/sort_by.dart';
 export 'src/criterias/criterias_actions.dart';
 export 'src/criterias/entities/criteria.dart';
+export 'src/criterias/entities/criteria_correlation.dart';
 export 'src/criterias/entities/new_criteria.dart';
 export 'src/criterias/entities/patch_criteria.dart';
 export 'src/criterias/states/criterias_state.dart';
