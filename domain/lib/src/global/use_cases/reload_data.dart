@@ -17,5 +17,6 @@ class ReloadData extends UseCase<ReloadDataAction> {
     yield DownloadTableItemsAction<Criteria, GeneralTablePointer>(
       append: false,
     );
+    yield UploadCriteriaCorrelationAction();
   }
 }

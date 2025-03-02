@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:clean_redux/clean_redux.dart';
 import 'package:data/src/dtos/criterias/criteria_dto.dart';
+import 'package:data/src/dtos/criterias/criterias_correlation_dto.dart';
 import 'package:data/src/dtos/criterias/new_criteria_dto.dart';
 import 'package:data/src/dtos/criterias/patch_criteria_dto.dart';
 import 'package:data/src/repositories/base_supabase_repository.dart';
@@ -115,16 +114,60 @@ class CriteriasSupabaseRepository extends BaseSupabaseRepository {
     });
   }
 
-  Future<FailureOrResult<Map<Criteria, CriteriaCorrelation>>>
+  Future<FailureOrResult<Map<Criteria, List<CriteriaCorrelation>>>>
       getCriteriasCorrelation() async {
     return await makeErrorHandledCallback(() async {
-      final result = await supabase.rpc('get_criteria_correlations', params: {
+      final List<dynamic> response =
+          await supabase.rpc('get_criteria_correlations', params: {
         'p_user_id': supabase.auth.currentUser!.id,
       });
 
-      log(result);
+      final criterias = response
+          .map((item) => CriteriasCorrelationDto.fromJson(item))
+          .expand(
+            (item) => [
+              (
+                criteria: Criteria(
+                  id: item.criteriaId1,
+                  name: item.criteriaName1,
+                ),
+                correlation: CriteriaCorrelation(
+                  criteria: Criteria(
+                    id: item.criteriaId2,
+                    name: item.criteriaName2,
+                  ),
+                  occurrences: item.occurrences,
+                  correlation: item.correlation,
+                ),
+              ),
+              (
+                criteria: Criteria(
+                  id: item.criteriaId2,
+                  name: item.criteriaName2,
+                ),
+                correlation: CriteriaCorrelation(
+                  criteria: Criteria(
+                    id: item.criteriaId1,
+                    name: item.criteriaName1,
+                  ),
+                  occurrences: item.occurrences,
+                  correlation: item.correlation,
+                ),
+              ),
+            ],
+          )
+          .toList()
+        ..sort((a, b) => a.criteria.id.compareTo(b.criteria.id));
 
-      return FailureOrResult.success({});
+      final result = criterias.groupBy((item) => item.criteria).map(
+            (key, value) => MapEntry(
+              key,
+              value.map((item) => item.correlation).toList()
+                ..sort((a, b) => a.criteria.id.compareTo(b.criteria.id)),
+            ),
+          );
+
+      return FailureOrResult.success(result);
     });
   }
 }

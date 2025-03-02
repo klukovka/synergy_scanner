@@ -1,6 +1,7 @@
 import 'package:domain/domain.dart';
+import 'package:equatable/equatable.dart';
 
-class Criteria with TableItem<Criteria> {
+class Criteria extends Equatable with TableItem<Criteria> {
   @override
   final int id;
   final String name;
@@ -10,8 +11,8 @@ class Criteria with TableItem<Criteria> {
   Criteria({
     required this.id,
     required this.name,
-    required this.coefficient,
-    required this.mark,
+    this.coefficient = 0,
+    this.mark,
   });
 
   @override
@@ -35,4 +36,7 @@ class Criteria with TableItem<Criteria> {
       mark: mark ?? this.mark,
     );
   }
+
+  @override
+  List<Object?> get props => [id, name, coefficient, mark];
 }

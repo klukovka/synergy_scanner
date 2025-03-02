@@ -18,7 +18,7 @@ class UpdateCriteriaAction extends Action {
 class UploadCriteriaCorrelationAction extends Action {}
 
 class UpdateCriteriaCorrelationAction extends Action {
-  final Map<Criteria, CriteriaCorrelation>? correlations;
+  final Map<Criteria, List<CriteriaCorrelation>>? correlations;
 
   UpdateCriteriaCorrelationAction(this.correlations);
 }

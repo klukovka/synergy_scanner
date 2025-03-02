@@ -31,5 +31,10 @@ class CriteriasController extends Controller {
                   store().state.tablesState.getTables<Criteria>().selectedItem!,
             ),
           ).call,
+          Endpoint(
+            GetCriteriaCorrelations(
+              criteriasRepository.getCriteriasCorrelation,
+            ),
+          ).call,
         ]);
 }

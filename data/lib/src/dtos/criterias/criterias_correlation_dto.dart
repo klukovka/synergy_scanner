@@ -4,9 +4,13 @@ part 'criterias_correlation_dto.g.dart';
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class CriteriasCorrelationDto {
+  @JsonKey(name: 'criteria_id_1')
   final int criteriaId1;
+  @JsonKey(name: 'criteria_name_1')
   final String criteriaName1;
+  @JsonKey(name: 'criteria_id_2')
   final int criteriaId2;
+  @JsonKey(name: 'criteria_name_2')
   final String criteriaName2;
   final int occurrences;
   final double correlation;

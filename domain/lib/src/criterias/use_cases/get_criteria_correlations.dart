@@ -2,8 +2,8 @@ import 'package:clean_redux/clean_redux.dart';
 import 'package:domain/domain.dart';
 
 class GetCriteriaCorrelations extends UseCase<UploadCriteriaCorrelationAction> {
-  final Future<FailureOrResult<Map<Criteria, CriteriaCorrelation>>> Function()
-      getCriteriasCorrelation;
+  final Future<FailureOrResult<Map<Criteria, List<CriteriaCorrelation>>>>
+      Function() getCriteriasCorrelation;
 
   GetCriteriaCorrelations(this.getCriteriasCorrelation) : super(isAsync: false);
 

@@ -3,7 +3,7 @@ import 'package:domain/domain.dart';
 
 class CriteriasState extends State<CriteriasState> {
   final Failure? failure;
-  final Map<Criteria, CriteriaCorrelation>? correlations;
+  final Map<Criteria, List<CriteriaCorrelation>>? correlations;
 
   CriteriasState({
     this.failure,
@@ -61,7 +61,7 @@ class CriteriasState extends State<CriteriasState> {
   @override
   CriteriasState copyWith({
     Nullable<Failure>? failure,
-    Nullable<Map<Criteria, CriteriaCorrelation>>? correlations,
+    Nullable<Map<Criteria, List<CriteriaCorrelation>>>? correlations,
   }) =>
       CriteriasState(
         failure: failure == null ? this.failure : failure.value,
