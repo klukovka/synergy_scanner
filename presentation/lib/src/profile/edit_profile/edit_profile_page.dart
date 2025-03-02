@@ -36,7 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.strings.signUp),
+        title: Text(context.strings.editProfile),
       ),
       body: StoreConnector<AppState, _ViewModel>(
         distinct: true,
