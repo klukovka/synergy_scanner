@@ -20,3 +20,9 @@ class LoginAction extends Action {
 
   LoginAction(this.user);
 }
+
+class PatchUserAction extends Action {
+  final PatchUser patchUser;
+
+  PatchUserAction(this.patchUser);
+}

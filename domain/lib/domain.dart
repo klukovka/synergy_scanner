@@ -58,3 +58,4 @@ export 'src/user/states/current_user_state.dart';
 export 'src/user/use_cases/login.dart';
 export 'src/user/use_cases/logout.dart';
 export 'src/user/use_cases/sign_up.dart';
+export 'src/user/use_cases/update_user.dart';

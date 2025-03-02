@@ -12,6 +12,7 @@ class UserController extends Controller {
             Endpoint(SignUp(userRepository.signUp)).call,
             Endpoint(Logout(userRepository.logout)).call,
             Endpoint(Login(userRepository.login)).call,
+            Endpoint(UpdateUser(userRepository.updateUser)).call,
           ],
         );
 }
