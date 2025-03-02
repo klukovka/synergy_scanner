@@ -644,6 +644,12 @@ abstract class SynergyScannerLocalizations {
   /// In en, this message translates to:
   /// **'Criterias Correlation'**
   String get criteriasCorrelation;
+
+  /// No description provided for @correlation.
+  ///
+  /// In en, this message translates to:
+  /// **'Correlation'**
+  String get correlation;
 }
 
 class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<SynergyScannerLocalizations> {

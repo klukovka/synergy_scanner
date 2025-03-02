@@ -98,5 +98,6 @@
     "criteria": "Criteria",
     "youSureYouWantToDeleteCriteria": "Are you sure you want to delete criteria?",
     "partnersRating": "Partners' Rating",
-    "criteriasCorrelation": "Criterias Correlation"
+    "criteriasCorrelation": "Criterias Correlation",
+    "correlation": "Correlation"
 }

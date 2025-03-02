@@ -283,4 +283,7 @@ class SynergyScannerLocalizationsEn extends SynergyScannerLocalizations {
 
   @override
   String get criteriasCorrelation => 'Criterias Correlation';
+
+  @override
+  String get correlation => 'Correlation';
 }
