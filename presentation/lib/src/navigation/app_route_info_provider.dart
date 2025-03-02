@@ -135,5 +135,6 @@ extension on Destination {
         Destination.changePassword => 'Change Password',
         Destination.language => 'Language',
         Destination.theme => 'Theme',
+        Destination.resetPassword => 'Reset Password',
       };
 }

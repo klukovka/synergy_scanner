@@ -42,6 +42,7 @@ extension DestinationExtension on Destination {
       Destination.changePassword => strings.changePassword,
       Destination.language => strings.language,
       Destination.theme => strings.theme,
+      Destination.resetPassword => strings.resetPassword,
     };
   }
 }

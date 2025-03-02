@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:presentation/src/auth/login/login_page.dart';
+import 'package:presentation/src/auth/reset_password/reset_password_page.dart';
 import 'package:presentation/src/auth/sign_up/sign_up_page.dart';
 import 'package:presentation/src/general/dialogs/material_dialog.dart';
 import 'package:presentation/src/general/dialogs/unexpected_error_dialog.dart';
@@ -88,6 +89,12 @@ class AppRouterDelegate extends RouterDelegate<BaseRoute<AppState>>
                   yield const FadeTransitionPage(
                     key: ValueKey(Destination.signUp),
                     child: SignUpPage(),
+                  );
+                  break;
+                case Destination.resetPassword:
+                  yield const FadeTransitionPage(
+                    key: ValueKey(Destination.resetPassword),
+                    child: ResetPasswordPage(),
                   );
                   break;
                 case Destination.partners:

@@ -219,7 +219,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                         ],
                       Destination.changePassword => const [
                           MaterialPage(
-                            key: ValueKey(Destination.editCriteria),
+                            key: ValueKey(Destination.changePassword),
                             child: ChangePasswordPage(),
                           ),
                         ],

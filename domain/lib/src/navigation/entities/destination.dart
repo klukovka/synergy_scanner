@@ -18,6 +18,7 @@ enum Destination {
   editCriteria,
   editProfile,
   changePassword,
+  resetPassword,
   language(canBePartOfRoute: false),
   theme(canBePartOfRoute: false);
 

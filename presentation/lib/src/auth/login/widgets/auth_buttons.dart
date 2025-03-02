@@ -17,9 +17,9 @@ class AuthButtons extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: TextButton(
-              onPressed: () {
-                //TODO: Push to reset password
-              },
+              onPressed: () => StoreProvider.of<AppState>(context).dispatch(
+                OpenPageAction(Destination.resetPassword),
+              ),
               child: Text(context.strings.forgotPassword),
             ),
           ),
