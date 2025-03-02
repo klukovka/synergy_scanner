@@ -27,6 +27,8 @@ class UpdateCriteria extends UseCase<UpdateCriteriaAction> {
         append: false,
         clear: true,
       );
+      yield UploadCriteriaCorrelationAction();
+
       return;
     }
 

@@ -32,6 +32,8 @@ class DeleteCriteria extends UseCase<DeleteCriteriaAction> {
         append: false,
         clear: true,
       );
+      yield UploadCriteriaCorrelationAction();
+
       return;
     }
 

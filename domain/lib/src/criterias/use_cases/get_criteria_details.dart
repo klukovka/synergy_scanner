@@ -15,6 +15,8 @@ class GetCriteriaDetails extends UseCase<SetSelectedIdAction<Criteria>> {
 
     if (response.wasSuccessful) {
       yield UpdateTablesItemAction<Criteria>(response.result!);
+      yield UploadCriteriaCorrelationAction();
+
       return;
     }
 

@@ -20,6 +20,7 @@ class CreateCriteria extends UseCase<CreateCriteriaAction> {
       yield DownloadTableItemsAction<Criteria, GeneralTablePointer>(
         append: false,
       );
+      yield UploadCriteriaCorrelationAction();
       return;
     }
 
