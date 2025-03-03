@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'localizations_en.dart';
+import 'localizations_uk.dart';
 
 // ignore_for_file: type=lint
 
@@ -90,7 +91,8 @@ abstract class SynergyScannerLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('en')
+    Locale('en'),
+    Locale('uk')
   ];
 
   /// No description provided for @languageName.
@@ -661,7 +663,7 @@ class _SynergyScannerLocalizationsDelegate extends LocalizationsDelegate<Synergy
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'uk'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_SynergyScannerLocalizationsDelegate old) => false;
@@ -673,6 +675,7 @@ SynergyScannerLocalizations lookupSynergyScannerLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return SynergyScannerLocalizationsEn();
+    case 'uk': return SynergyScannerLocalizationsUk();
   }
 
   throw FlutterError(
