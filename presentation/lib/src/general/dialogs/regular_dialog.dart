@@ -58,7 +58,7 @@ class RegularDialog extends StatelessWidget {
                         Offstage(
                           offstage: icon == null,
                           child: IconTheme(
-                            data: const IconThemeData(
+                            data: IconTheme.of(context).copyWith(
                               size: 36,
                             ),
                             child: Padding(
